@@ -41,26 +41,23 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     private VBox rightVbox;
 
     @FXML
-    private ImageView targetImage, toppingImage1, toppingImage2, vecnaClockImage, sauceImage, topping1Image,
-            topping2Image, topping3Image, topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target,
-            topping4Target;
+    private ImageView targetImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
+            topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
 
     @FXML
     Label pizzaLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
         pizzaLabel.setText("Drag the Pizza into the center box.");
+
+        // TODO: DELETE TEST CODE BEFORE FINALIZING.
 //        vecnaClockImage.setImage(
 //                new Image(getClass().getResource("../images/vecna_clock_to_fit_rightVbox.png").toExternalForm()));
 
         // Binds img height and width to the container (rightVbox) to resize.
-//        rightVbox.setPrefWidth(200.0);
-
         vecnaClockImage.fitWidthProperty().bind(rightVbox.widthProperty());
         vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
-
     }
 
     @Override
