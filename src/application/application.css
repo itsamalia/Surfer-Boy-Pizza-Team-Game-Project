@@ -1,0 +1,12 @@
+/**
+ * CSS style sheet for the application.
+ * 
+ * CS3443-004 - Fall 2022
+ *
+ * @author Danny Ghrist (kda458)
+ *
+ */
+
+#titlePane {
+    -fx-background-color: black;
+}

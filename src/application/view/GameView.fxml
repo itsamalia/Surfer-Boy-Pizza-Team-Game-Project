@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="mainBorderPane" minHeight="800.0" minWidth="800.0" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameViewController">
+   <bottom>
+      <HBox fx:id="bottomHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="sauceImage" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/marinaraSauce.png" />
+               </image></ImageView>
+            <ImageView fx:id="topping1Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/toppings_ham.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="topping2Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/toppings_mushroom.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="topping3Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/toppings_pineapple.png" />
+               </image></ImageView>
+            <ImageView fx:id="topping4Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/toppings_onions.png" />
+               </image></ImageView>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox fx:id="topHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="pizzaLabel" alignment="CENTER" prefHeight="106.0" prefWidth="800.0" text="Label" textAlignment="CENTER" textFill="#70bf15">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font></Label>
+         </children></HBox>
+   </top>
+   <left>
+      <VBox fx:id="leftVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Label" />
+         </children></VBox>
+   </left>
+   <right>
+      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="vecnaClockImage" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/vecna_clock_cropped_200x200.png" />
+               </image>
+            </ImageView>
+         </children></VBox>
+   </right>
+   <center>
+      <GridPane fx:id="centerGridPane" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane fx:id="centerStackPane" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+               <children>
+                  <ImageView fx:id="targetImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../images/pizzaCrust.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="sauceTarget" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
+                  <ImageView fx:id="topping1Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
+                  <ImageView fx:id="topping2Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
+                  <ImageView fx:id="topping3Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
+                  <ImageView fx:id="topping4Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
+               </children>
+            </StackPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
