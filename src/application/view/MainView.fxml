@@ -18,9 +18,9 @@
             </ImageView>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="350.0" layoutY="376.0" prefHeight="160.0" prefWidth="100.0" spacing="25.0">
+      <VBox alignment="TOP_CENTER" layoutX="333.0" layoutY="367.0" prefHeight="160.0" prefWidth="135.0" spacing="25.0" AnchorPane.leftAnchor="333.0">
          <children>
-            <Button fx:id="startButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="112.0" text="Start" VBox.vgrow="ALWAYS">
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="142.0" text="Pizza Test Start" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -30,7 +30,7 @@
       </VBox>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Programming/Java/CS3443-004_App_Programming/Labs/TeamProject/src/application/images/littleSurfers.png" />
+            <Image url="@../images/littleSurfers.png" />
          </image>
       </ImageView>
    </children>

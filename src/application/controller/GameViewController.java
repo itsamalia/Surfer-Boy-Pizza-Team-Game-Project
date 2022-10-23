@@ -56,6 +56,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 //                new Image(getClass().getResource("../images/vecna_clock_to_fit_rightVbox.png").toExternalForm()));
 
         // Binds img height and width to the container (rightVbox) to resize.
+        // TODO: FIX OR REMOVE THIS AS IT DOESN'T LOOK RIGHT AND WON'T RESIZE BACK DOWN.
         vecnaClockImage.fitWidthProperty().bind(rightVbox.widthProperty());
         vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
     }

@@ -32,7 +32,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     ImageView logoImg;
 
     @FXML
-    Button buttonPushed, startButton;
+    Button buttonPushed, pizzaStartButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,7 +57,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             String newScene = "";
 
             // Determines which button was pushed and loads that FXML Scene.
-            if (buttonPushed.getId().equals("startButton")) {
+            if (buttonPushed.getId().equals("pizzaStartButton")) {
                 newScene = "GameView.fxml";
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
