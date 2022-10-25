@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.TilePane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField alignment="CENTER" editable="false" layoutX="47.0" layoutY="353.0" text="PIZZA FINISHED BRAH!!!">
+      <TextField alignment="CENTER" editable="false" layoutX="47.0" layoutY="204.0" text="PIZZA FINISHED BRAH!!!">
          <font>
             <Font name="Verdana Bold" size="48.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="353.0" fitWidth="250.0" layoutX="275.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pixel-Argyle500v432.png" />
+         </image></ImageView>
    </children>
 </Pane>

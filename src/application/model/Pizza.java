@@ -1,6 +1,7 @@
 package application.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Controls the actions of adding ingredients to the pizza and what ingredients
@@ -36,30 +37,46 @@ public class Pizza {
         this.setRandomIngredients();
     }
 
-    // TODO: METHOD TO GENERATE RANDOM INGREDIENTS (SHOULD ALWAYS INCLUDE DOUGH).
+    // TODO: NEED TO ADD CHECK SO IT DOESN'T ADD THE SAME INGREDIENT MULTIPLE TIMES.
+    /**
+     * Sets the ingredients ArrayList of the Pizza Object to a list of random
+     * Ingredients from the available Ingredients.
+     */
     public void setRandomIngredients() {
-        ArrayList<Ingredient> allIngredients = new ArrayList<Ingredient>();
-        allIngredients.add(new ToppingHam());
-        allIngredients.add(new ToppingPineapple());
-        allIngredients.add(new ToppingSauce());
-//        allIngredients.add(new ToppingOnion());
-        allIngredients.add(new ToppingMushroom());
-        this.setIngredients(allIngredients);
+        ArrayList<Ingredient> allIngredients = this.getListOfIngredientTypes();
+        ArrayList<Ingredient> randomIngredients = new ArrayList<Ingredient>();
+        Random randNumIngredients = new Random();
+        Random randIngredient = new Random();
+        int ingredientIndexToAdd;
+        for (int i = 0; i < randNumIngredients.nextInt(5) + 1; i++) {
+            ingredientIndexToAdd = randIngredient.nextInt(5);
+            randomIngredients.add(allIngredients.get(ingredientIndexToAdd));
+        }
+        this.setIngredients(randomIngredients);
     }
 
     /**
-     * Gets the ingredients needed for a pizza.
+     * Generates an ArrayList<Ingredient> of all the available toppings that we have
+     * subclasses for that are of type Ingredient.
      * 
-     * @return The ingredients (ArrayList<Ingredient>)
+     * @return List of with one of each available Ingredient (ArrayList<Ingredient>)
      */
+    private ArrayList<Ingredient> getListOfIngredientTypes() {
+        ArrayList<Ingredient> allIngredients = new ArrayList<Ingredient>();
+        allIngredients.add(new ToppingSauce());
+        allIngredients.add(new ToppingHam());
+        allIngredients.add(new ToppingMushroom());
+        allIngredients.add(new ToppingPineapple());
+        allIngredients.add(new ToppingOnion());
+        return allIngredients;
+    }
 
-    // TODO: CREATE A METHOD THAT FINDS AN INGREDIENT, USING THE INGREDIENT NAME,
-    // WITHIN AN ARRAY.
-//    public void findIngredient(String ingredientName) {
-//        if (ingredientName == ) {
-//    }
-//    }
-
+    /**
+     * Determines if the Pizza Object is fully built and returns true if yes and
+     * false if no.
+     * 
+     * @return If pizza is finished being built (boolean)
+     */
     public boolean isFinished() {
         boolean ret = true;
         for (Ingredient ingredient : this.getIngredients()) {
@@ -70,6 +87,11 @@ public class Pizza {
         return ret;
     }
 
+    /**
+     * Gets the ingredients needed for a pizza.
+     * 
+     * @return The ingredients (ArrayList<Ingredient>)
+     */
     public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }

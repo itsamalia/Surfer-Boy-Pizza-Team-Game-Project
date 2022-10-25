@@ -72,6 +72,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         // Set the ingredient labels to be composed of what is in the random Array.
         // Set counter variable to 2, that is first topping label Node in leftVbox.
         this.ingredientLabels = new ArrayList<Label>();
+        // i is 2 because the first two nodes in the lefVbox are not ingredient nodes.
         int i = 2;
         List<Node> leftVboxLabels = (List<Node>) leftVbox.getChildren();
         for (Ingredient ingredient : this.buildPizza.getIngredients()) {
@@ -98,8 +99,6 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
          * THAT HAVE BEEN PLACED.
          */
 //        ingredient1Label.setStyle("-fx-strikethrough: true");
-
-        // TODO: LOAD RANDOM TOPPINGS
 
         // TODO: DELETE TEST CODE BEFORE FINALIZING.
 //        vecnaClockImage.setImage(
@@ -264,6 +263,17 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         event.consume();
     }
 
+    /**
+     * Sets the topping information for a topping and updates the label for that
+     * topping to determine if it has already been added or not so that it will not
+     * update the target image if the topping has already been added.
+     * 
+     * @param sourceImage     (ImageView)
+     * @param targetImage     (ImageView)
+     * @param ingredientLabel (Label)
+     * @param i               Counter variable used to obtain individual Ingredient
+     *                        (int)
+     */
     private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
 
         // TODO: FIX THIS SO IT DOESN'T THROW AN ERROR WHEN THERE ARE FEWER TOPPINGS IN
@@ -281,16 +291,22 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         }
     }
 
+    /**
+     * Return the Label of the specified topping to be used in updating Label text.
+     * 
+     * @param topping Name of the topping to find Label info (String)
+     * @return The Label that the topping is currently in (Label)
+     */
     private Label getLabel(String topping) {
-        Label label = null;
-        for (Node node : this.ingredientLabels) {
+        Label returnLabel = null;
+        for (Label label : this.ingredientLabels) {
 
 //            System.out.println(node.getId());
-            if (node.getId() != null && node.getId().equalsIgnoreCase(topping)) {
-                label = (Label) node;
+            if (label.getId() != null && label.getId().equalsIgnoreCase(topping)) {
+                returnLabel = label;
             }
         }
-        return label;
+        return returnLabel;
     }
 
     /**
