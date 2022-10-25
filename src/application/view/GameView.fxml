@@ -54,27 +54,32 @@
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Sauce">
+            <Label fx:id="ingredient1Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" text="Dough">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Ham">
+            <Label fx:id="ingredient2Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Mushroom">
+            <Label fx:id="ingredient3Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Pineapple">
+            <Label fx:id="ingredient4Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="108.0" text="Onions">
+            <Label fx:id="ingredient5Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="ingredient6Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
@@ -92,22 +97,21 @@
          </children></VBox>
    </right>
    <center>
-      <GridPane fx:id="centerGridPane" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
+      <GridPane fx:id="centerGridPane" gridLinesVisible="true" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="centerStackPane" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+            <StackPane fx:id="centerStackPane">
                <children>
-                  <ImageView fx:id="targetImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
+                  <ImageView fx:id="doughImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
                      <image>
                         <Image url="@../images/pizzaCrust.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="sauceTarget" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
                   <ImageView fx:id="topping1Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />
                   <ImageView fx:id="topping2Target" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" pickOnBounds="true" />

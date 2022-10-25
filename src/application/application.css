@@ -7,6 +7,11 @@
  *
  */
 
+/* Used to access the Text subnode of the label class. */
+.label .text {
+/*    -fx-strikethrough: true; */
+}
+
 #titlePane {
     -fx-background-color: black;
 }
