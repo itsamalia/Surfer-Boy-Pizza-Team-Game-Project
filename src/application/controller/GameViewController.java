@@ -63,9 +63,6 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        // TODO: CREATE THE PIZZA TO BUILD.
-        // TODO: ***** TEST CODE MODIFY TO CREATE RANDOM PIZZA WHEN DONE TESTING *****
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
 
@@ -76,14 +73,10 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         int i = 2;
         List<Node> leftVboxLabels = (List<Node>) leftVbox.getChildren();
         for (Ingredient ingredient : this.buildPizza.getIngredients()) {
-//            System.out.println(ingredientLabels.get(i));
             Label label = (Label) leftVboxLabels.get(i);
             label.setText(ingredient.getName());
             this.ingredientLabels.add(label);
             label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
-            System.out.println(label.getId());
-            System.out.println(this.ingredientLabels);
-            System.out.println(this.ingredientLabels.get(i - 2).getId());
             i++;
         }
 
@@ -93,16 +86,6 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 //        System.out.println(pizzaSauce.isOnPizza());
 //        System.out.println(this.buildPizza.getIngredients());
 //        System.out.println(this.buildPizza.getIngredients().get();
-
-        /*
-         * TODO: FIGURE OUT HOW THIS WORKS SO I CAN STRIKE OUT THE LABELS OF INGREDIENTS
-         * THAT HAVE BEEN PLACED.
-         */
-//        ingredient1Label.setStyle("-fx-strikethrough: true");
-
-        // TODO: DELETE TEST CODE BEFORE FINALIZING.
-//        vecnaClockImage.setImage(
-//                new Image(getClass().getResource("../images/vecna_clock_to_fit_rightVbox.png").toExternalForm()));
 
         // Binds img height and width to the container (rightVbox) to resize.
         // TODO: FIX OR REMOVE THIS AS IT DOESN'T LOOK RIGHT AND WON'T RESIZE BACK DOWN.
@@ -268,9 +251,9 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
      * topping to determine if it has already been added or not so that it will not
      * update the target image if the topping has already been added.
      * 
-     * @param sourceImage     (ImageView)
-     * @param targetImage     (ImageView)
-     * @param ingredientLabel (Label)
+     * @param sourceImage     The image being dragged (ImageView)
+     * @param targetImage     The image to be dropped into (ImageView)
+     * @param ingredientLabel The Label of the item being dragged (Label)
      * @param i               Counter variable used to obtain individual Ingredient
      *                        (int)
      */

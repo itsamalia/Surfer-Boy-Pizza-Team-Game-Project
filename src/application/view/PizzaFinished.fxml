@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -9,14 +10,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField alignment="CENTER" editable="false" layoutX="47.0" layoutY="204.0" text="PIZZA FINISHED BRAH!!!">
-         <font>
-            <Font name="Verdana Bold" size="48.0" />
-         </font>
-      </TextField>
       <ImageView fitHeight="353.0" fitWidth="250.0" layoutX="275.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/pixel-Argyle500v432.png" />
+            <Image url="@../images/pixel-Argyle-450x400.png" />
          </image></ImageView>
+      <Ellipse layoutX="400.0" layoutY="252.0" radiusX="333.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fill="#ff6c0b" layoutX="143.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PIZZA FINISHED BRAH!!!" wrappingWidth="514.0">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

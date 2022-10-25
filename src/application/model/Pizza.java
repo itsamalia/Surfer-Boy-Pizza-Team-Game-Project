@@ -17,7 +17,6 @@ public class Pizza {
 
     ArrayList<Ingredient> ingredients;
 
-    // TODO: ADD ANY NECCESSARY ITEMS TO THIS CONSTRUCTOR.
     /**
      * Constructor for the Pizza object. All pizzas need to start with a crust at a
      * minimum. Most likely sauce and cheese as well.
@@ -34,10 +33,8 @@ public class Pizza {
      */
     public Pizza() {
         this.ingredients = new ArrayList<Ingredient>();
-        this.setRandomIngredients();
     }
 
-    // TODO: NEED TO ADD CHECK SO IT DOESN'T ADD THE SAME INGREDIENT MULTIPLE TIMES.
     /**
      * Sets the ingredients ArrayList of the Pizza Object to a list of random
      * Ingredients from the available Ingredients.
@@ -47,10 +44,21 @@ public class Pizza {
         ArrayList<Ingredient> randomIngredients = new ArrayList<Ingredient>();
         Random randNumIngredients = new Random();
         Random randIngredient = new Random();
-        int ingredientIndexToAdd;
-        for (int i = 0; i < randNumIngredients.nextInt(5) + 1; i++) {
-            ingredientIndexToAdd = randIngredient.nextInt(5);
-            randomIngredients.add(allIngredients.get(ingredientIndexToAdd));
+        int tempNumIngredients = randNumIngredients.nextInt(5) + 1;
+        int tempIngredientIndex = 0;
+        System.out.println("Number of Ingredients in randomIngredients: " + tempNumIngredients);
+        for (int i = 0; i < tempNumIngredients/* randNumIngredients.nextInt(5) + 1 */; i++) {
+            // TODO: DELETE DEBUGGING PRINT STATEMENT WHEN DONE.
+            tempIngredientIndex = randIngredient.nextInt(5);
+            System.out.println("OUTSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
+
+            while (randomIngredients.contains(allIngredients.get(tempIngredientIndex))) {
+                tempIngredientIndex = randIngredient.nextInt(5);
+                System.out.println("INSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
+            }
+            randomIngredients.add(allIngredients.get(tempIngredientIndex));
+            System.out.println("Adding: " + allIngredients.get(tempIngredientIndex).name);
+            System.out.println("");
         }
         this.setIngredients(randomIngredients);
     }

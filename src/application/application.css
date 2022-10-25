@@ -9,10 +9,6 @@
 
 /* Used to access the Text subnode of the label class. */
 
-Pane {
-    -fx-background-color: black;
-}
-
 .label .text {
 /*    -fx-strikethrough: true; */
 }
