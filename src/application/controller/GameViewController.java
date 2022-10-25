@@ -33,6 +33,9 @@ import javafx.scene.paint.Color;
  *
  * Controller for the GameView FXML. Allows a user to drag and drop toppings
  * from the bottom menu onto the pizza image in the center of the BorderPane.
+ * Upon load a random list of ingredients is shown on the left side and those
+ * are the toppings the user needs to add to the pizza. The dough is shown by
+ * default.
  * 
  * CS3443-004 - Fall 2022
  *
@@ -258,11 +261,8 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
      *                        (int)
      */
     private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
-
-        // TODO: FIX THIS SO IT DOESN'T THROW AN ERROR WHEN THERE ARE FEWER TOPPINGS IN
-        // BUILDPIZZA ARRAY.
-        if (this.buildPizza.getIngredients().get(i).equals(null)) {
-            System.out.println("This ingredient is null.");
+        if (i < 0) {
+            System.out.println("This ingredient doesn't need to be added to the current pizza.");
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
