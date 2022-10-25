@@ -1,12 +1,21 @@
 package application.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import application.Main;
+import application.model.Ingredient;
+import application.model.Pizza;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -17,12 +26,16 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * TODO: UPDATE THIS WHEN MORE FUNCTIONALITY IS ADDED OR REMOVED.
  *
  * Controller for the GameView FXML. Allows a user to drag and drop toppings
  * from the bottom menu onto the pizza image in the center of the BorderPane.
+ * Upon load a random list of ingredients is shown on the left side and those
+ * are the toppings the user needs to add to the pizza. The dough is shown by
+ * default.
  * 
  * CS3443-004 - Fall 2022
  *
@@ -31,6 +44,9 @@ import javafx.scene.layout.VBox;
  */
 public class GameViewController implements EventHandler<ActionEvent>, Initializable {
 
+    Pizza buildPizza;
+    ArrayList<Label> ingredientLabels;
+
     @FXML
     BorderPane mainBorderPane;
 
@@ -38,27 +54,47 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     StackPane centerStackPane;
 
     @FXML
-    private VBox rightVbox;
+    private VBox leftVbox, rightVbox;
 
     @FXML
-    private ImageView targetImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
+    private ImageView doughImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
             topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
 
     @FXML
-    Label pizzaLabel;
+    Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
+            ingredient6Label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pizzaLabel.setText("Drag the Pizza into the center box.");
+        this.buildPizza = new Pizza();
+        this.buildPizza.setRandomIngredients();
 
-        // TODO: DELETE TEST CODE BEFORE FINALIZING.
-//        vecnaClockImage.setImage(
-//                new Image(getClass().getResource("../images/vecna_clock_to_fit_rightVbox.png").toExternalForm()));
+        // Set the ingredient labels to be composed of what is in the random Array.
+        // Set counter variable to 2, that is first topping label Node in leftVbox.
+        this.ingredientLabels = new ArrayList<Label>();
+        // i is 2 because the first two nodes in the lefVbox are not ingredient nodes.
+        int i = 2;
+        List<Node> leftVboxLabels = (List<Node>) leftVbox.getChildren();
+        for (Ingredient ingredient : this.buildPizza.getIngredients()) {
+            Label label = (Label) leftVboxLabels.get(i);
+            label.setText(ingredient.getName());
+            this.ingredientLabels.add(label);
+            label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
+            i++;
+        }
+
+        // TODO: DELETE DEBUGGING PRINT STATEMENTS AFTER DONE.
+//        System.out.println(pizzaSauce.isOnPizza());
+//        pizzaSauce.setOnPizza(true);
+//        System.out.println(pizzaSauce.isOnPizza());
+//        System.out.println(this.buildPizza.getIngredients());
+//        System.out.println(this.buildPizza.getIngredients().get();
 
         // Binds img height and width to the container (rightVbox) to resize.
         // TODO: FIX OR REMOVE THIS AS IT DOESN'T LOOK RIGHT AND WON'T RESIZE BACK DOWN.
         vecnaClockImage.fitWidthProperty().bind(rightVbox.widthProperty());
         vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
+        pizzaLabel.setText("Drag the Pizza into the center box.");
     }
 
     @Override
@@ -82,7 +118,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 
         // Drag was detected, start drag-and-drop gesture
         // TODO: DELETE DEBUGGING PRINT STATEMENT WHEN COMPLETE.
-        System.out.println("onDragDetected");
+//        System.out.println("onDragDetected");
 
         // Create Dragboard and ClipboardContent Objects for use when dragging.
         Dragboard db = null;
@@ -111,7 +147,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         db.setContent(content);
 
         // Debugging print statement to the console.
-        System.out.println(content.hasImage());
+//        System.out.println(content.hasImage());
 
         event.consume();
     }
@@ -126,7 +162,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
      */
     public void handleDragOver(DragEvent event) {
         /* data is dragged over the target */
-        System.out.println("onDragOver");
+//        System.out.println("onDragOver");
 
         // Accept it only if it has an Image.
         if (event.getDragboard().hasImage()) {
@@ -147,11 +183,11 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @FXML
     public void handleDragEntered(DragEvent event) {
         // The drag-and-drop gesture entered the target
-        System.out.println("onDragEntered");
+//        System.out.println("onDragEntered");
         // Show to the user that it is an actual gesture target
         if (event.getDragboard().hasImage()) {
             // TODO: DELETE DEBUGGING PRINT STATEMENT BEFORE FINISHING
-            System.out.println("Has Image and not target Image");
+//            System.out.println("Has Image and not target Image");
             pizzaLabel.setText("Now Drop The Topping On the Pizza.");
         }
         event.consume();
@@ -168,7 +204,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @FXML
     public void handleDragExited(DragEvent event) {
         /* the drag-and-drop gesture exited the target */
-        System.out.println("onDragExited");
+//        System.out.println("onDragExited");
         /* show to the user that it is an actual gesture target */
         if (event.getDragboard().hasImage()) {
             pizzaLabel.setText("Drag The Topping Onto the Pizza.");
@@ -188,20 +224,96 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     public void handleDroppedImage(DragEvent event) {
         if (event.getDragboard().hasImage()) {
             if (event.getGestureSource() == sauceImage) {
-                sauceTarget.setImage(sauceImage.getImage());
+                setToppingInfo(sauceImage, sauceTarget, this.getLabel("Pizza Sauce"),
+                        this.ingredientLabels.indexOf(this.getLabel("Pizza Sauce")));
 //                sauceTarget.setOpacity(0.5);
             } else if (event.getGestureSource() == topping1Image) {
-                topping1Target.setImage(topping1Image.getImage());
+                setToppingInfo(topping1Image, topping1Target, this.getLabel("Ham"),
+                        this.ingredientLabels.indexOf(this.getLabel("Ham")));
             } else if (event.getGestureSource() == topping2Image) {
-                topping2Target.setImage(topping2Image.getImage());
+                setToppingInfo(topping2Image, topping2Target, this.getLabel("Mushroom"),
+                        this.ingredientLabels.indexOf(this.getLabel("Mushroom")));
             } else if (event.getGestureSource() == topping3Image) {
-                topping3Target.setImage(topping3Image.getImage());
+                setToppingInfo(topping3Image, topping3Target, this.getLabel("Pineapple"),
+                        this.ingredientLabels.indexOf(this.getLabel("Pineapple")));
             } else if (event.getGestureSource() == topping4Image) {
-                topping4Target.setImage(topping4Image.getImage());
+                setToppingInfo(topping4Image, topping4Target, this.getLabel("Onion"),
+                        this.ingredientLabels.indexOf(this.getLabel("Onion")));
             }
             pizzaLabel.setText("You Dropped The Topping Onto the Pizza!!!");
         }
-        System.out.println("On Drag Dropped");
+//        System.out.println("On Drag Dropped");
+        if (this.buildPizza.isFinished()) {
+            this.loadScene("PizzaFinished.fxml");
+        }
         event.consume();
+    }
+
+    /**
+     * Sets the topping information for a topping and updates the label for that
+     * topping to determine if it has already been added or not so that it will not
+     * update the target image if the topping has already been added.
+     * 
+     * @param sourceImage     The image being dragged (ImageView)
+     * @param targetImage     The image to be dropped into (ImageView)
+     * @param ingredientLabel The Label of the item being dragged (Label)
+     * @param i               Counter variable used to obtain individual Ingredient
+     *                        (int)
+     */
+    private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
+        if (i < 0) {
+            System.out.println("This ingredient doesn't need to be added to the current pizza.");
+        } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
+            targetImage.setImage(sourceImage.getImage());
+            this.buildPizza.getIngredients().get(i).setOnPizza(true);
+            ingredientLabel.setText("ADDED!!!");
+            ingredientLabel.setTextFill(Color.NAVAJOWHITE);
+        } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {
+            System.out.println("target already on pizza.");
+            ingredientLabel.setText("Already Added");
+        }
+    }
+
+    /**
+     * Return the Label of the specified topping to be used in updating Label text.
+     * 
+     * @param topping Name of the topping to find Label info (String)
+     * @return The Label that the topping is currently in (Label)
+     */
+    private Label getLabel(String topping) {
+        Label returnLabel = null;
+        for (Label label : this.ingredientLabels) {
+
+//            System.out.println(node.getId());
+            if (label.getId() != null && label.getId().equalsIgnoreCase(topping)) {
+                returnLabel = label;
+            }
+        }
+        return returnLabel;
+    }
+
+    /**
+     * Uses sceneName in the form of fxml document file name with .fxml extension to
+     * load a new scene.
+     * 
+     * @param sceneName The fxml file name to be loaded (String)
+     */
+    private void loadScene(String sceneName) {
+        try {
+            // Connect to the FXML (contains our layout) and load it in.
+            Parent root = FXMLLoader.load(Main.class.getResource("view/" + sceneName));
+
+            // Put the layout onto the scene.
+            Scene scene = new Scene(root);
+
+            // Set the scene on the stage that was created in Main.java.
+            Main.stage.setScene(scene);
+            Main.stage.show();
+
+        } catch (
+
+        Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -29,7 +29,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     AnchorPane titlePane;
 
     @FXML
-    ImageView logoImg;
+    ImageView logoImg, littleSurfers;
 
     @FXML
     Button buttonPushed, pizzaStartButton;
@@ -37,6 +37,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
+        AnchorPane.setBottomAnchor(littleSurfers, 100.0);
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());
