@@ -1,13 +1,7 @@
 package application.controller;
 
-import java.io.File;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 import application.Main;
 import javafx.event.ActionEvent;
@@ -19,12 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -63,7 +52,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void handle(ActionEvent event) {
         try {
-        	
+
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 

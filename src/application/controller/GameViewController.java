@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -64,10 +63,9 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @FXML
     Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
             ingredient6Label;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
 

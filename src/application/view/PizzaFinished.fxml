@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.TilePane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.PizzaFinishedController">
    <children>
-      <ImageView fitHeight="353.0" fitWidth="250.0" layoutX="275.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="353.0" fitWidth="250.0" layoutX="275.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pixel-Argyle-450x400.png" />
          </image></ImageView>
@@ -20,5 +20,15 @@
             <Font name="Verdana Bold" size="36.0" />
          </font>
       </Text>
+      <Button fx:id="morePizzaButton" layoutX="181.0" layoutY="674.0" mnemonicParsing="false" onAction="#handle" text="Let's Make Some More Pizza, Brochachos">
+         <font>
+            <Font name="Verdana Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="home" layoutX="277.0" layoutY="615.0" mnemonicParsing="false" onAction="#handle" text="Return to Title Screen">
+         <font>
+            <Font name="Verdana Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -10,36 +10,59 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 /**
+ * Allows user to either go back home or go back to the GameView.fxml and make
+ * another pizza.
  * 
  * @author Amalia Talijancic
+ * @author Danny Ghrist (kda458)
  *
  */
 
-public class PizzaFinishedController implements EventHandler <ActionEvent>{
-	
-	@FXML 
-	Button goBackHome;
-	
-	/**
-     * @author - Amalia's edits
-     * Here's a handle for the Home Button meant for the Game View
+public class PizzaFinishedController implements EventHandler<ActionEvent> {
+
+    @FXML
+    Button home, morePizzaButton;
+
+    /**
+     * @author - Amalia's edits Here's a handle for the Home Button meant for the
+     *         Game View
+     * @author Danny Ghrist (kda458): I deleted the extra method as I have a
+     *         combined method that can handle moving wherever the user needs to go
+     *         determined by which button they press. I incorporated your home
+     *         button here for brevity.
      */
-	public void goBackHome(ActionEvent arg0) {
-			
-			try {
-				Parent root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
-				Main.stage.setScene( new Scene(root, 800, 800) );
-				Main.stage.show();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
+    @Override
+    public void handle(ActionEvent event) {
+        try {
 
-	@Override
-	public void handle(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+            // Determine which button was pressed.
+            Button buttonPushed = (Button) event.getSource();
 
+            String newScene = "";
+
+            // Determines which button was pushed and loads that FXML Scene.
+            if (buttonPushed.getId().equals("home")) {
+                newScene = "MainView.fxml";
+            } else if (buttonPushed.getId().equals("morePizzaButton")) {
+                newScene = "GameView.fxml";
+            } else if (buttonPushed.getId().equals(null)) {
+                System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
+            }
+
+            // Connect to the FXML (contains our layout) and load it in.
+            Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
+
+            // Put the layout onto the scene.
+            Scene scene = new Scene(root);
+
+            // Set the scene on the stage that was created in Main.java.
+            Main.stage.setScene(scene);
+            Main.stage.show();
+
+        } catch (
+
+        Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
