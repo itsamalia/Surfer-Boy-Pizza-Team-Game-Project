@@ -1,7 +1,13 @@
 package application.controller;
 
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import application.Main;
 import javafx.event.ActionEvent;
@@ -13,7 +19,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -40,7 +51,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         AnchorPane.setBottomAnchor(littleSurfers, 100.0);
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
-//        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());
+//        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
     }
 
     /**
@@ -52,6 +63,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void handle(ActionEvent event) {
         try {
+        	
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 
@@ -59,7 +71,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("pizzaStartButton")) {
-                newScene = "GameView.fxml";
+                newScene = "Mission.fxml";
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
