@@ -9,10 +9,26 @@
 
 /* Used to access the Text subnode of the label class. */
 
-.label .text {
-/*    -fx-strikethrough: true; */
+/* 
+ * .label .text {
+ *  -fx-strikethrough: true;
+ * }
+ */
+#titleText {
+    -fx-fill: red;
+    -fx-font-size: 36px;
+}
+
+.button {
+    /*-fx-font-family: "Benguiat";*/
+}
+
+#pizzaLabel {
+    -fx-font-family: "Benguiat";
 }
 
 #titlePane {
     -fx-background-color: black;
+    -fx-font-family: "Benguiat";
+    
 }

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -31,6 +32,9 @@ public class Main extends Application {
         try {
 
 //        	music();
+
+            // Load custom Stranger Things font.
+            Font.loadFont(getClass().getResource("fonts/BenguiatBold.ttf").toExternalForm(), 10.0);
 
             // Give access to the other controllers to this primaryStage.
             stage = primaryStage;

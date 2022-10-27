@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -33,5 +34,6 @@
             <Image url="@../images/littleSurfers.png" />
          </image>
       </ImageView>
+      <Text fx:id="titleText" layoutX="200.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
    </children>
 </AnchorPane>
