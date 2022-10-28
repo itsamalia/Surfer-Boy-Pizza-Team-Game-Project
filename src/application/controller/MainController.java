@@ -1,6 +1,7 @@
 package application.controller;
 
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -14,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -33,6 +36,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @FXML
     Button buttonPushed, pizzaStartButton;
+    
+    MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +46,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
+        music();
     }
 
     /**
@@ -74,6 +80,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
+            
+            mediaPlayer.stop();
 
         } catch (
 
@@ -81,4 +89,15 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             e.printStackTrace();
         }
     }
+    
+    public void music() {
+        String s = "src/application/audio/StrangerThingsThemeSong.mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaPlayer = new MediaPlayer(h);
+    	mediaPlayer.play();
+    	//mediaPlayer.setStartTime(Duration.seconds(0));
+        //mediaPlayer.setAutoPlay(true);
+    }
+    
 }
