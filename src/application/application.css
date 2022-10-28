@@ -64,7 +64,7 @@ AnchorPane {
 #pizzaLabel {
     -fx-font-family: "Benguiat";
 }
-/* Begin GameView.fxml specific CSS styling. */
+/* End GameView.fxml specific CSS styling. */
 
 
 /* Begin PizzaFinished.fxml specific CSS styling. */
@@ -76,4 +76,4 @@ AnchorPane {
 #pizzaFinishedPane .button {
     -fx-font-size: 18px;
 }
-/* Begin PizzaFinished.fxml specific CSS styling. */
+/* End PizzaFinished.fxml specific CSS styling. */
