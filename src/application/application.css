@@ -8,51 +8,72 @@
  */
 
 /* Used to access the Text subnode of the label class. */
-
 /* 
  * .label .text {
  *  -fx-strikethrough: true;
  * }
  */
+
+/* General CSS for entire application */
+AnchorPane {
+    -fx-background-color: black;
+}
+
+.button {
+    -fx-font-family: "Benguiat";
+    -fx-text-fill: red;
+}
+
+.button:hover {
+    -fx-background-color: lightgray;
+}
+/* End General CSS for entire application */
+
+
+/* Begin MainView.fxml specific CSS styling. */
+#titlePane {
+    -fx-font-family: "Benguiat";
+}
+
+#pizzaStartButton {
+    -fx-font-size: 18px;   
+}
+
 #titleText {
     -fx-fill: red;
     -fx-font-size: 36px;
 }
+/* End MainView.fxml specific CSS styling. */
 
-.button {
-    /*-fx-font-family: "Benguiat";*/
-}
 
-#pizzaLabel {
-    -fx-font-family: "Benguiat";
-}
-
-#pizzaStartButton{
-	-fx-font-family: "Benguiat";
-}
-
-#morePizzaButton{
-	-fx-font-family: "Benguiat";
-}
-
-#home{
-	-fx-font-family: "Benguiat";
-}
-
-#hoorayPizzaFinished{
-	-fx-font-family: "Benguiat";
-}
-
+/* Begin MissionView.fxml specific CSS styling. */
 #gameStartButton{
-	-fx-font-family: "Benguiat";
+    -fx-font-family: "Benguiat";
+    -fx-font-size: 27px;
 }
 
 #contextLabel{
-	-fx-font-family: "Benguiat";
+    -fx-font-family: "Benguiat";
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
+/* End MissionView.fxml specific CSS styling. */
+
+
+/* Begin GameView.fxml specific CSS styling. */
+#pizzaLabel {
+    -fx-font-family: "Benguiat";
+}
+/* Begin GameView.fxml specific CSS styling. */
+
+
+/* Begin PizzaFinished.fxml specific CSS styling. */
+#pizzaFinishedPane {
+    -fx-font-family: "Benguiat";
+    -fx-background-color: black;
 }
 
-#titlePane {
-    -fx-background-color: black;
-    -fx-font-family: "Benguiat";
-    
+#pizzaFinishedPane .button {
+    -fx-font-size: 18px;
 }
+/* Begin PizzaFinished.fxml specific CSS styling. */

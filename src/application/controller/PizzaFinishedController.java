@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -24,11 +23,11 @@ import javafx.scene.text.Text;
 public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
-    Button home, morePizzaButton;
-    
+    Button homeButton, morePizzaButton;
+
     @FXML
-    Text hoorayPizzaFinished;
-    
+    Text hoorayPizzaFinishedText;
+
     @FXML
     ImageView winArgyle;
 
@@ -50,7 +49,7 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
             String newScene = "";
 
             // Determines which button was pushed and loads that FXML Scene.
-            if (buttonPushed.getId().equals("home")) {
+            if (buttonPushed.getId().equals("homeButton")) {
                 newScene = "MainView.fxml";
             } else if (buttonPushed.getId().equals("morePizzaButton")) {
                 newScene = "GameView.fxml";

@@ -1,30 +1,23 @@
 package application;
 
-import java.nio.file.Paths;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
  * Main class which kicks off the entire application by loading in Title Scene
- * of the game. *
+ * of the game.
  * 
  * CS3443-004 - Fall 2022
  *
  * @author Danny Ghrist (kda458)
- * 
  *
  */
 public class Main extends Application {
-
-    MediaPlayer mediaPlayer;
 
     public static Stage stage;
 
@@ -56,20 +49,6 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Amalia's edits for Stranger Things music/mp3 to play
-     */
-    public void music() {
-        String s = "src/application/audio/StrangerThingsThemeSong.mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media h = new
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaPlayer = new MediaPlayer(h);
-//    	mediaPlayer.play();
-        mediaPlayer.setAutoPlay(true);
-//    	mediaPlayer.setVolume(0.1);
     }
 
     public static void main(String[] args) {

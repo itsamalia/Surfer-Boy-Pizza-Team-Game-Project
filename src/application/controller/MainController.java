@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -37,13 +36,14 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @FXML
     Button buttonPushed, pizzaStartButton;
-    
+
     MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
-//        AnchorPane.setBottomAnchor(littleSurfers, 100.0);
+        AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
+        AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
@@ -59,7 +59,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void handle(ActionEvent event) {
         try {
-        	
+
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 
@@ -81,7 +81,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
-            
+
             mediaPlayer.stop();
 
         } catch (
@@ -90,15 +90,17 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             e.printStackTrace();
         }
     }
-    
+
+    /**
+     * Amalia's edits for Stranger Things music/mp3 to play
+     */
     public void music() {
         String s = "src/application/audio/StrangerThingsThemeSong.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(h);
-    	mediaPlayer.play();
-    	//mediaPlayer.setStartTime(Duration.seconds(0));
-        //mediaPlayer.setAutoPlay(true);
+        mediaPlayer.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
     }
-    
 }

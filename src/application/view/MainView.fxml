@@ -10,6 +10,7 @@
 
 <AnchorPane fx:id="titlePane" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
+      <Text fx:id="titleText" layoutX="179.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
       <HBox alignment="CENTER" layoutX="89.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0">
          <children>
             <ImageView fx:id="logoImg" fitHeight="272.0" fitWidth="622.0" nodeOrientation="INHERIT" preserveRatio="true">
@@ -21,20 +22,15 @@
       </HBox>
       <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="317.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
          <children>
-            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="81.0" prefWidth="301.0" style="-: gray;" text="READY, SURFER BOY?" textAlignment="CENTER" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="38.0" />
-               </font>
-            </Button>
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="81.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
          </children>
       </VBox>
-      <Text fx:id="titleText" layoutX="179.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
-      <ImageView fx:id="pizzaTruck" fitHeight="324.0" fitWidth="563.0" layoutX="157.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pizzaTruck" fitHeight="324.0" fitWidth="563.0" layoutX="51.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Downloads/pizzatruck.png" />
+            <Image url="@../images/pixel-pizza-truck.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pixelArgyle" fitHeight="224.0" fitWidth="235.0" layoutX="537.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pixelArgyle" fitHeight="224.0" fitWidth="235.0" layoutX="537.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pixel-Argyle-450x400.png" />
          </image>
