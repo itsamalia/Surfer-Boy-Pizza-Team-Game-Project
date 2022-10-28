@@ -10,17 +10,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.PizzaFinishedController">
    <children>
-      <ImageView fitHeight="353.0" fitWidth="250.0" layoutX="525.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pixel-Argyle-450x400.png" />
-         </image></ImageView>
-      <Ellipse fill="WHITE" layoutX="400.0" layoutY="280.0" radiusX="333.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fx:id="hoorayPizzaFinished" fill="RED" layoutX="143.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GNARLY PIE-MAKING SKILLS, BROCHACO!" textAlignment="CENTER" wrappingWidth="514.0">
+      <Ellipse fill="WHITE" layoutX="400.0" layoutY="189.0" radiusX="333.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="hoorayPizzaFinished" fill="RED" layoutX="143.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GNARLY PIE-MAKING SKILLS, BROCHACO!" textAlignment="CENTER" wrappingWidth="514.0">
          <font>
             <Font name="Verdana Bold" size="36.0" />
          </font>
       </Text>
-      <Button fx:id="morePizzaButton" layoutX="141.0" layoutY="719.0" mnemonicParsing="false" onAction="#handle" text="TIME TO MAKE ANOTHER ROUND OF JUICY PIES!" textFill="RED">
+      <Button fx:id="morePizzaButton" layoutX="141.0" layoutY="723.0" mnemonicParsing="false" onAction="#handle" text="TIME TO MAKE ANOTHER ROUND OF JUICY PIES!" textFill="RED">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
@@ -30,7 +26,7 @@
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Button>
-      <ImageView fx:id="argyleWin" fitHeight="347.0" fitWidth="626.0" layoutX="96.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="argyleWin" fitHeight="420.0" fitWidth="746.0" layoutX="32.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/WIN.png" />
          </image>

@@ -43,6 +43,14 @@
 	-fx-font-family: "Benguiat";
 }
 
+#gameStartButton{
+	-fx-font-family: "Benguiat";
+}
+
+#contextLabel{
+	-fx-font-family: "Benguiat";
+}
+
 #titlePane {
     -fx-background-color: black;
     -fx-font-family: "Benguiat";

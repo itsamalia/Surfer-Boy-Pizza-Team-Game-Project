@@ -33,7 +33,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     AnchorPane titlePane;
 
     @FXML
-    ImageView logoImg, littleSurfers;
+    ImageView logoImg, pizzaTruck, pixelArgyle;
 
     @FXML
     Button buttonPushed, pizzaStartButton;

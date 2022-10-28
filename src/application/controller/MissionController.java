@@ -11,9 +11,11 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Font;
 
 public class MissionController implements EventHandler <ActionEvent>{
 
@@ -23,10 +25,14 @@ public class MissionController implements EventHandler <ActionEvent>{
 	@FXML
 	Button buttonPushed, gameStartButton;
 	
+	@FXML
+	Label contextLabel;
+	
 	public void handleButton(ActionEvent event)
     {
 		try
 		{
+			
 		 // Determine which button was pressed.
         Button buttonPushed = (Button) event.getSource();
 
