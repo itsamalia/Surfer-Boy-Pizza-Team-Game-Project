@@ -19,21 +19,15 @@
             </ImageView>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="333.0" layoutY="367.0" prefHeight="160.0" prefWidth="135.0" spacing="25.0" AnchorPane.leftAnchor="333.0">
+      <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="368.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
          <children>
-            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="142.0" text="Pizza Test Start" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="81.0" prefWidth="301.0" style="-: gray;" text="READY, SURFER BOY?" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Test" />
          </children>
       </VBox>
-      <ImageView fx:id="littleSurfers" fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/littleSurfers.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="titleText" layoutX="200.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
+      <Text fx:id="titleText" layoutX="179.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
    </children>
 </AnchorPane>

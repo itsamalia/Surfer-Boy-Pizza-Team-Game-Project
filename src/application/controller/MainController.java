@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -42,7 +43,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
-        AnchorPane.setBottomAnchor(littleSurfers, 100.0);
+//        AnchorPane.setBottomAnchor(littleSurfers, 100.0);
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
@@ -58,7 +59,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void handle(ActionEvent event) {
         try {
-
+        	
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 

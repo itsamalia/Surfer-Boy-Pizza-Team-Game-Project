@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  * Allows user to either go back home or go back to the GameView.fxml and make
@@ -22,6 +25,12 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
     Button home, morePizzaButton;
+    
+    @FXML
+    Text hoorayPizzaFinished;
+    
+    @FXML
+    ImageView winArgyle;
 
     /**
      * @author - Amalia's edits Here's a handle for the Home Button meant for the

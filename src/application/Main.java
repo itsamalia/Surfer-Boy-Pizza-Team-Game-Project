@@ -32,8 +32,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
-//        	music();
-
             // Load custom Stranger Things font.
             Font.loadFont(getClass().getResource("fonts/BenguiatBold.ttf").toExternalForm(), 10.0);
 

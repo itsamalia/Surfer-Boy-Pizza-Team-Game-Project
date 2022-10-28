@@ -27,6 +27,22 @@
     -fx-font-family: "Benguiat";
 }
 
+#pizzaStartButton{
+	-fx-font-family: "Benguiat";
+}
+
+#morePizzaButton{
+	-fx-font-family: "Benguiat";
+}
+
+#home{
+	-fx-font-family: "Benguiat";
+}
+
+#hoorayPizzaFinished{
+	-fx-font-family: "Benguiat";
+}
+
 #titlePane {
     -fx-background-color: black;
     -fx-font-family: "Benguiat";
