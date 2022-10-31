@@ -34,9 +34,9 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
     ImageView winArgyle;
-    
+
     @FXML
-	MediaPlayer mediaSFX;
+    MediaPlayer mediaSFX;
 
     /**
      * @author - Amalia's edits Here's a handle for the Home Button meant for the
@@ -81,18 +81,19 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
         Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    public void morePizzaButtonEntered()
-    {
-    	playSound("buttonhover");
+
+    public void morePizzaButtonEntered() {
+        playSound("buttonhover");
     }
-    public void homeButtonEntered() 
-    {
-    	playSound("buttonhover");
+
+    public void homeButtonEntered() {
+        playSound("buttonhover");
     }
+
     public void playSound(String soundName) {
-        String s = "src/application/audio/"+ soundName + ".mp3";
+        String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaSFX = new MediaPlayer(h);

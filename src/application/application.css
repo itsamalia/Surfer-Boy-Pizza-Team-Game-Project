@@ -56,8 +56,7 @@ AnchorPane {
 
 /* Begin MissionView.fxml specific CSS styling. */
 #gameStartButton{
-    -fx-font-family: "Benguiat";
-    -fx-font-size: 27px;
+    -fx-font-size: 25px;
 }
 
 #contextLabel{

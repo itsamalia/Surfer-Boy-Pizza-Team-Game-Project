@@ -39,7 +39,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     Button buttonPushed, pizzaStartButton;
 
     MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
-    
+
     @FXML
     MediaView backgroundMedia;
 
@@ -48,17 +48,18 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
         AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
         AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
+        AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
-    	
-    		// TODO Auto-generated method stub
-    		String mediaURL = "src/application/videos/mainMenuBackground.mp4";
-        	Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
-        	mediaBackground = new MediaPlayer(media1);
-        	mediaBackground.setAutoPlay(true);
-        	backgroundMedia.setMediaPlayer(mediaBackground);
+
+        // TODO Auto-generated method stub
+        String mediaURL = "src/application/videos/mainMenuBackground.mp4";
+        Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
+        mediaBackground = new MediaPlayer(media1);
+        mediaBackground.setAutoPlay(true);
+        backgroundMedia.setMediaPlayer(mediaBackground);
 
     }
 
@@ -103,11 +104,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             e.printStackTrace();
         }
     }
-    public void pizzaStartButtonEnter()
-    {
-    	playSound("buttonhover");
+
+    public void pizzaStartButtonEnter() {
+        playSound("buttonhover");
     }
-    
+
     /**
      * Amalia's edits for Stranger Things music/mp3 to play
      */
@@ -120,8 +121,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }
+
     public void playSound(String soundName) {
-        String s = "src/application/audio/"+ soundName + ".mp3";
+        String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayerSFX = new MediaPlayer(h);
