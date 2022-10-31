@@ -68,7 +68,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
             ingredient6Label;
     
-    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer, mediaSFX;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -246,19 +246,24 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             if (event.getGestureSource() == sauceImage) {
                 setToppingInfo(sauceImage, sauceTarget, this.getLabel("Pizza Sauce"),
                         this.ingredientLabels.indexOf(this.getLabel("Pizza Sauce")));
+                		playSound("sauceEffect");
 //                sauceTarget.setOpacity(0.5);
             } else if (event.getGestureSource() == topping1Image) {
                 setToppingInfo(topping1Image, topping1Target, this.getLabel("Ham"),
                         this.ingredientLabels.indexOf(this.getLabel("Ham")));
+                playSound("placeIngredientEffect");
             } else if (event.getGestureSource() == topping2Image) {
                 setToppingInfo(topping2Image, topping2Target, this.getLabel("Mushroom"),
                         this.ingredientLabels.indexOf(this.getLabel("Mushroom")));
+                playSound("placeIngredientEffect");
             } else if (event.getGestureSource() == topping3Image) {
                 setToppingInfo(topping3Image, topping3Target, this.getLabel("Pineapple"),
                         this.ingredientLabels.indexOf(this.getLabel("Pineapple")));
+                playSound("placeIngredientEffect");
             } else if (event.getGestureSource() == topping4Image) {
                 setToppingInfo(topping4Image, topping4Target, this.getLabel("Onion"),
                         this.ingredientLabels.indexOf(this.getLabel("Onion")));
+                playSound("placeIngredientEffect");
             }
             pizzaLabel.setText("You Dropped The Topping Onto the Pizza!!!");
         }
@@ -337,5 +342,15 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         Exception e) {
             e.printStackTrace();
         }
+
+    }
+    public void playSound(String soundName) {
+        String s = "src/application/audio/"+ soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaSFX = new MediaPlayer(h);
+        mediaSFX.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
     }
 }

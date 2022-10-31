@@ -37,7 +37,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @FXML
     Button buttonPushed, pizzaStartButton;
 
-    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer, mediaPlayerSFX;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,6 +68,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("pizzaStartButton")) {
                 newScene = "Mission.fxml";
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -90,7 +91,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             e.printStackTrace();
         }
     }
-
+    public void pizzaStartButtonEnter()
+    {
+    	playSound("buttonhover");
+    }
     /**
      * Amalia's edits for Stranger Things music/mp3 to play
      */
@@ -100,6 +104,15 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(h);
         mediaPlayer.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
+    }
+    public void playSound(String soundName) {
+        String s = "src/application/audio/"+ soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaPlayerSFX = new MediaPlayer(h);
+        mediaPlayerSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }

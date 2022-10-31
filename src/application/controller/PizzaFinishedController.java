@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.nio.file.Paths;
+
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
 /**
@@ -30,6 +34,9 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
     ImageView winArgyle;
+    
+    @FXML
+	MediaPlayer mediaSFX;
 
     /**
      * @author - Amalia's edits Here's a handle for the Home Button meant for the
@@ -51,8 +58,10 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("homeButton")) {
                 newScene = "MainView.fxml";
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals("morePizzaButton")) {
                 newScene = "GameView.fxml";
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -72,5 +81,23 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
         Exception e) {
             e.printStackTrace();
         }
+        
+    }
+    public void morePizzaButtonEntered()
+    {
+    	playSound("buttonhover");
+    }
+    public void homeButtonEntered() 
+    {
+    	playSound("buttonhover");
+    }
+    public void playSound(String soundName) {
+        String s = "src/application/audio/"+ soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaSFX = new MediaPlayer(h);
+        mediaSFX.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
     }
 }

@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.nio.file.Paths;
+
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,12 +11,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 public class MissionController implements EventHandler<ActionEvent> {
 
     @FXML
     MediaView media;
+    @FXML
+	MediaPlayer mediaSFX;
 
     @FXML
     Button buttonPushed, gameStartButton;
@@ -33,6 +39,7 @@ public class MissionController implements EventHandler<ActionEvent> {
 
             if (buttonPushed.getId().equals("gameStartButton")) {
                 newScene = "GameView.fxml";
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -50,7 +57,19 @@ public class MissionController implements EventHandler<ActionEvent> {
             e.printStackTrace();
         }
     }
-
+    public void gameStartButtonEntered()
+    {
+    	playSound("buttonhover");
+    }
+    public void playSound(String soundName) {
+        String s = "src/application/audio/"+ soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaSFX = new MediaPlayer(h);
+        mediaSFX.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
+    }
     public void handleVideo(ActionEvent event) {
         try {
 //			String media = "src/application/videos/ArgyleMission.mp4";
@@ -66,5 +85,6 @@ public class MissionController implements EventHandler<ActionEvent> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 }

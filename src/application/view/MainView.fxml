@@ -22,7 +22,7 @@
       </HBox>
       <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="317.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
          <children>
-            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="81.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="81.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
          </children>
       </VBox>
       <ImageView fx:id="pizzaTruck" fitHeight="324.0" fitWidth="563.0" layoutX="51.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
