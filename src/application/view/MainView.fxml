@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -10,17 +11,9 @@
 
 <AnchorPane fx:id="titlePane" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
-      <Text fx:id="titleText" layoutX="179.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
-      <HBox alignment="CENTER" layoutX="89.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <ImageView fx:id="logoImg" fitHeight="272.0" fitWidth="622.0" nodeOrientation="INHERIT" preserveRatio="true">
-               <image>
-                  <Image url="@../images/logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="317.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
+      <MediaView fx:id="backgroundMedia" fitHeight="500.0" fitWidth="800.0" layoutY="300.0" preserveRatio="false" />
+      <HBox alignment="CENTER" layoutX="89.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
+      <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="347.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
          <children>
             <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="81.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
          </children>
@@ -35,5 +28,11 @@
             <Image url="@../images/pixel-Argyle-450x400.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="logoImg" fitHeight="272.0" fitWidth="622.0" layoutX="89.0" nodeOrientation="INHERIT" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="titleText" layoutX="248.0" layoutY="239.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
    </children>
 </AnchorPane>

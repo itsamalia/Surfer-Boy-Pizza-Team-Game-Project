@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -37,7 +38,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @FXML
     Button buttonPushed, pizzaStartButton;
 
-    MediaPlayer mediaPlayer, mediaPlayerSFX;
+    MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
+    
+    @FXML
+    MediaView backgroundMedia;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,6 +52,14 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
+    	
+    		// TODO Auto-generated method stub
+    		String mediaURL = "src/video/mainMenuBackground.mp4";
+        	Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
+        	mediaBackground = new MediaPlayer(media1);
+        	mediaBackground.setAutoPlay(true);
+        	backgroundMedia.setMediaPlayer(mediaBackground);
+
     }
 
     /**
@@ -95,6 +107,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     {
     	playSound("buttonhover");
     }
+    
     /**
      * Amalia's edits for Stranger Things music/mp3 to play
      */
