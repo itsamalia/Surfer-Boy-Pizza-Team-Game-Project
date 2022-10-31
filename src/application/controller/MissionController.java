@@ -1,12 +1,15 @@
 package application.controller;
 
+import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,12 +18,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
-public class MissionController implements EventHandler<ActionEvent> {
+public class MissionController implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
     MediaView media;
     @FXML
-	MediaPlayer mediaSFX;
+	MediaPlayer mediaBackground,mediaSFX;
 
     @FXML
     Button buttonPushed, gameStartButton;
@@ -40,6 +43,8 @@ public class MissionController implements EventHandler<ActionEvent> {
             if (buttonPushed.getId().equals("gameStartButton")) {
                 newScene = "GameView.fxml";
                 playSound("buttonclick");
+                mediaBackground.stop();
+                
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -60,6 +65,7 @@ public class MissionController implements EventHandler<ActionEvent> {
     public void gameStartButtonEntered()
     {
     	playSound("buttonhover");
+    	
     }
     public void playSound(String soundName) {
         String s = "src/application/audio/"+ soundName + ".mp3";
@@ -70,21 +76,40 @@ public class MissionController implements EventHandler<ActionEvent> {
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }
+    public void playMusic(String musicName) {
+        String s = "src/application/audio/"+ musicName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        //media = new MediaPlayer(h);
+        //media.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
+    }
     public void handleVideo(ActionEvent event) {
         try {
-//			String media = "src/application/videos/ArgyleMission.mp4";
-//	    	Media h = new Media(Paths.get(media).toUri().toString());
-//	    	MediaPlayer mediaPlayer = new MediaPlayer(h);
-//	    	mediaPlayer.setAutoPlay(true);
+			String media = "src/video/missionBackground.mp4";
+	    	Media h = new Media(Paths.get(media).toUri().toString());
+	    	MediaPlayer mediaPlayer = new MediaPlayer(h);
+	    	mediaPlayer.setAutoPlay(true);
 
-//			Media media = new Media ("src/application/videos/ArgyleMission.mp4");
-//			MediaPlayer mediaPlayer = new MediaPlayer(media);
-//			mediaPlayer.setAutoPlay(true);
-//			MediaView mediaView = new MediaView(mediaPlayer);
+			//Media media1 = new Media ("src/application/videos/ArgyleMission.mp4");
+			//MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
+			//mediaPlayer1.setAutoPlay(true);
+			//MediaView mediaView = new MediaView(mediaPlayer1);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         
     }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		String mediaURL = "src/video/missionBackground.mp4";
+    	Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
+    	mediaBackground = new MediaPlayer(media1);
+    	mediaBackground.setAutoPlay(true);
+    	media.setMediaPlayer(mediaBackground);
+
+	}
 }
