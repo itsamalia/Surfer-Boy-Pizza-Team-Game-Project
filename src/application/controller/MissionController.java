@@ -87,7 +87,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
     }
     public void handleVideo(ActionEvent event) {
         try {
-			String media = "src/video/missionBackground.mp4";
+			String media = "src/application/videos/missionBackground.mp4";
 	    	Media h = new Media(Paths.get(media).toUri().toString());
 	    	MediaPlayer mediaPlayer = new MediaPlayer(h);
 	    	mediaPlayer.setAutoPlay(true);
@@ -105,7 +105,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		String mediaURL = "src/video/missionBackground.mp4";
+		String mediaURL = "src/application/videos/missionBackground.mp4";
     	Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
     	mediaBackground = new MediaPlayer(media1);
     	mediaBackground.setAutoPlay(true);

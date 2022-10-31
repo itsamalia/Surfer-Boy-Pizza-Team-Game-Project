@@ -54,7 +54,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         music();
     	
     		// TODO Auto-generated method stub
-    		String mediaURL = "src/video/mainMenuBackground.mp4";
+    		String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         	Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         	mediaBackground = new MediaPlayer(media1);
         	mediaBackground.setAutoPlay(true);
