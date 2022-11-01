@@ -22,7 +22,7 @@
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="348.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
