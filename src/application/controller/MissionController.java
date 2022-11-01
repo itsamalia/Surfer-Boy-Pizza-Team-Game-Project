@@ -32,7 +32,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
     Button buttonPushed, gameStartButton;
 
     @FXML
-    Label contextLabel, missionLabel1;
+    Label contextLabel, missionLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,8 +41,8 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
         media.setMediaPlayer(mediaBackground);
-        animateText(missionLabel1, "YOUR MISSION: Deliver (X) amount of pizzas in (X) amount of time.");
-        
+        animateText(missionLabel, "YOUR MISSION: Deliver (X) amount of pizzas in (X) amount of time.");
+
     }
 
     @Override
@@ -93,12 +93,14 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
             e.printStackTrace();
         }
     }
+
     public void animateText(Label lbl, String stringToType) {
         String content = stringToType;
         final Animation animation = new Transition() {
             {
                 setCycleDuration(Duration.millis(6000));
             }
+
             protected void interpolate(double frac) {
                 final int length = content.length();
                 final int n = Math.round(length * (float) frac);
@@ -107,6 +109,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         };
         animation.play();
     }
+
     public void gameStartButtonEntered() {
         playSound("buttonhover");
 

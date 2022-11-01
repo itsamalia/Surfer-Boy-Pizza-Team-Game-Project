@@ -30,9 +30,9 @@
             <Image url="@../images/vignette.png" />
          </image>
       </ImageView>
-      <Label fx:id="missionLabel1" contentDisplay="TOP" layoutX="14.0" layoutY="746.0" prefHeight="31.0" prefWidth="657.0" text="Your Mission: " textFill="RED" wrapText="true">
+      <Label fx:id="missionLabel" contentDisplay="TOP" layoutX="14.0" layoutY="746.0" prefHeight="31.0" prefWidth="657.0" text="Your Mission: " textFill="RED" wrapText="true">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="Benguiat" size="15.0" />
          </font>
       </Label>
       <Label fx:id="contextLabel" contentDisplay="TOP" layoutX="13.0" layoutY="14.0" prefHeight="136.0" prefWidth="775.0" text="Have you ever wanted to join the gnarly SURFER BOY PIZZA™ team, crafting and delivering some tasty pies? Well, hold on to your butts, brochachos – come help Argyle and the squad save Hawkins from Vecna while going on a totally rad flavor journey. In a race against time with Vecna’s clock ticking, the player must cook and prepare as many pies to the residents of Hawkins, using the power of epic flavor, to fight back against the wrath of Vecna! If the SURFER BOY PIZZA™ employee is successful, the town of Hawkins will be forever in their debt… however, if not, the entire town will be swallowed up by the Upside Down…. " textAlignment="CENTER" wrapText="true" />
