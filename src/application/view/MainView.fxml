@@ -9,32 +9,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="titlePane" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane fx:id="titlePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
-      <MediaView fx:id="backgroundMedia" fitHeight="500.0" fitWidth="800.0" layoutY="300.0" preserveRatio="false" />
-      <Text fx:id="titleText" layoutX="179.0" layoutY="14.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
-      <HBox alignment="CENTER" layoutX="89.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0">
+      <MediaView fx:id="backgroundMedia" fitHeight="800.0" fitWidth="800.0" preserveRatio="false" />
+      <ImageView fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="348.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="649.0" fitWidth="637.0" layoutX="83.0" layoutY="-120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="titleText" layoutX="248.0" layoutY="61.0" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
+      <HBox alignment="CENTER" layoutX="89.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
+      <VBox alignment="TOP_CENTER" layoutX="127.0" layoutY="388.0" prefHeight="243.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="127.0">
          <children>
-            <ImageView fx:id="logoImg" fitHeight="245.0" fitWidth="622.0" nodeOrientation="INHERIT" preserveRatio="true">
-               <image>
-                  <Image url="@../images/logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="317.0" prefHeight="65.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
-         <children>
-            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="81.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="62.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
+            <Button fx:id="optionsButton1" alignment="CENTER" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="62.0" prefWidth="301.0" text="OPTIONS" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton11" alignment="CENTER" layoutX="134.0" layoutY="97.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="62.0" prefWidth="301.0" text="EXIT" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
-      <ImageView fx:id="pizzaTruck" fitHeight="324.0" fitWidth="563.0" layoutX="51.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pizzaTruck" fitHeight="75.0" fitWidth="159.0" layoutX="28.0" layoutY="711.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pixel-pizza-truck.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pixelArgyle" fitHeight="224.0" fitWidth="235.0" layoutX="537.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pixelArgyle" fitHeight="114.0" fitWidth="113.0" layoutX="148.0" layoutY="698.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pixel-Argyle-450x400.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logoImg" fitHeight="245.0" fitWidth="622.0" layoutX="89.0" layoutY="114.0" nodeOrientation="INHERIT" preserveRatio="true">
+         <image>
+            <Image url="@../images/logoCropped.png" />
          </image>
       </ImageView>
    </children>
