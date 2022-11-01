@@ -12,6 +12,7 @@
    <children>
       <Button fx:id="homeButton" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" text="GO BACK HOME">
       </Button>
+      <Button fx:id="exitButton" layoutX="700.0" layoutY="30.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" text="EXIT" />
       <Ellipse fill="WHITE" layoutX="400.0" layoutY="189.0" radiusX="333.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fx:id="hoorayPizzaFinished" fill="RED" layoutX="143.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GNARLY PIE-MAKING SKILLS, BROCHACO!" textAlignment="CENTER" wrappingWidth="514.0">
          <font>
@@ -25,6 +26,5 @@
       </ImageView>
       <Button fx:id="morePizzaButton" layoutX="141.0" layoutY="723.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" text="TIME TO MAKE ANOTHER ROUND OF JUICY PIES!">
       </Button>
-      <Button fx:id="exitButton" layoutX="700.0" layoutY="24.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" text="EXIT" />
    </children>
 </Pane>
