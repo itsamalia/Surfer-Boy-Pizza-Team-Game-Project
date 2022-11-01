@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Allows user to either go back home or go back to the GameView.fxml and make
@@ -72,7 +73,9 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
             }
 
             if (newScene == null) {
-                Platform.exit();
+               // Platform.exit();
+            	Stage stage = (Stage) exitButton.getScene().getWindow();
+                stage.close();
             } else {
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
