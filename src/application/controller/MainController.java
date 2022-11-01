@@ -89,8 +89,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 playSound("buttonclick");
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 // TODO: Update this to a new options view once implemented.
-                newScene = "Mission.fxml";
                 playSound("buttonclick");
+                newScene = null;
                 System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
             } else if (buttonPushed.getId().equals("exitButton")) {
                 playSound("buttonclick");
@@ -99,10 +99,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
 
-            // Connect to the FXML (contains our layout) and load it in.
+            // Exit the program if the scene button clicked on is null.
             if (newScene == null) {
                 Platform.exit();
             } else {
+                // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 
                 // Put the layout onto the scene.
