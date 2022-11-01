@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 public class MissionController implements EventHandler<ActionEvent>, Initializable {
 
@@ -29,7 +32,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
     Button buttonPushed, gameStartButton;
 
     @FXML
-    Label contextLabel;
+    Label contextLabel, missionLabel1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,6 +41,8 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
         media.setMediaPlayer(mediaBackground);
+        animateText(missionLabel1, "YOUR MISSION: Deliver (X) amount of pizzas in (X) amount of time.");
+        
     }
 
     @Override
@@ -88,7 +93,20 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
             e.printStackTrace();
         }
     }
-    
+    public void animateText(Label lbl, String stringToType) {
+        String content = stringToType;
+        final Animation animation = new Transition() {
+            {
+                setCycleDuration(Duration.millis(6000));
+            }
+            protected void interpolate(double frac) {
+                final int length = content.length();
+                final int n = Math.round(length * (float) frac);
+                lbl.setText(content.substring(0, n));
+            }
+        };
+        animation.play();
+    }
     public void gameStartButtonEntered() {
         playSound("buttonhover");
 
