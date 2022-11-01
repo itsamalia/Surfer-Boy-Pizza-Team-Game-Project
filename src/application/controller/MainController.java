@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,7 +26,11 @@ import javafx.scene.media.MediaView;
  * CS3443-004 - Fall 2022
  *
  * @author Danny Ghrist (kda458)
- *
+ * @author Caleb Pierce
+ * @author Sarah Halverson
+ * @author Amalia Talijancic
+ * @author Carlos Martinez
+ * 
  */
 public class MainController implements EventHandler<ActionEvent>, Initializable {
 
@@ -36,7 +41,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     ImageView logoImg, pizzaTruck, pixelArgyle;
 
     @FXML
-    Button buttonPushed, pizzaStartButton;
+    Button buttonPushed, pizzaStartButton, optionsButton, exitButton;
 
     MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
 
@@ -45,16 +50,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
         AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
         AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
         AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
+        // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
 
-        // TODO Auto-generated method stub
+        // Create a new Media object to play the background video.
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
@@ -82,21 +87,31 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             if (buttonPushed.getId().equals("pizzaStartButton")) {
                 newScene = "Mission.fxml";
                 playSound("buttonclick");
+            } else if (buttonPushed.getId().equals("optionsButton")) {
+                // TODO: Update this to a new options view once implemented.
+                newScene = "Mission.fxml";
+                System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
+            } else if (buttonPushed.getId().equals("exitButton")) {
+                newScene = null;
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
 
             // Connect to the FXML (contains our layout) and load it in.
-            Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
+            if (newScene == null) {
+                Platform.exit();
+            } else {
+                Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 
-            // Put the layout onto the scene.
-            Scene scene = new Scene(root);
+                // Put the layout onto the scene.
+                Scene scene = new Scene(root);
 
-            // Set the scene on the stage that was created in Main.java.
-            Main.stage.setScene(scene);
-            Main.stage.show();
+                // Set the scene on the stage that was created in Main.java.
+                Main.stage.setScene(scene);
+                Main.stage.show();
 
-            mediaPlayer.stop();
+                mediaPlayer.stop();
+            }
 
         } catch (
 
@@ -105,12 +120,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         }
     }
 
+    /**
+     * The event listener for when a user
+     */
     public void pizzaStartButtonEnter() {
         playSound("buttonhover");
     }
 
     /**
-     * Amalia's edits for Stranger Things music/mp3 to play
+     * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media
+     * object to play the background music.
      */
     public void music() {
         String s = "src/application/audio/StrangerThingsThemeSong.mp3";
@@ -122,10 +141,14 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         // mediaPlayer.setAutoPlay(true);
     }
 
+    /**
+     * Creates a new Media object to play sound effects.
+     * 
+     * @param soundName The name of the sound effect audio (String)
+     */
     public void playSound(String soundName) {
         String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayerSFX = new MediaPlayer(h);
         mediaPlayerSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));

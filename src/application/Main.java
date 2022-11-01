@@ -15,6 +15,10 @@ import javafx.stage.Stage;
  * CS3443-004 - Fall 2022
  *
  * @author Danny Ghrist (kda458)
+ * @author Caleb Pierce
+ * @author Sarah Halverson
+ * @author Amalia Talijancic
+ * @author Carlos Martinez
  *
  */
 public class Main extends Application {
