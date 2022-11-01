@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -93,6 +94,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
             } else if (buttonPushed.getId().equals("exitButton")) {
                 newScene = null;
+            } else if (buttonPushed.getId().equals("exitButton")) {
+                // get a handle to the stage
+                Stage stage = (Stage) exitButton.getScene().getWindow();
+                // close stage
+                stage.close();
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -113,6 +120,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 mediaPlayer.stop();
             }
 
+            mediaPlayer.stop();
+
         } catch (
 
         Exception e) {
@@ -124,6 +133,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      * The event listener for when a user
      */
     public void pizzaStartButtonEnter() {
+        playSound("buttonhover");
+    }
+
+    public void exitButtonEnter() {
         playSound("buttonhover");
     }
 

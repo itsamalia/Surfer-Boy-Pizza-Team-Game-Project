@@ -25,5 +25,6 @@
       </ImageView>
       <Button fx:id="morePizzaButton" layoutX="141.0" layoutY="723.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#morePizzaButtonEntered" text="TIME TO MAKE ANOTHER ROUND OF JUICY PIES!">
       </Button>
+      <Button fx:id="exitButton" layoutX="700.0" layoutY="24.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#exitButtonEntered" text="EXIT" />
    </children>
 </Pane>
