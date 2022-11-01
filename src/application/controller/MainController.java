@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.Main;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -101,7 +101,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
             // Exit the program if the scene button clicked on is null.
             if (newScene == null) {
-                Platform.exit();
+//                Platform.exit();
+                Stage stage = (Stage) exitButton.getScene().getWindow();
+                stage.close();
             } else {
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
