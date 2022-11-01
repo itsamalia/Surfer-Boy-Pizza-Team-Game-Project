@@ -3,6 +3,8 @@ package application.controller;
 import java.nio.file.Paths;
 
 import application.Main;
+import javafx.application.Platform;
+//import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,7 +29,7 @@ import javafx.scene.text.Text;
 public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
-    Button homeButton, morePizzaButton;
+    Button homeButton, morePizzaButton, exitButton;
 
     @FXML
     Text hoorayPizzaFinishedText;
@@ -62,20 +64,26 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
             } else if (buttonPushed.getId().equals("morePizzaButton")) {
                 newScene = "GameView.fxml";
                 playSound("buttonclick");
+            } else if (buttonPushed.getId().equals("exitButton")) {
+                playSound("buttonclick");
+                newScene = null;
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
 
-            // Connect to the FXML (contains our layout) and load it in.
-            Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
+            if (newScene == null) {
+                Platform.exit();
+            } else {
+                // Connect to the FXML (contains our layout) and load it in.
+                Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 
-            // Put the layout onto the scene.
-            Scene scene = new Scene(root);
+                // Put the layout onto the scene.
+                Scene scene = new Scene(root);
 
-            // Set the scene on the stage that was created in Main.java.
-            Main.stage.setScene(scene);
-            Main.stage.show();
-
+                // Set the scene on the stage that was created in Main.java.
+                Main.stage.setScene(scene);
+                Main.stage.show();
+            }
         } catch (
 
         Exception e) {
@@ -84,11 +92,10 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     }
 
-    public void morePizzaButtonEntered() {
-        playSound("buttonhover");
-    }
-
-    public void homeButtonEntered() {
+    /**
+     * Event listener to play a sound effect for when a user hovers over a button.
+     */
+    public void buttonEntered() {
         playSound("buttonhover");
     }
 

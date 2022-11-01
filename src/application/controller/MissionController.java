@@ -72,6 +72,23 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         }
     }
 
+    public void handleVideo(ActionEvent event) {
+        try {
+            String media = "src/application/videos/missionBackground.mp4";
+            Media h = new Media(Paths.get(media).toUri().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(h);
+            mediaPlayer.setAutoPlay(true);
+
+            // Media media1 = new Media ("src/application/videos/ArgyleMission.mp4");
+            // MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
+            // mediaPlayer1.setAutoPlay(true);
+            // MediaView mediaView = new MediaView(mediaPlayer1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void gameStartButtonEntered() {
         playSound("buttonhover");
 
@@ -95,22 +112,5 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         // media.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
-    }
-
-    public void handleVideo(ActionEvent event) {
-        try {
-            String media = "src/application/videos/missionBackground.mp4";
-            Media h = new Media(Paths.get(media).toUri().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(h);
-            mediaPlayer.setAutoPlay(true);
-
-            // Media media1 = new Media ("src/application/videos/ArgyleMission.mp4");
-            // MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
-            // mediaPlayer1.setAutoPlay(true);
-            // MediaView mediaView = new MediaView(mediaPlayer1);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

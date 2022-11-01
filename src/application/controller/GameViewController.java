@@ -30,7 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 /**
  * TODO: UPDATE THIS WHEN MORE FUNCTIONALITY IS ADDED OR REMOVED.
@@ -67,15 +66,15 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @FXML
     Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
             ingredient6Label;
-    
+
     MediaPlayer mediaPlayer, mediaSFX;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-    	music();
-    	
-    	this.buildPizza = new Pizza();
+
+        music();
+
+        this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
 
         // Set the ingredient labels to be composed of what is in the random Array.
@@ -105,16 +104,16 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
         pizzaLabel.setText("Drag the Pizza into the center box.");
     }
-    
+
     public void music() {
         String s = "src/application/audio/VecnaClockSound.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(h);
-    	mediaPlayer.play();
-    	//mediaPlayer.setVolume(100);
-    	//mediaPlayer.setStartTime(Duration.seconds(0));
-        //mediaPlayer.setAutoPlay(true);
+        mediaPlayer.play();
+        // mediaPlayer.setVolume(100);
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
     }
 
     @Override
@@ -246,7 +245,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             if (event.getGestureSource() == sauceImage) {
                 setToppingInfo(sauceImage, sauceTarget, this.getLabel("Pizza Sauce"),
                         this.ingredientLabels.indexOf(this.getLabel("Pizza Sauce")));
-                		playSound("sauceEffect");
+                playSound("sauceEffect");
 //                sauceTarget.setOpacity(0.5);
             } else if (event.getGestureSource() == topping1Image) {
                 setToppingInfo(topping1Image, topping1Target, this.getLabel("Ham"),
@@ -334,7 +333,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
-            
+
             mediaPlayer.stop();
 
         } catch (
@@ -344,8 +343,9 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         }
 
     }
+
     public void playSound(String soundName) {
-        String s = "src/application/audio/"+ soundName + ".mp3";
+        String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaSFX = new MediaPlayer(h);
