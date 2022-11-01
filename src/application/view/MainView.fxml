@@ -42,7 +42,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton11" alignment="CENTER" layoutX="134.0" layoutY="97.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#pizzaStartButtonEnter" prefHeight="62.0" prefWidth="301.0" text="EXIT" textAlignment="CENTER">
+            <Button fx:id="exitButton" alignment="CENTER" layoutX="134.0" layoutY="97.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#exitButtonEnter" prefHeight="62.0" prefWidth="301.0" text="EXIT" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
