@@ -50,7 +50,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     AnchorPane titlePane;
 
     @FXML
-    ImageView logoImg, pizzaTruck, pixelArgyle, blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
+    ImageView logoImg, /*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
     Button buttonPushed, pizzaStartButton, optionsButton, exitButton;
@@ -81,9 +81,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
-        AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
-        AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
+        //AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
+        //AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
+        //AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
@@ -102,15 +102,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         //playFadeTransition(15, pizzaStartButton);
         //playFadeTransition(15, optionsButton);
         //playFadeTransition(15, exitButton);
-        playFadeTransition(10, titleVBox);
+        playFadeTransition(5, titleVBox);
         blackFadeImg1.setVisible(false);
-        //blackFadeImg2.setVisible(false);
-        //blackFadeImg3.setVisible(false);
-        //blackFadeImg4.setVisible(false);
+        blackFadeImg2.setVisible(false);
+        blackFadeImg3.setVisible(false);
+        blackFadeImg4.setVisible(false);
+        /*
         playFadeTransition(15, blackFadeImg2);
         playFadeTransition(15, blackFadeImg3);
         playFadeTransition(15, blackFadeImg4);
-
+*/
 		pizzaStartButton.setVisible(false);
 		optionsButton.setVisible(false);
 		exitButton.setVisible(false);
@@ -128,7 +129,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 				double Stretch = Duration.millis(secondsToStretch*500).toMillis()-(timeElapsed/28);
 		    	if(Stretch>0)
 		    	{
-		    		titleVBox.setSpacing(Stretch/3);
+		    		titleVBox.setSpacing(Stretch/2);
 		    		titleHBox1.setSpacing(Stretch);
 		    		titleHBox2.setSpacing(Stretch);
 		    	}
@@ -137,16 +138,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 		    		pizzaStartButton.setVisible(true);
 		    		optionsButton.setVisible(true);
 		    		exitButton.setVisible(true);
-		            blackFadeImg1.setVisible(true);
+		            //blackFadeImg1.setVisible(true);
 
 		    		if(!areButtonsTransitioned) {
 			    		pizzaStartButton.setOpacity(0);
 			    		optionsButton.setOpacity(0);
 			    		exitButton.setOpacity(0);
-		            playFadeTransition(6, pizzaStartButton);
-		            playFadeTransition(6, optionsButton);
-		            playFadeTransition(6, exitButton);
-		            playFadeTransition(3, blackFadeImg1);
+		            playFadeTransition(3, pizzaStartButton);
+		            playFadeTransition(3, optionsButton);
+		            playFadeTransition(3, exitButton);
+		            //playFadeTransition(3, blackFadeImg1);
 		            areButtonsTransitioned = true;
 		    		}
 		    	}
