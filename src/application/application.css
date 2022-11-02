@@ -21,6 +21,8 @@ AnchorPane {
 
 Text {
     -fx-font-family: "Benguiat";
+    -fx-font-size: 26px;
+    -fx-fill: red;
 }
 
 .button {
@@ -53,7 +55,6 @@ Text {
 }
 
 #titleText {
-    -fx-fill: red;
     -fx-font-size: 36px;
 }
 /* End MainView.fxml specific CSS styling. */
@@ -73,6 +74,10 @@ Text {
 
 
 /* Begin GameView.fxml specific CSS styling. */
+#rightVbox {
+    -fx-background-color: black;
+}
+
 #pizzaLabel {
     -fx-font-family: "Benguiat";
 }

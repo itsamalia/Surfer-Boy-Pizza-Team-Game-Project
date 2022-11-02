@@ -87,13 +87,14 @@
          </children></VBox>
    </left>
    <right>
-      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" BorderPane.alignment="CENTER">
+      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ImageView fx:id="vecnaClockImage" pickOnBounds="true">
+            <ImageView fx:id="vecnaClockImage" fitHeight="470.0" fitWidth="200.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/vecna_clock_cropped_200x200.png" />
                </image>
             </ImageView>
+            <Text fx:id="countdownText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children></VBox>
    </right>
    <center>

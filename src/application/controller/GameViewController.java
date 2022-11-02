@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import application.Main;
 import application.model.Ingredient;
@@ -30,6 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 /**
  * TODO: UPDATE THIS WHEN MORE FUNCTIONALITY IS ADDED OR REMOVED.
@@ -47,14 +50,16 @@ import javafx.scene.paint.Color;
  */
 public class GameViewController implements EventHandler<ActionEvent>, Initializable {
 
-    Pizza buildPizza;
-    ArrayList<Label> ingredientLabels;
+    final static double COUNTDOWN_MINUTES = 5;
+
+    private Pizza buildPizza;
+    private ArrayList<Label> ingredientLabels;
 
     @FXML
-    BorderPane mainBorderPane;
+    private BorderPane mainBorderPane;
 
     @FXML
-    StackPane centerStackPane;
+    private StackPane centerStackPane;
 
     @FXML
     private VBox leftVbox, rightVbox;
@@ -64,10 +69,14 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
 
     @FXML
-    Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
+    private Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
             ingredient6Label;
 
-    MediaPlayer mediaPlayer, mediaSFX;
+    @FXML
+    private Text countdownText;
+
+    private MediaPlayer mediaPlayer, mediaSFX;
+    private Timer timer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,6 +100,34 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             i++;
         }
 
+        this.timer = new Timer();
+        TimerTask task = new TimerTask() {
+
+            double counter = 60 * COUNTDOWN_MINUTES;
+            int minutes, seconds;
+
+            @Override
+            public void run() {
+                if (counter > 0) {
+                    System.out.println("counter: " + counter);
+                    minutes = (int) counter / 60;
+                    seconds = (int) counter % 60;
+                    countdownText.setText(String.format("%d:%02d\n", minutes, seconds));
+//                    System.out.printf("%d:%02d\n", minutes, seconds);
+                    counter--;
+                } else {
+                    // TODO: Implement and switch to game over screen if timer reaches 0. Currently
+                    // it just exits the program.
+                    System.out.println("YOU LOSE!!! (IMPLEMENT GAME OVER SCENE TO SWITCH TO)");
+                    timer.cancel();
+                    System.exit(0);
+                }
+            }
+        };
+
+//        timer.schedule(task, 1000);
+        timer.scheduleAtFixedRate(task, 0, 1000);
+
         // TODO: DELETE DEBUGGING PRINT STATEMENTS AFTER DONE.
 //        System.out.println(pizzaSauce.isOnPizza());
 //        pizzaSauce.setOnPizza(true);
@@ -100,8 +137,8 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 
         // Binds img height and width to the container (rightVbox) to resize.
         // TODO: FIX OR REMOVE THIS AS IT DOESN'T LOOK RIGHT AND WON'T RESIZE BACK DOWN.
-        vecnaClockImage.fitWidthProperty().bind(rightVbox.widthProperty());
-        vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
+//        vecnaClockImage.fitWidthProperty().bind(rightVbox.widthProperty());
+//        vecnaClockImage.fitHeightProperty().bind(rightVbox.heightProperty());
         pizzaLabel.setText("Drag the Pizza into the center box.");
     }
 
@@ -269,6 +306,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
 //        System.out.println("On Drag Dropped");
         if (this.buildPizza.isFinished()) {
             this.loadScene("PizzaFinished.fxml");
+            this.timer.cancel();
         }
         event.consume();
     }
@@ -322,7 +360,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
      * 
      * @param sceneName The fxml file name to be loaded (String)
      */
-    private void loadScene(String sceneName) {
+    public void loadScene(String sceneName) {
         try {
             // Connect to the FXML (contains our layout) and load it in.
             Parent root = FXMLLoader.load(Main.class.getResource("view/" + sceneName));
@@ -341,9 +379,12 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         Exception e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * 
+     * @param soundName The name of the sound file (String)
+     */
     public void playSound(String soundName) {
         String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
