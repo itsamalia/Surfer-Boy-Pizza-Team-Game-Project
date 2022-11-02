@@ -55,7 +55,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     ImageView logoImg, /*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
-    Button buttonPushed, pizzaStartButton, optionsButton, exitButton;
+    Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
 
     MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
 
@@ -106,13 +106,13 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         mediaBackground.setAutoPlay(true);
         mediaBackground.setCycleCount(-1);
         backgroundMedia.setMediaPlayer(mediaBackground);
-
+        playFadeTransition(2, titleVBox);
         // Play FadeTransitions
         playFadeTransition(20, logoImg);
         //playFadeTransition(15, pizzaStartButton);
         //playFadeTransition(15, optionsButton);
         //playFadeTransition(15, exitButton);
-        playFadeTransition(5, titleVBox);
+
         blackFadeImg1.setVisible(false);
         blackFadeImg2.setVisible(false);
         blackFadeImg3.setVisible(false);
@@ -159,17 +159,25 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 		    		exitButton.setVisible(true);
 		            //blackFadeImg1.setVisible(true);
 
-		    		if(!areButtonsTransitioned) {
+		    		if(!areButtonsTransitioned&&skipButton.isVisible()) {
 			    		pizzaStartButton.setOpacity(0);
 			    		optionsButton.setOpacity(0);
 			    		exitButton.setOpacity(0);
 		            playFadeTransition(3, pizzaStartButton);
 		            playFadeTransition(3, optionsButton);
 		            playFadeTransition(3, exitButton);
+		            skipButton.setVisible(false);
 		            //playFadeTransition(3, blackFadeImg1);
 		            areButtonsTransitioned = true;
 		    		}
 		    	}
+	    		else if(skipButton.isVisible()==false && stretch>0)
+	    		{
+		    		pizzaStartButton.setOpacity(1);
+		    		optionsButton.setOpacity(1);
+		    		exitButton.setOpacity(1);
+		    		titleVBox.setOpacity(1);
+	    		}
 			}
                 
         };
@@ -255,7 +263,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     public void buttonEntered() {
         playSound("buttonhover");
     }
-
+    public void skipButtonClicked() {
+    	stretch = .42;
+    	skipButton.setVisible(false);
+    }
     /**
      * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media
      * object to play the background music.
