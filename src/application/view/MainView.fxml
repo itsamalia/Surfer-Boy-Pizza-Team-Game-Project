@@ -12,22 +12,22 @@
 <AnchorPane fx:id="titlePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <MediaView fx:id="backgroundMedia" fitHeight="800.0" fitWidth="800.0" preserveRatio="false" />
-      <ImageView fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg1" fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg2" fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg3" fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="649.0" fitWidth="637.0" layoutX="83.0" layoutY="-120.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg4" fitHeight="649.0" fitWidth="637.0" layoutX="83.0" layoutY="-120.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>

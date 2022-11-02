@@ -15,11 +15,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -41,7 +43,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     AnchorPane titlePane;
 
     @FXML
-    ImageView logoImg, pizzaTruck, pixelArgyle;
+    ImageView logoImg, pizzaTruck, pixelArgyle, blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
     Button buttonPushed, pizzaStartButton, optionsButton, exitButton;
@@ -50,6 +52,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @FXML
     MediaView backgroundMedia;
+    
+    @FXML
+    Text titleText;
+    
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,9 +78,14 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
         // Play FadeTransitions
         playFadeTransition(20, logoImg);
-        playFadeTransition(30, pizzaStartButton);
-        playFadeTransition(30, optionsButton);
-        playFadeTransition(30, exitButton);
+        playFadeTransition(15, pizzaStartButton);
+        playFadeTransition(15, optionsButton);
+        playFadeTransition(15, exitButton);
+        playFadeTransition(20, titleText);
+        playFadeTransition(2, blackFadeImg1);
+        playFadeTransition(2, blackFadeImg2);
+        playFadeTransition(2, blackFadeImg3);
+        playFadeTransition(2, blackFadeImg4);
     }
 
     /**
