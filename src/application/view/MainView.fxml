@@ -95,7 +95,7 @@
             </HBox>
             <HBox fx:id="titleHBox2" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0" translateY="-115.0">
                <children>
-                  <ImageView scaleX="2.0" translateX="-50.0" translateY="-45.0">
+                  <ImageView scaleX="2.1" translateX="-40.0" translateY="-45.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoLine.png" />
                      </image>
@@ -125,7 +125,7 @@
                         <Image url="@../images/SurferBoyLogoA.png" />
                      </image>
                   </ImageView>
-                  <ImageView scaleX="2.0" translateX="30.0" translateY="-45.0">
+                  <ImageView scaleX="2.2" translateX="25.0" translateY="-45.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoLine.png" />
                      </image>
