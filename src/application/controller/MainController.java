@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,24 +68,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
         backgroundMedia.setMediaPlayer(mediaBackground);
-        
-        FadeTransition titleTransition = new FadeTransition(Duration.seconds(20), logoImg);
-        FadeTransition pizzaTransition = new FadeTransition(Duration.seconds(30), pizzaStartButton);
-        FadeTransition optionTransition = new FadeTransition(Duration.seconds(30), optionsButton);
-        FadeTransition exitTransition = new FadeTransition(Duration.seconds(30), exitButton);
-		titleTransition.setFromValue(0);
-		titleTransition.setToValue(1.0);
-		titleTransition.play();
-		pizzaTransition.setFromValue(0);
-		pizzaTransition.setToValue(1.0);
-		pizzaTransition.play();
-		optionTransition.setFromValue(0);
-		optionTransition.setToValue(1.0);
-		optionTransition.play();
-		exitTransition.setFromValue(0);
-		exitTransition.setToValue(1.0);
-		exitTransition.play();
 
+        // Play FadeTransitions
+        playFadeTransition(20, logoImg);
+        playFadeTransition(30, pizzaStartButton);
+        playFadeTransition(30, optionsButton);
+        playFadeTransition(30, exitButton);
     }
 
     /**
@@ -177,5 +166,18 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         mediaPlayerSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
+    }
+
+    /**
+     * Apply a FadeTransition on a node given the duration in seconds.
+     * 
+     * @param seconds Time of the fade in seconds (Double)
+     * @param node    The child node to have the transition applied to (Node)
+     */
+    public void playFadeTransition(double seconds, Node node) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
+        transition.setFromValue(0);
+        transition.setToValue(1.0);
+        transition.play();
     }
 }
