@@ -40,7 +40,7 @@ import javafx.util.Duration;
  * CS3443-004 - Fall 2022
  *
  * @author Danny Ghrist (kda458)
- * @author Caleb Pierce
+ * @author Caleb Pierce (rvt884)
  * @author Sarah Halverson
  * @author Amalia Talijancic
  * @author Carlos Martinez
@@ -98,12 +98,13 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
-
+        
         // Create a new Media object to play the background video.
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
+        mediaBackground.setCycleCount(-1);
         backgroundMedia.setMediaPlayer(mediaBackground);
 
         // Play FadeTransitions
@@ -264,6 +265,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.autoPlayProperty();
+        mediaPlayer.setCycleCount(-1);
         mediaPlayer.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);

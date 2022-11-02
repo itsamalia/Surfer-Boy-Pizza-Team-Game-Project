@@ -40,7 +40,9 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
+        mediaBackground.setCycleCount(-1);
         media.setMediaPlayer(mediaBackground);
+
         animateText(missionLabel, "YOUR MISSION: Deliver (X) amount of pizzas in (X) amount of time.");
 
     }

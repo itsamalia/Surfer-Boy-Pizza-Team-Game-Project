@@ -147,6 +147,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.setCycleCount(-1);
         mediaPlayer.play();
         // mediaPlayer.setVolume(100);
         // mediaPlayer.setStartTime(Duration.seconds(0));
