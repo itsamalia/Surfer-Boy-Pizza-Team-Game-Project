@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Controller for the MainView FXML Scene which will be the title screen.
@@ -65,6 +67,23 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
         backgroundMedia.setMediaPlayer(mediaBackground);
+        
+        FadeTransition titleTransition = new FadeTransition(Duration.seconds(20), logoImg);
+        FadeTransition pizzaTransition = new FadeTransition(Duration.seconds(30), pizzaStartButton);
+        FadeTransition optionTransition = new FadeTransition(Duration.seconds(30), optionsButton);
+        FadeTransition exitTransition = new FadeTransition(Duration.seconds(30), exitButton);
+		titleTransition.setFromValue(0);
+		titleTransition.setToValue(1.0);
+		titleTransition.play();
+		pizzaTransition.setFromValue(0);
+		pizzaTransition.setToValue(1.0);
+		pizzaTransition.play();
+		optionTransition.setFromValue(0);
+		optionTransition.setToValue(1.0);
+		optionTransition.play();
+		exitTransition.setFromValue(0);
+		exitTransition.setToValue(1.0);
+		exitTransition.play();
 
     }
 
