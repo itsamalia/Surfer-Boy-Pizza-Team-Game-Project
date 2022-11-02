@@ -12,34 +12,126 @@
 <AnchorPane fx:id="titlePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <MediaView fx:id="backgroundMedia" fitHeight="800.0" fitWidth="800.0" preserveRatio="false" />
-      <ImageView fx:id="blackFadeImg1" fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg1" fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blackFadeImg2" fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg2" fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blackFadeImg3" fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg3" fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blackFadeImg4" fitHeight="649.0" fitWidth="637.0" layoutX="83.0" layoutY="-120.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="blackFadeImg4" fitHeight="552.0" fitWidth="529.0" layoutX="146.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
          <image>
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="89.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+      <VBox fx:id="titleVBox" alignment="CENTER" layoutX="-58.0" layoutY="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="916.0" scaleX="0.6" scaleY="0.6" AnchorPane.bottomAnchor="367.0" AnchorPane.topAnchor="144.0">
          <children>
-            <Text fx:id="titleText" strokeWidth="0.0" text="SURFER BOY PIZZA" textAlignment="CENTER" textOrigin="TOP" />
-            <ImageView fx:id="logoImg" fitHeight="245.0" fitWidth="622.0" nodeOrientation="INHERIT" preserveRatio="true">
+            <ImageView scaleX="7.3" translateY="60.0">
                <image>
-                  <Image url="@../images/logoCropped.png" />
+                  <Image url="@../images/SurferBoyLogoLine.png" />
                </image>
             </ImageView>
+            <HBox fx:id="titleHBox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0">
+               <children>
+                  <ImageView translateX="20.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoS.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="15.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoU.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="10.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoR.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="5.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoF.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/SurferBoyLogoE.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-5.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoR.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView nodeOrientation="INHERIT" smooth="false" translateX="-10.0" translateY="25.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoDash.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-15.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoB.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-28.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoO.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-41.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoY.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="titleHBox2" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0" translateY="-115.0">
+               <children>
+                  <ImageView scaleX="2.0" translateX="-50.0" translateY="-45.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoLine.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="20.0" translateY="2.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoP.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="8.0" translateY="3.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoI.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/SurferBoyLogoZ.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-10.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoZ.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView translateX="-25.0" translateY="5.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoA.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView scaleX="2.0" translateX="30.0" translateY="-45.0">
+                     <image>
+                        <Image url="@../images/SurferBoyLogoLine.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="127.0" layoutY="388.0" prefHeight="243.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="127.0">

@@ -3,9 +3,14 @@ package application.controller;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.text.Position;
 
 import application.Main;
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -56,6 +63,20 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @FXML
     Text titleText;
     
+    @FXML
+    VBox titleVBox;
+    
+    @FXML
+    HBox titleHBox1, titleHBox2;
+    
+    private Timer timer;
+    double TitleStretch;
+    double startingStretch = 200;
+    int secondsToStretch = 1;
+    long start = System.currentTimeMillis();
+    long finish = System.currentTimeMillis();
+    long timeElapsed = finish - start;
+    boolean areButtonsTransitioned = false;
     
 
     @Override
@@ -78,16 +99,79 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
         // Play FadeTransitions
         playFadeTransition(20, logoImg);
-        playFadeTransition(15, pizzaStartButton);
-        playFadeTransition(15, optionsButton);
-        playFadeTransition(15, exitButton);
-        playFadeTransition(20, titleText);
-        playFadeTransition(2, blackFadeImg1);
-        playFadeTransition(2, blackFadeImg2);
-        playFadeTransition(2, blackFadeImg3);
-        playFadeTransition(2, blackFadeImg4);
-    }
+        //playFadeTransition(15, pizzaStartButton);
+        //playFadeTransition(15, optionsButton);
+        //playFadeTransition(15, exitButton);
+        playFadeTransition(10, titleVBox);
+        blackFadeImg1.setVisible(false);
+        //blackFadeImg2.setVisible(false);
+        //blackFadeImg3.setVisible(false);
+        //blackFadeImg4.setVisible(false);
+        playFadeTransition(15, blackFadeImg2);
+        playFadeTransition(15, blackFadeImg3);
+        playFadeTransition(15, blackFadeImg4);
 
+		pizzaStartButton.setVisible(false);
+		optionsButton.setVisible(false);
+		exitButton.setVisible(false);
+        //animateTitle(titleVBox, titleHBox1, titleHBox2);
+    
+        this.timer = new Timer();
+        TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+			    finish = System.currentTimeMillis();
+				timeElapsed = finish - start;
+				// TODO Auto-generated method stub
+				//animateTitle(titleVBox, titleHBox1, titleHBox2);
+				double Stretch = Duration.millis(secondsToStretch*500).toMillis()-(timeElapsed/28);
+		    	if(Stretch>0)
+		    	{
+		    		titleVBox.setSpacing(Stretch/3);
+		    		titleHBox1.setSpacing(Stretch);
+		    		titleHBox2.setSpacing(Stretch);
+		    	}
+		    	if(Stretch <= 0)
+		    	{
+		    		pizzaStartButton.setVisible(true);
+		    		optionsButton.setVisible(true);
+		    		exitButton.setVisible(true);
+		            blackFadeImg1.setVisible(true);
+
+		    		if(!areButtonsTransitioned) {
+			    		pizzaStartButton.setOpacity(0);
+			    		optionsButton.setOpacity(0);
+			    		exitButton.setOpacity(0);
+		            playFadeTransition(6, pizzaStartButton);
+		            playFadeTransition(6, optionsButton);
+		            playFadeTransition(6, exitButton);
+		            playFadeTransition(3, blackFadeImg1);
+		            areButtonsTransitioned = true;
+		    		}
+		    	}
+			}
+                
+        };
+        timer.scheduleAtFixedRate(task, 0, 10);
+        
+    }
+/*
+    public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2)
+    {
+		double Stretch = Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
+    	if(Stretch>0)
+    	{
+    		titleVB.setSpacing(Stretch);
+    		titleHB1.setSpacing(Stretch);
+    		titleHB2.setSpacing(Stretch);
+    	}
+    }
+    
+    public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1, HBox titleHB2) {
+
+    }
+    */
     /**
      * Determines which button was pressed (if we end up having multiple buttons),
      * and loads the view for that corresponding button.
