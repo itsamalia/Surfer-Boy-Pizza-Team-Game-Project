@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import javax.swing.text.Position;
 
 import application.Main;
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -75,9 +77,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     int secondsToStretch = 1;
     long start = System.currentTimeMillis();
     long finish = System.currentTimeMillis();
-    long timeElapsed = finish - start;
+    int timeElapsed = (int) (finish - start);
     boolean areButtonsTransitioned = false;
+	double lastTimeElapsed;
+	double stretch = 200;
+	;
     
+	public static double exp(double val) {
+	    final long tmp = (long) (1512775 * val + (1072693248 - 60801));
+	    return Double.longBitsToDouble(tmp << 32);
+	}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -115,25 +124,34 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 		pizzaStartButton.setVisible(false);
 		optionsButton.setVisible(false);
 		exitButton.setVisible(false);
+		
         //animateTitle(titleVBox, titleHBox1, titleHBox2);
-    
+		
         this.timer = new Timer();
         TimerTask task = new TimerTask() {
 
 			@Override
 			public void run() {
-			    finish = System.currentTimeMillis();
-				timeElapsed = finish - start;
+			    //finish = System.currentTimeMillis();
+			    //lastTimeElapsed = timeElapsed;
+				timeElapsed += 1.0;
+				
 				// TODO Auto-generated method stub
 				//animateTitle(titleVBox, titleHBox1, titleHBox2);
-				double Stretch = Duration.millis(secondsToStretch*500).toMillis()-(timeElapsed/28);
-		    	if(Stretch>0)
+				//System.out.print("running animation\n");
+			
+				//stretch = (500*((exp(-timeElapsed/3000.0)))-.1);
+				stretch -= .41;
+				//System.out.print("done calculation\n");
+				
+		    	if(stretch>0)
 		    	{
-		    		titleVBox.setSpacing(Stretch/2);
-		    		titleHBox1.setSpacing(Stretch);
-		    		titleHBox2.setSpacing(Stretch);
+					//System.out.print("set stretch\n");
+		    		titleVBox.setSpacing(stretch*2);
+		    		titleHBox1.setSpacing(stretch*1.2);
+		    		titleHBox2.setSpacing(stretch*1.2);
 		    	}
-		    	if(Stretch <= 0)
+		    	else if(stretch <= 0)
 		    	{
 		    		pizzaStartButton.setVisible(true);
 		    		optionsButton.setVisible(true);
@@ -154,7 +172,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 			}
                 
         };
-        timer.scheduleAtFixedRate(task, 0, 10);
+        timer.scheduleAtFixedRate(task, 0, 30);
         
     }
 /*
