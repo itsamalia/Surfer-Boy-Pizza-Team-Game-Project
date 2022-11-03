@@ -71,7 +71,8 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
             String newScene = "";
 
             if (buttonPushed.getId().equals("gameStartButton")) {
-                newScene = "GameView.fxml";
+                //newScene = "GameView.fxml";
+            	newScene = "LoadingView.fxml";
                 playSound("mindfighton");
                 mediaBackground.stop();
                 try {

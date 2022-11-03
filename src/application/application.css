@@ -72,6 +72,25 @@ Text {
 }
 /* End MissionView.fxml specific CSS styling. */
 
+/* Begin LoadingView.fxml specific CSS styling */
+
+#tipOneLabel{
+	-fx-font-family: "Benguiat";
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
+
+#tipTwoLabel{
+	-fx-font-family: "Benguiat";
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
+
+.continueButton{
+	-fx-font-family: "Benguiat";
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
 
 /* Begin GameView.fxml specific CSS styling. */
 #rightVbox {

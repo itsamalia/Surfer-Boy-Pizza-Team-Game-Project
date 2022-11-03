@@ -382,7 +382,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         fadeInAnimation.play();
         overallFade.setVisible(false);
         animateText(creditsLabel,
-                "A GAME BY: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
+                "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
     }
 
     /**
