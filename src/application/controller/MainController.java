@@ -1,21 +1,19 @@
 package application.controller;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.text.Position;
-
 import application.Main;
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,8 +25,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -59,6 +59,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @FXML
     ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
+
     @FXML
     Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
 
@@ -66,16 +67,16 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @FXML
     MediaView backgroundMedia;
-    
+
     @FXML
     Text titleText;
-    
+
     @FXML
     VBox titleVBox;
-    
+
     @FXML
     HBox titleHBox1, titleHBox2;
-    
+
     private Timer timer;
     private Timer startTimerToRunOnce;
     double TitleStretch;
@@ -85,27 +86,22 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     long finish = System.currentTimeMillis();
     int timeElapsed = (int) (finish - start);
     boolean areButtonsTransitioned = false;
-	double lastTimeElapsed;
-	double stretch = 200;
-	;
-    
-	public static double exp(double val) {
-	    final long tmp = (long) (1512775 * val + (1072693248 - 60801));
-	    return Double.longBitsToDouble(tmp << 32);
-	}
+    double lastTimeElapsed;
+    double stretch = 200;;
+
+    public static double exp(double val) {
+        final long tmp = (long) (1512775 * val + (1072693248 - 60801));
+        return Double.longBitsToDouble(tmp << 32);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
-        //AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
-        //AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
-        //AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
+
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
-        
 
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
@@ -116,79 +112,74 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         playFadeTransition(2, titleVBox);
         // Play FadeTransitions
         playFadeTransition(20, logoImg);
-        //playFadeTransition(15, pizzaStartButton);
-        //playFadeTransition(15, optionsButton);
-        //playFadeTransition(15, exitButton);
+        // playFadeTransition(15, pizzaStartButton);
+        // playFadeTransition(15, optionsButton);
+        // playFadeTransition(15, exitButton);
 
         blackFadeImg1.setVisible(false);
         blackFadeImg2.setVisible(false);
         blackFadeImg3.setVisible(false);
         blackFadeImg4.setVisible(false);
         /*
-        playFadeTransition(15, blackFadeImg2);
-        playFadeTransition(15, blackFadeImg3);
-        playFadeTransition(15, blackFadeImg4);
-*/
-		pizzaStartButton.setVisible(false);
-		optionsButton.setVisible(false);
-		exitButton.setVisible(false);
-		
-        //animateTitle(titleVBox, titleHBox1, titleHBox2);
-		
+         * playFadeTransition(15, blackFadeImg2); playFadeTransition(15, blackFadeImg3);
+         * playFadeTransition(15, blackFadeImg4);
+         */
+        pizzaStartButton.setVisible(false);
+        optionsButton.setVisible(false);
+        exitButton.setVisible(false);
+
+        // animateTitle(titleVBox, titleHBox1, titleHBox2);
+
         this.timer = new Timer();
         TimerTask task = new TimerTask() {
 
-			@Override
-			public void run() {
-			    //finish = System.currentTimeMillis();
-			    //lastTimeElapsed = timeElapsed;
-				timeElapsed += 1.0;
-				
-				// TODO Auto-generated method stub
-				//animateTitle(titleVBox, titleHBox1, titleHBox2);
-				//System.out.print("running animation\n");
-			
-				//stretch = (500*((exp(-timeElapsed/3000.0)))-.1);
-				stretch -= .41;
-				//System.out.print("done calculation\n");
-				
-		    	if(stretch>0)
-		    	{
-					//System.out.print("set stretch\n");
-		    		titleVBox.setSpacing(stretch*2);
-		    		titleHBox1.setSpacing(stretch*1.2);
-		    		titleHBox2.setSpacing(stretch*1.2);
-		    	}
-		    	else if(stretch <= 0)
-		    	{
-		    		pizzaStartButton.setVisible(true);
-		    		optionsButton.setVisible(true);
-		    		exitButton.setVisible(true);
-		            //blackFadeImg1.setVisible(true);
+            @Override
+            public void run() {
+                // finish = System.currentTimeMillis();
+                // lastTimeElapsed = timeElapsed;
+                timeElapsed += 1.0;
 
-		    		if(!areButtonsTransitioned&&skipButton.isVisible()) {
-			    		pizzaStartButton.setOpacity(0);
-			    		optionsButton.setOpacity(0);
-			    		exitButton.setOpacity(0);
-		            playFadeTransition(3, pizzaStartButton);
-		            playFadeTransition(3, optionsButton);
-		            playFadeTransition(3, exitButton);
-		            skipButton.setVisible(false);
-		            //playFadeTransition(3, blackFadeImg1);
-		            areButtonsTransitioned = true;
-		    		}
-		    	}
-	    		else if(skipButton.isVisible()==false && stretch>0)
-	    		{
-		    		pizzaStartButton.setOpacity(1);
-		    		optionsButton.setOpacity(1);
-		    		exitButton.setOpacity(1);
-		    		titleVBox.setOpacity(1);
-	    		}
-			}
-                
+                // TODO Auto-generated method stub
+                // animateTitle(titleVBox, titleHBox1, titleHBox2);
+                // System.out.print("running animation\n");
+
+                // stretch = (500*((exp(-timeElapsed/3000.0)))-.1);
+                stretch -= .41;
+                // System.out.print("done calculation\n");
+
+                if (stretch > 0) {
+                    // System.out.print("set stretch\n");
+                    titleVBox.setSpacing(stretch * 2);
+                    titleHBox1.setSpacing(stretch * 1.2);
+                    titleHBox2.setSpacing(stretch * 1.2);
+                } else if (stretch <= 0) {
+                    pizzaStartButton.setVisible(true);
+                    optionsButton.setVisible(true);
+                    exitButton.setVisible(true);
+                    // blackFadeImg1.setVisible(true);
+
+                    if (!areButtonsTransitioned && skipButton.isVisible()) {
+                        pizzaStartButton.setOpacity(0);
+                        optionsButton.setOpacity(0);
+                        exitButton.setOpacity(0);
+                        playFadeTransition(3, pizzaStartButton);
+                        playFadeTransition(3, optionsButton);
+                        playFadeTransition(3, exitButton);
+                        skipButton.setVisible(false);
+                        // playFadeTransition(3, blackFadeImg1);
+                        areButtonsTransitioned = true;
+                    }
+                } else if (skipButton.isVisible() == false && stretch > 0) {
+                    pizzaStartButton.setOpacity(1);
+                    optionsButton.setOpacity(1);
+                    exitButton.setOpacity(1);
+                    titleVBox.setOpacity(1);
+                }
+            }
+
         };
         timer.scheduleAtFixedRate(task, 0, 30);
+
         this.startTimerToRunOnce = new Timer();
         TimerTask startTask = new TimerTask() {
 
@@ -205,6 +196,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         };
         startTimerToRunOnce.schedule(startTask, 100);
     }
+
     public void ready()
     {
 
@@ -229,9 +221,21 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     }
     
     public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1, HBox titleHB2) {
+=======
+>>>>>>> branch 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
 
-    }
-    */
+    /*
+     * public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2) { double
+     * Stretch =
+     * Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
+     * if(Stretch>0) { titleVB.setSpacing(Stretch); titleHB1.setSpacing(Stretch);
+     * titleHB2.setSpacing(Stretch); } }
+     * 
+     * public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1,
+     * HBox titleHB2) {
+     * 
+     * }
+     */
     /**
      * Determines which button was pressed (if we end up having multiple buttons),
      * and loads the view for that corresponding button.
@@ -266,6 +270,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Exit the program if the scene button clicked on is null.
             if (newScene == null) {
 //                Platform.exit();
+                this.timer.cancel();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
             } else {
@@ -315,11 +320,21 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 			e.printStackTrace();
 		}
     }
+
+    /**
+     * Handles the skip introduction button to skip the introduction animation.
+     */
     public void skipButtonClicked() {
+
     	stretch = .42;
     	skipButton.setVisible(false);
 
+
+        stretch = .42;
+        skipButton.setVisible(false);
+
     }
+
     /**
      * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media
      * object to play the background music.
