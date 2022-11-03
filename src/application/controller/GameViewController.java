@@ -312,6 +312,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         if (this.buildPizza.isFinished()) {
             this.loadScene("PizzaFinished.fxml");
             this.timer.cancel();
+            playSound2("surfsupmydude");
         }
         event.consume();
     }
@@ -424,5 +425,15 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         mediaSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
+    }
+    
+    public void playSound2(String soundName) {
+        String s = "src/application/audio/" + soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaSFX = new MediaPlayer(h);
+        mediaSFX.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        //mediaPlayer.setAutoPlay(true);
     }
 }
