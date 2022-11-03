@@ -62,7 +62,7 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
 
             if (buttonPushed.getId().equals("gameStartButton")) {
                 newScene = "GameView.fxml";
-                playSound2("mindfighton");
+                playSound("buttonclick");
                 mediaBackground.stop();
 		    	try {
 					setCursor("normalSelect");
@@ -156,17 +156,6 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }
-    
-    public void playSound2(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        mediaSFX.setAutoPlay(true);
-    }
-    
     public void setCursor(String imageName) throws FileNotFoundException
     {
     	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));

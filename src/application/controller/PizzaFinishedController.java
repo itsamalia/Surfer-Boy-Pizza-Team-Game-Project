@@ -2,9 +2,7 @@ package application.controller;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ResourceBundle;
 
 import application.Main;
 //import javafx.application.Platform;
@@ -12,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -46,9 +43,7 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
     @FXML
     MediaPlayer mediaSFX;
-    
-    MediaPlayer mediaPlayer;
-    
+
     /**
      * @author - Amalia's edits Here's a handle for the Home Button meant for the
      *         Game View
@@ -57,11 +52,10 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
      *         determined by which button they press. I incorporated your home
      *         button here for brevity.
      */
-    
     @Override
     public void handle(ActionEvent event) {
         try {
-        	
+
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 
@@ -101,7 +95,6 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
         			e.printStackTrace();
         		}
                 Main.stage.show();
-              
             }
         } catch (
 
@@ -149,5 +142,4 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }
-    
 }

@@ -348,7 +348,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("pizzaStartButton")) {
                 newScene = "Mission.fxml";
-                playSound2("youaresodead");
+                playSound("buttonclick");
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 // TODO: Update this to a new options view once implemented.
                 playSound("buttonclick");
@@ -466,15 +466,6 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      */
     public void playSound(String soundName) {
         String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        mediaPlayerSFX = new MediaPlayer(h);
-        mediaPlayerSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-    
-    public void playSound2(String soundName) {
-        String s = "src/application/audio/" + soundName + "2.mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         mediaPlayerSFX = new MediaPlayer(h);
         mediaPlayerSFX.play();
