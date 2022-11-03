@@ -351,14 +351,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     	stretch = .42;
     	skipButton.setVisible(false);
-
-
-        stretch = .42;
-        skipButton.setVisible(false);
-
-
-        stretch = .42;
-        skipButton.setVisible(false);
+    	playSound("buttonClick");
     }
 
     /**
