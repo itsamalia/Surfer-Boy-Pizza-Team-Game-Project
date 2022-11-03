@@ -27,11 +27,6 @@
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="blackFadeImg4" fitHeight="552.0" fitWidth="529.0" layoutX="146.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
-         <image>
-            <Image url="@../images/blackBox.png" />
-         </image>
-      </ImageView>
       <VBox fx:id="titleVBox" alignment="CENTER" layoutX="-58.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="916.0" scaleX="0.7" scaleY="0.7" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="88.0">
          <children>
             <ImageView scaleX="7.3" translateY="60.0">
@@ -149,6 +144,11 @@
             </Button>
          </children>
       </VBox>
+      <ImageView fx:id="overallFade" fitHeight="1600.0" fitWidth="1600.0" layoutX="-400.0" layoutY="-400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
       <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" text="Skip Intro" />
       <ImageView fx:id="cursorReferenceNormal" layoutX="-56.0" layoutY="580.0" visible="false">
          <image>

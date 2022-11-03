@@ -67,7 +67,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
 
     @FXML
-    ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
+    ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
 
 
     @FXML
@@ -99,6 +99,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     double lastTimeElapsed;
     double stretch = 200;
     private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
+    private FadeTransition fadeInAnimation;
 
 
 	private Timer startTimerButtons;;
@@ -125,16 +126,17 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
 
         // Create a new Media object to play the background video.
-
+        
+        playFadeOutTransition(15, overallFade);
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
         mediaBackground.setAutoPlay(true);
         mediaBackground.setCycleCount(-1);
         backgroundMedia.setMediaPlayer(mediaBackground);
-        playFadeTransition(2, titleVBox);
+        playFadeInTransition(2, titleVBox);
         // Play FadeTransitions
-        playFadeTransition(20, logoImg);
+        playFadeInTransition(20, logoImg);
         // playFadeTransition(15, pizzaStartButton);
         // playFadeTransition(15, optionsButton);
         // playFadeTransition(15, exitButton);
@@ -142,7 +144,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         blackFadeImg1.setVisible(false);
         blackFadeImg2.setVisible(false);
         blackFadeImg3.setVisible(false);
-        blackFadeImg4.setVisible(false);
+        //blackFadeImg4.setVisible(false);
         /*
          * playFadeTransition(15, blackFadeImg2); playFadeTransition(15, blackFadeImg3);
          * playFadeTransition(15, blackFadeImg4);
@@ -232,11 +234,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 	            pizzaStartButton.setVisible(true);
 	            optionsButton.setVisible(true);
 	            exitButton.setVisible(true);
-                playFadeTransition(3, pizzaStartButton);
-                playFadeTransition(3, optionsButton);
-                playFadeTransition(3, exitButton);
+                playFadeInTransition(3, pizzaStartButton);
+                playFadeInTransition(3, optionsButton);
+                playFadeInTransition(3, exitButton);
                 skipButton.setVisible(false);
                 areButtonsTransitioned = true;
+                overallFade.setVisible(false);
 				}
 			}
         };
@@ -432,15 +435,17 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	skipButton.setVisible(false);
     	playSound("buttonClick");
         areButtonsTransitioned = true;
-        playFadeTransition(3, pizzaStartButton);
-        playFadeTransition(3, optionsButton);
-        playFadeTransition(3, exitButton);
         for(int i=0;i<arrayOfAnimations.size(); i++)
         {
         	arrayOfAnimations.get(i).stop();
         	arrayOfAnimations.get(i).setDuration(Duration.millis(1));
         	arrayOfAnimations.get(i).play();
         }
+        fadeInAnimation.stop();
+        fadeInAnimation.setDuration(Duration.millis(1));
+        fadeInAnimation.play();
+        overallFade.setVisible(false);
+        
     }
 
     /**
@@ -488,10 +493,18 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      * @param seconds Time of the fade in seconds (Double)
      * @param node    The child node to have the transition applied to (Node)
      */
-    public void playFadeTransition(double seconds, Node node) {
+    public void playFadeInTransition(double seconds, Node node) {
         FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
         transition.setFromValue(0);
         transition.setToValue(1.0);
         transition.play();
     }
+    public void playFadeOutTransition(double seconds, Node node) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
+        transition.setFromValue(1);
+        transition.setToValue(0.0);
+        transition.play();
+        fadeInAnimation = transition;
+
+        }
 }
