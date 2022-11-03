@@ -224,7 +224,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
 
         this.startTimerButtons = new Timer();
-        TimerTask startTaskButtons = new TimerTask() {
+        TimerTask startTaskButton1 = new TimerTask() {
 
 			@Override
 			public void run() {
@@ -232,18 +232,46 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 				if(!areButtonsTransitioned)
 				{
 	            pizzaStartButton.setVisible(true);
-	            optionsButton.setVisible(true);
-	            exitButton.setVisible(true);
-                playFadeInTransition(3, pizzaStartButton);
-                playFadeInTransition(3, optionsButton);
-                playFadeInTransition(3, exitButton);
+	            //optionsButton.setVisible(true);
+	            //exitButton.setVisible(true);
+                playFadeInTransition(.5, pizzaStartButton);
+                //playFadeInTransition(3, optionsButton);
+                //playFadeInTransition(3, exitButton);
                 skipButton.setVisible(false);
-                areButtonsTransitioned = true;
                 overallFade.setVisible(false);
 				}
 			}
         };
-        startTimerToRunOnce.schedule(startTaskButtons, 25000);
+        startTimerToRunOnce.schedule(startTaskButton1, 30000);
+        this.startTimerButtons = new Timer();
+        TimerTask startTaskButton2 = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(!areButtonsTransitioned)
+				{
+		            optionsButton.setVisible(true);
+	                playFadeInTransition(.5, optionsButton);
+				}
+			}
+        };
+        startTimerToRunOnce.schedule(startTaskButton2, 30600-60);
+        this.startTimerButtons = new Timer();
+        TimerTask startTaskButton3 = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(!areButtonsTransitioned)
+				{
+		            exitButton.setVisible(true);
+	                playFadeInTransition(.5, exitButton);
+	                areButtonsTransitioned = true;
+				}
+			}
+        };
+        startTimerToRunOnce.schedule(startTaskButton3, 31200-120);
         randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -700, 800, -400, 500);
     }
 
@@ -265,7 +293,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listVB = titleVB.getChildren();
     	for(int v = 0; v<listVB.size(); v++)
     	{
-    		TranslateTransition ttv = new TranslateTransition(Duration.millis(25000), listVB.get(v));
+    		TranslateTransition ttv = new TranslateTransition(Duration.millis(29500), listVB.get(v));
     		arrayOfAnimations.add(ttv);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttv.setFromX(randomNum);
@@ -279,7 +307,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listH1 = titleHB1.getChildren();
     	for(int h1 = 0; h1<listH1.size(); h1++)
     	{
-    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(25000), listH1.get(h1));
+    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(29500), listH1.get(h1));
     		arrayOfAnimations.add(ttH1);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttH1.setFromX(randomNum);
@@ -292,7 +320,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listH2 = titleHB2.getChildren();
     	for(int h2 = 0; h2<listH2.size(); h2++)
     	{
-    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(25000), listH2.get(h2));
+    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(29500), listH2.get(h2));
     		arrayOfAnimations.add(ttH2);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttH2.setFromX(randomNum);
