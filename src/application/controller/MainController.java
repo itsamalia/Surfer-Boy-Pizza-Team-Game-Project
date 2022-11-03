@@ -292,7 +292,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         };
         startTimerToRunOnce.schedule(startTaskCredits, 40260);
 
-        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -400, 600);
+        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -500, 800);
     }
 
 
@@ -309,7 +309,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     }
     public void randomizedTranslationAnimation(VBox titleVB, HBox titleHB1, HBox titleHB2, int minX, int maxX, int minY, int maxY)
     {
-    	
+    	/*
     	ObservableList<Node> listVB = titleVB.getChildren();
     	for(int v = 0; v<listVB.size(); v++)
     	{
@@ -323,7 +323,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     		ttv.setToY(listVB.get(v).getTranslateY());
     		ttv.play();
     	}
-    	
+    	*/
     	ObservableList<Node> listH1 = titleHB1.getChildren();
     	for(int h1 = 0; h1<listH1.size(); h1++)
     	{
