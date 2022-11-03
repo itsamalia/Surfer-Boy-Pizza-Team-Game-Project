@@ -60,7 +60,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     // blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
-    private ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
+    private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
 
     @FXML
     private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
@@ -95,8 +95,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     double stretch = 200;
     private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
     private FadeTransition fadeInAnimation;
+	private FadeTransition fadeInSoundAnimation;
+    private Timer startTimerButtons;
 
-    private Timer startTimerButtons;;
+
 
     /**
      * Everything to be initialized upon the initial loading of the Scene (i.e,
@@ -117,7 +119,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
         // Create a new Media object to play the background video.
 
-        playFadeOutTransition(20, overallFade);
+        playFadeOutTransition(15, overallFade);
+        playFadeOutSoundMessageTransition(5, soundMessageImgView);
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
@@ -381,6 +384,10 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         fadeInAnimation.setDuration(Duration.millis(1));
         fadeInAnimation.play();
         overallFade.setVisible(false);
+        fadeInSoundAnimation.stop();
+        fadeInSoundAnimation.setDuration(Duration.millis(1));
+        fadeInSoundAnimation.play();
+        soundMessageImgView.setVisible(false);
         animateText(creditsLabel,
                 "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
     }
@@ -410,6 +417,13 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         transition.setToValue(0.0);
         transition.play();
         fadeInAnimation = transition;
+    }
+    public void playFadeOutSoundMessageTransition(double seconds, Node node) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
+        transition.setFromValue(1);
+        transition.setToValue(0.0);
+        transition.play();
+        fadeInSoundAnimation = transition;
     }
 
     /**
