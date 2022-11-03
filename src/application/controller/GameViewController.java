@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -16,10 +18,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -365,18 +369,19 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         try {
             // Connect to the FXML (contains our layout) and load it in.
             Parent root = FXMLLoader.load(Main.class.getResource("view/" + sceneName));
-
             // Put the layout onto the scene.
             Scene scene = new Scene(root);
-
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
-
+        	try {
+    			setCursor("normalSelect");
+    		} catch (FileNotFoundException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
             mediaPlayer.stop();
-
         } catch (
-
         Exception e) {
             e.printStackTrace();
         }
@@ -386,6 +391,31 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
      * 
      * @param soundName The name of the sound file (String)
      */
+    public void setCursor(String imageName) throws FileNotFoundException
+    {
+    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
+    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+    	Scene scene = Main.stage.getScene();
+    	scene.getRoot().setCursor(cursor);
+    }
+    public void buttonEntered() {
+        playSound("buttonhover");
+    	try {
+			setCursor("normalClick");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void buttonExit()
+    {
+    	try {
+			setCursor("normalSelect");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     public void playSound(String soundName) {
         String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());

@@ -1,5 +1,8 @@
 package application.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -18,11 +21,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -44,7 +50,6 @@ import javafx.util.Duration;
  * @author Sarah Halverson
  * @author Amalia Talijancic
  * @author Carlos Martinez
- * 
  */
 public class MainController implements EventHandler<ActionEvent>, Initializable {
 
@@ -52,7 +57,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     AnchorPane titlePane;
 
     @FXML
-    ImageView logoImg, /*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
+    ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
     Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
@@ -72,6 +77,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     HBox titleHBox1, titleHBox2;
     
     private Timer timer;
+    private Timer startTimerToRunOnce;
     double TitleStretch;
     double startingStretch = 200;
     int secondsToStretch = 1;
@@ -90,6 +96,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	
         //AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
         //AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
         //AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
@@ -99,7 +106,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
         
-        // Create a new Media object to play the background video.
+
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
@@ -182,9 +189,34 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
-        
+        this.startTimerToRunOnce = new Timer();
+        TimerTask startTask = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+		    	try {
+					setCursor("normalSelect");
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        };
+        startTimerToRunOnce.schedule(startTask, 100);
     }
-/*
+    public void ready()
+    {
+
+    }
+    public void setCursor(String imageName) throws FileNotFoundException
+    {
+    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
+    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+    	Scene scene = Main.stage.getScene();
+    	scene.getRoot().setCursor(cursor);
+    }
+    /*
     public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2)
     {
 		double Stretch = Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
@@ -246,7 +278,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
                 Main.stage.show();
-
+            	try {
+        			setCursor("normalSelect");
+        		} catch (FileNotFoundException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
                 mediaPlayer.stop();
             }
 
@@ -262,10 +299,26 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      */
     public void buttonEntered() {
         playSound("buttonhover");
+    	try {
+			setCursor("normalClick");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void buttonExit()
+    {
+    	try {
+			setCursor("normalSelect");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     public void skipButtonClicked() {
     	stretch = .42;
     	skipButton.setVisible(false);
+
     }
     /**
      * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media

@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -12,10 +14,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -60,6 +64,12 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
                 newScene = "GameView.fxml";
                 playSound("buttonclick");
                 mediaBackground.stop();
+		    	try {
+					setCursor("normalSelect");
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
@@ -74,6 +84,12 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
+	    	try {
+				setCursor("normalSelect");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,9 +128,23 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         animation.play();
     }
 
-    public void gameStartButtonEntered() {
+    public void buttonEntered() {
         playSound("buttonhover");
-
+    	try {
+			setCursor("normalClick");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void buttonExit()
+    {
+    	try {
+			setCursor("normalSelect");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void playSound(String soundName) {
@@ -126,7 +156,13 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }
-
+    public void setCursor(String imageName) throws FileNotFoundException
+    {
+    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
+    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+    	Scene scene = Main.stage.getScene();
+    	scene.getRoot().setCursor(cursor);
+    }
     public void playMusic(String musicName) {
         String s = "src/application/audio/" + musicName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());

@@ -24,16 +24,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Stage stage;
-
-    @Override
+   @Override
     public void start(Stage primaryStage) {
         try {
-
             // Load custom Stranger Things font.
             Font.loadFont(getClass().getResource("fonts/BenguiatBold.ttf").toExternalForm(), 10.0);
 
             // Give access to the other controllers to this primaryStage.
             stage = primaryStage;
+
             primaryStage.setTitle("Surfer Boy Pizza!!!");
 
             // Add icon to the title bar of the Stage.

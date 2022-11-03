@@ -13,25 +13,25 @@
    <bottom>
       <HBox fx:id="bottomHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="sauceImage" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="sauceImage" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/marinaraSauce.png" />
                </image></ImageView>
-            <ImageView fx:id="topping1Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="topping1Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/toppings_ham.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="topping2Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="topping2Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/toppings_mushroom.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="topping3Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="topping3Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/toppings_pineapple.png" />
                </image></ImageView>
-            <ImageView fx:id="topping4Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="topping4Image" fitHeight="150.0" fitWidth="200.0" onDragDetected="#handleDragDetected" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/toppings_onions.png" />
                </image></ImageView>

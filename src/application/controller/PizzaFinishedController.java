@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
 import application.Main;
@@ -8,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -84,6 +88,12 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
 
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
+            	try {
+        			setCursor("normalClick");
+        		} catch (FileNotFoundException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
                 Main.stage.show();
             }
         } catch (
@@ -97,8 +107,30 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
     /**
      * Event listener to play a sound effect for when a user hovers over a button.
      */
+    public void setCursor(String imageName) throws FileNotFoundException
+    {
+    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
+    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+    	Scene scene = Main.stage.getScene();
+    	scene.getRoot().setCursor(cursor);
+    }
     public void buttonEntered() {
         playSound("buttonhover");
+    	try {
+			setCursor("normalClick");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    public void buttonExit()
+    {
+    	try {
+			setCursor("normalSelect");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void playSound(String soundName) {
