@@ -16,7 +16,9 @@ import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 import application.Main;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -80,6 +82,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
     @FXML
     Text titleText;
+    
+    @FXML
+    Label creditsLabel1;
 
     @FXML
     VBox titleVBox;
@@ -127,7 +132,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 
         // Create a new Media object to play the background video.
         
-        playFadeOutTransition(15, overallFade);
+        playFadeOutTransition(20, overallFade);
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
         mediaBackground = new MediaPlayer(media1);
@@ -242,7 +247,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 				}
 			}
         };
-        startTimerToRunOnce.schedule(startTaskButton1, 30000);
+        startTimerToRunOnce.schedule(startTaskButton1, 30150);
         this.startTimerButtons = new Timer();
         TimerTask startTaskButton2 = new TimerTask() {
 
@@ -267,12 +272,27 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 				{
 		            exitButton.setVisible(true);
 	                playFadeInTransition(.5, exitButton);
+
+				}
+			}
+        };
+        startTimerToRunOnce.schedule(startTaskButton3, 31200-135);
+        this.startTimerButtons = new Timer();
+        TimerTask startTaskCredits = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(!areButtonsTransitioned)
+				{
+					animateText(creditsLabel1, "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
 	                areButtonsTransitioned = true;
 				}
 			}
         };
-        startTimerToRunOnce.schedule(startTaskButton3, 31200-120);
-        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -700, 800, -400, 500);
+        startTimerToRunOnce.schedule(startTaskCredits, 40260);
+
+        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -400, 600);
     }
 
 
@@ -293,7 +313,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listVB = titleVB.getChildren();
     	for(int v = 0; v<listVB.size(); v++)
     	{
-    		TranslateTransition ttv = new TranslateTransition(Duration.millis(29500), listVB.get(v));
+    		TranslateTransition ttv = new TranslateTransition(Duration.millis(30000), listVB.get(v));
     		arrayOfAnimations.add(ttv);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttv.setFromX(randomNum);
@@ -307,7 +327,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listH1 = titleHB1.getChildren();
     	for(int h1 = 0; h1<listH1.size(); h1++)
     	{
-    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(29500), listH1.get(h1));
+    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(30000), listH1.get(h1));
     		arrayOfAnimations.add(ttH1);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttH1.setFromX(randomNum);
@@ -320,7 +340,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ObservableList<Node> listH2 = titleHB2.getChildren();
     	for(int h2 = 0; h2<listH2.size(); h2++)
     	{
-    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(29500), listH2.get(h2));
+    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(30000), listH2.get(h2));
     		arrayOfAnimations.add(ttH2);
     		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
     		ttH2.setFromX(randomNum);
@@ -473,6 +493,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         fadeInAnimation.setDuration(Duration.millis(1));
         fadeInAnimation.play();
         overallFade.setVisible(false);
+        animateText(creditsLabel1, "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
         
     }
 
@@ -535,4 +556,19 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         fadeInAnimation = transition;
 
         }
+    public void animateText(Label lbl, String stringToType) {
+        String content = stringToType;
+        final Animation animation = new Transition() {
+            {
+                setCycleDuration(Duration.millis(550));
+            }
+
+            protected void interpolate(double frac) {
+                final int length = content.length();
+                final int n = Math.round(length * (float) frac);
+                lbl.setText(content.substring(0, n));
+            }
+        };
+        animation.play();
+    }
 }

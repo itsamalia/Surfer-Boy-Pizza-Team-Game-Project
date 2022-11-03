@@ -155,5 +155,10 @@
             <Image url="@../images/normalSelect.png" />
          </image>
       </ImageView>
+      <Label fx:id="creditsLabel1" layoutX="68.0" layoutY="704.0" prefHeight="25.0" prefWidth="664.0" textFill="#ff3101" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="68.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
