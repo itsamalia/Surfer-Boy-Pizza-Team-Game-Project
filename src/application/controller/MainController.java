@@ -9,12 +9,16 @@ import java.math.BigDecimal;
 
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ThreadLocalRandom;
 
 import application.Main;
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -93,7 +97,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     int timeElapsed = (int) (finish - start);
     boolean areButtonsTransitioned = false;
     double lastTimeElapsed;
-    double stretch = 200;;
+    double stretch = 200;
+    private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
+
+
+	private Timer startTimerButtons;;
 
     public static double exp(double val) {
         final long tmp = (long) (1512775 * val + (1072693248 - 60801));
@@ -149,25 +157,25 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         TimerTask task = new TimerTask() {
 
             @Override
-            public void run() {
+            public void run() {/*
                 // finish = System.currentTimeMillis();
                 // lastTimeElapsed = timeElapsed;
-                timeElapsed += 1.0;
+                //timeElapsed += 1.0;
 
                 // TODO Auto-generated method stub
                 // animateTitle(titleVBox, titleHBox1, titleHBox2);
                 // System.out.print("running animation\n");
 
                 // stretch = (500*((exp(-timeElapsed/3000.0)))-.1);
-                stretch -= .41;
+                //stretch -= .41;
                 // System.out.print("done calculation\n");
 
-                if (stretch > 0) {
+                //if (stretch > 0) {
                     // System.out.print("set stretch\n");
-                    titleVBox.setSpacing(stretch * 2);
-                    titleHBox1.setSpacing(stretch * 1.2);
-                    titleHBox2.setSpacing(stretch * 1.2);
-                } else if (stretch <= 0) {
+                    //titleVBox.setSpacing(stretch * 3.5);
+                    //titleHBox1.setSpacing(stretch * 1.8);
+                    //titleHBox2.setSpacing(stretch * 1.8);
+            }else if (stretch <= 0) {
                     pizzaStartButton.setVisible(true);
                     optionsButton.setVisible(true);
                     exitButton.setVisible(true);
@@ -190,7 +198,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                     exitButton.setOpacity(1);
                     titleVBox.setOpacity(1);
                 }
-            }
+            */}
 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
@@ -212,6 +220,28 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         };
         startTimerToRunOnce.schedule(startTask, 100);
 
+
+        this.startTimerButtons = new Timer();
+        TimerTask startTaskButtons = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(!areButtonsTransitioned)
+				{
+	            pizzaStartButton.setVisible(true);
+	            optionsButton.setVisible(true);
+	            exitButton.setVisible(true);
+                playFadeTransition(3, pizzaStartButton);
+                playFadeTransition(3, optionsButton);
+                playFadeTransition(3, exitButton);
+                skipButton.setVisible(false);
+                areButtonsTransitioned = true;
+				}
+			}
+        };
+        startTimerToRunOnce.schedule(startTaskButtons, 25000);
+        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -700, 800, -400, 500);
     }
 
 
@@ -225,6 +255,50 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
     	Scene scene = Main.stage.getScene();
     	scene.getRoot().setCursor(cursor);
+    }
+    public void randomizedTranslationAnimation(VBox titleVB, HBox titleHB1, HBox titleHB2, int minX, int maxX, int minY, int maxY)
+    {
+    	
+    	ObservableList<Node> listVB = titleVB.getChildren();
+    	for(int v = 0; v<listVB.size(); v++)
+    	{
+    		TranslateTransition ttv = new TranslateTransition(Duration.millis(25000), listVB.get(v));
+    		arrayOfAnimations.add(ttv);
+    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
+    		ttv.setFromX(randomNum);
+    		ttv.setToX(listVB.get(v).getTranslateX());
+    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
+    		ttv.setFromY(randomNum);
+    		ttv.setToY(listVB.get(v).getTranslateY());
+    		ttv.play();
+    	}
+    	
+    	ObservableList<Node> listH1 = titleHB1.getChildren();
+    	for(int h1 = 0; h1<listH1.size(); h1++)
+    	{
+    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(25000), listH1.get(h1));
+    		arrayOfAnimations.add(ttH1);
+    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
+    		ttH1.setFromX(randomNum);
+    		ttH1.setToX(listH1.get(h1).getTranslateX());
+    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
+    		ttH1.setFromY(randomNum);
+    		ttH1.setToY(listH1.get(h1).getTranslateY());
+    		ttH1.play();
+    	}
+    	ObservableList<Node> listH2 = titleHB2.getChildren();
+    	for(int h2 = 0; h2<listH2.size(); h2++)
+    	{
+    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(25000), listH2.get(h2));
+    		arrayOfAnimations.add(ttH2);
+    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
+    		ttH2.setFromX(randomNum);
+    		ttH2.setToX(listH2.get(h2).getTranslateX());
+    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
+    		ttH2.setFromY(randomNum);
+    		ttH2.setToY(listH2.get(h2).getTranslateY());
+    		ttH2.play();
+    	}
     }
     /*
     public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2)
@@ -288,6 +362,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             }
 
             // Exit the program if the scene button clicked on is null.
+            
+            
+            
             if (newScene == null) {
 //                Platform.exit();
                 this.timer.cancel();
@@ -348,10 +425,22 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      */
     public void skipButtonClicked() {
 
-
+        pizzaStartButton.setVisible(true);
+        optionsButton.setVisible(true);
+        exitButton.setVisible(true);
     	stretch = .42;
     	skipButton.setVisible(false);
     	playSound("buttonClick");
+        areButtonsTransitioned = true;
+        playFadeTransition(3, pizzaStartButton);
+        playFadeTransition(3, optionsButton);
+        playFadeTransition(3, exitButton);
+        for(int i=0;i<arrayOfAnimations.size(); i++)
+        {
+        	arrayOfAnimations.get(i).stop();
+        	arrayOfAnimations.get(i).setDuration(Duration.millis(1));
+        	arrayOfAnimations.get(i).play();
+        }
     }
 
     /**
