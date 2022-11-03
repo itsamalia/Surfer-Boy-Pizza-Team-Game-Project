@@ -1,12 +1,7 @@
 package application.controller;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -26,16 +21,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -61,36 +53,34 @@ import javafx.util.Duration;
 public class MainController implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
-    AnchorPane titlePane;
+    private AnchorPane titlePane;
 
-
-    //@FXML
-    //ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
-
-
-    @FXML
-    ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
-
+    // @FXML
+    // ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/
+    // blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
-    Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
-
-    MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
+    private ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
 
     @FXML
-    MediaView backgroundMedia;
+    private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
+
+    private MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
 
     @FXML
-    Text titleText;
-    
-    @FXML
-    Label creditsLabel1;
+    private MediaView backgroundMedia;
 
     @FXML
-    VBox titleVBox;
+    private Text titleText;
 
     @FXML
-    HBox titleHBox1, titleHBox2;
+    private Label creditsLabel;
+
+    @FXML
+    private VBox titleVBox;
+
+    @FXML
+    private HBox titleHBox1, titleHBox2;
 
     private Timer timer;
     private Timer startTimerToRunOnce;
@@ -106,14 +96,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
     private FadeTransition fadeInAnimation;
 
+    private Timer startTimerButtons;;
 
-	private Timer startTimerButtons;;
-
-    public static double exp(double val) {
-        final long tmp = (long) (1512775 * val + (1072693248 - 60801));
-        return Double.longBitsToDouble(tmp << 32);
-    }
-
+    /**
+     * Everything to be initialized upon the initial loading of the Scene (i.e,
+     * animations, music, timers etc...)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -127,11 +115,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
 
-
-
-
         // Create a new Media object to play the background video.
-        
+
         playFadeOutTransition(20, overallFade);
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
@@ -149,7 +134,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         blackFadeImg1.setVisible(false);
         blackFadeImg2.setVisible(false);
         blackFadeImg3.setVisible(false);
-        //blackFadeImg4.setVisible(false);
+        // blackFadeImg4.setVisible(false);
         /*
          * playFadeTransition(15, blackFadeImg2); playFadeTransition(15, blackFadeImg3);
          * playFadeTransition(15, blackFadeImg4);
@@ -164,223 +149,117 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         TimerTask task = new TimerTask() {
 
             @Override
-            public void run() {/*
-                // finish = System.currentTimeMillis();
-                // lastTimeElapsed = timeElapsed;
-                //timeElapsed += 1.0;
-
-                // TODO Auto-generated method stub
-                // animateTitle(titleVBox, titleHBox1, titleHBox2);
-                // System.out.print("running animation\n");
-
-                // stretch = (500*((exp(-timeElapsed/3000.0)))-.1);
-                //stretch -= .41;
-                // System.out.print("done calculation\n");
-
-                //if (stretch > 0) {
-                    // System.out.print("set stretch\n");
-                    //titleVBox.setSpacing(stretch * 3.5);
-                    //titleHBox1.setSpacing(stretch * 1.8);
-                    //titleHBox2.setSpacing(stretch * 1.8);
-            }else if (stretch <= 0) {
-                    pizzaStartButton.setVisible(true);
-                    optionsButton.setVisible(true);
-                    exitButton.setVisible(true);
-                    // blackFadeImg1.setVisible(true);
-
-                    if (!areButtonsTransitioned && skipButton.isVisible()) {
-                        pizzaStartButton.setOpacity(0);
-                        optionsButton.setOpacity(0);
-                        exitButton.setOpacity(0);
-                        playFadeTransition(3, pizzaStartButton);
-                        playFadeTransition(3, optionsButton);
-                        playFadeTransition(3, exitButton);
-                        skipButton.setVisible(false);
-                        // playFadeTransition(3, blackFadeImg1);
-                        areButtonsTransitioned = true;
-                    }
-                } else if (skipButton.isVisible() == false && stretch > 0) {
-                    pizzaStartButton.setOpacity(1);
-                    optionsButton.setOpacity(1);
-                    exitButton.setOpacity(1);
-                    titleVBox.setOpacity(1);
-                }
-            */}
+            public void run() {
+                /*
+                 * // finish = System.currentTimeMillis(); // lastTimeElapsed = timeElapsed;
+                 * //timeElapsed += 1.0;
+                 * 
+                 * // TODO Auto-generated method stub // animateTitle(titleVBox, titleHBox1,
+                 * titleHBox2); // System.out.print("running animation\n");
+                 * 
+                 * // stretch = (500*((exp(-timeElapsed/3000.0)))-.1); //stretch -= .41; //
+                 * System.out.print("done calculation\n");
+                 * 
+                 * //if (stretch > 0) { // System.out.print("set stretch\n");
+                 * //titleVBox.setSpacing(stretch * 3.5); //titleHBox1.setSpacing(stretch *
+                 * 1.8); //titleHBox2.setSpacing(stretch * 1.8); }else if (stretch <= 0) {
+                 * pizzaStartButton.setVisible(true); optionsButton.setVisible(true);
+                 * exitButton.setVisible(true); // blackFadeImg1.setVisible(true);
+                 * 
+                 * if (!areButtonsTransitioned && skipButton.isVisible()) {
+                 * pizzaStartButton.setOpacity(0); optionsButton.setOpacity(0);
+                 * exitButton.setOpacity(0); playFadeTransition(3, pizzaStartButton);
+                 * playFadeTransition(3, optionsButton); playFadeTransition(3, exitButton);
+                 * skipButton.setVisible(false); // playFadeTransition(3, blackFadeImg1);
+                 * areButtonsTransitioned = true; } } else if (skipButton.isVisible() == false
+                 * && stretch > 0) { pizzaStartButton.setOpacity(1);
+                 * optionsButton.setOpacity(1); exitButton.setOpacity(1);
+                 * titleVBox.setOpacity(1); }
+                 */}
 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
 
-
         this.startTimerToRunOnce = new Timer();
         TimerTask startTask = new TimerTask() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-		    	try {
-					setCursor("normalSelect");
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                try {
+                    setCursor("normalSelect");
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
         };
         startTimerToRunOnce.schedule(startTask, 100);
-
 
         this.startTimerButtons = new Timer();
         TimerTask startTaskButton1 = new TimerTask() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				if(!areButtonsTransitioned)
-				{
-	            pizzaStartButton.setVisible(true);
-	            //optionsButton.setVisible(true);
-	            //exitButton.setVisible(true);
-                playFadeInTransition(.5, pizzaStartButton);
-                //playFadeInTransition(3, optionsButton);
-                //playFadeInTransition(3, exitButton);
-                skipButton.setVisible(false);
-                overallFade.setVisible(false);
-				}
-			}
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                if (!areButtonsTransitioned) {
+                    pizzaStartButton.setVisible(true);
+                    // optionsButton.setVisible(true);
+                    // exitButton.setVisible(true);
+                    playFadeInTransition(.5, pizzaStartButton);
+                    // playFadeInTransition(3, optionsButton);
+                    // playFadeInTransition(3, exitButton);
+                    skipButton.setVisible(false);
+                    overallFade.setVisible(false);
+                }
+            }
         };
         startTimerToRunOnce.schedule(startTaskButton1, 30150);
         this.startTimerButtons = new Timer();
         TimerTask startTaskButton2 = new TimerTask() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				if(!areButtonsTransitioned)
-				{
-		            optionsButton.setVisible(true);
-	                playFadeInTransition(.5, optionsButton);
-				}
-			}
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                if (!areButtonsTransitioned) {
+                    optionsButton.setVisible(true);
+                    playFadeInTransition(.5, optionsButton);
+                }
+            }
         };
-        startTimerToRunOnce.schedule(startTaskButton2, 30600-60);
+        startTimerToRunOnce.schedule(startTaskButton2, 30600 - 60);
         this.startTimerButtons = new Timer();
         TimerTask startTaskButton3 = new TimerTask() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				if(!areButtonsTransitioned)
-				{
-		            exitButton.setVisible(true);
-	                playFadeInTransition(.5, exitButton);
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                if (!areButtonsTransitioned) {
+                    exitButton.setVisible(true);
+                    playFadeInTransition(.5, exitButton);
 
-				}
-			}
+                }
+            }
         };
-        startTimerToRunOnce.schedule(startTaskButton3, 31200-135);
+        startTimerToRunOnce.schedule(startTaskButton3, 31200 - 135);
         this.startTimerButtons = new Timer();
         TimerTask startTaskCredits = new TimerTask() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				if(!areButtonsTransitioned)
-				{
-					animateText(creditsLabel1, "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
-	                areButtonsTransitioned = true;
-				}
-			}
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                if (!areButtonsTransitioned) {
+                    animateText(creditsLabel,
+                            "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
+                    areButtonsTransitioned = true;
+                }
+            }
         };
         startTimerToRunOnce.schedule(startTaskCredits, 40260);
 
         randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -500, 800);
     }
 
-
-    public void ready()
-    {
-
-    }
-    public void setCursor(String imageName) throws FileNotFoundException
-    {
-    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
-    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-    	Scene scene = Main.stage.getScene();
-    	scene.getRoot().setCursor(cursor);
-    }
-    public void randomizedTranslationAnimation(VBox titleVB, HBox titleHB1, HBox titleHB2, int minX, int maxX, int minY, int maxY)
-    {
-    	/*
-    	ObservableList<Node> listVB = titleVB.getChildren();
-    	for(int v = 0; v<listVB.size(); v++)
-    	{
-    		TranslateTransition ttv = new TranslateTransition(Duration.millis(30000), listVB.get(v));
-    		arrayOfAnimations.add(ttv);
-    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
-    		ttv.setFromX(randomNum);
-    		ttv.setToX(listVB.get(v).getTranslateX());
-    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
-    		ttv.setFromY(randomNum);
-    		ttv.setToY(listVB.get(v).getTranslateY());
-    		ttv.play();
-    	}
-    	*/
-    	ObservableList<Node> listH1 = titleHB1.getChildren();
-    	for(int h1 = 0; h1<listH1.size(); h1++)
-    	{
-    		TranslateTransition ttH1 = new TranslateTransition(Duration.millis(30000), listH1.get(h1));
-    		arrayOfAnimations.add(ttH1);
-    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
-    		ttH1.setFromX(randomNum);
-    		ttH1.setToX(listH1.get(h1).getTranslateX());
-    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
-    		ttH1.setFromY(randomNum);
-    		ttH1.setToY(listH1.get(h1).getTranslateY());
-    		ttH1.play();
-    	}
-    	ObservableList<Node> listH2 = titleHB2.getChildren();
-    	for(int h2 = 0; h2<listH2.size(); h2++)
-    	{
-    		TranslateTransition ttH2 = new TranslateTransition(Duration.millis(30000), listH2.get(h2));
-    		arrayOfAnimations.add(ttH2);
-    		int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
-    		ttH2.setFromX(randomNum);
-    		ttH2.setToX(listH2.get(h2).getTranslateX());
-    		randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
-    		ttH2.setFromY(randomNum);
-    		ttH2.setToY(listH2.get(h2).getTranslateY());
-    		ttH2.play();
-    	}
-    }
-    /*
-    public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2)
-    {
-		double Stretch = Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
-    	if(Stretch>0)
-    	{
-    		titleVB.setSpacing(Stretch);
-    		titleHB1.setSpacing(Stretch);
-    		titleHB2.setSpacing(Stretch);
-    	}
-    }
-    
-    public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1, HBox titleHB2) {
-=======
->>>>>>> branch 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
-=======
->>>>>>> branch 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
-
-    /*
-     * public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2) { double
-     * Stretch =
-     * Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
-     * if(Stretch>0) { titleVB.setSpacing(Stretch); titleHB1.setSpacing(Stretch);
-     * titleHB2.setSpacing(Stretch); } }
-     * 
-     * public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1,
-     * HBox titleHB2) {
-     * 
-     * }
-     */
     /**
      * Determines which button was pressed (if we end up having multiple buttons),
      * and loads the view for that corresponding button.
@@ -399,7 +278,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("pizzaStartButton")) {
                 newScene = "Mission.fxml";
-                playSound2("youaresodead");
+                playSound("youaresodead");
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 // TODO: Update this to a new options view once implemented.
                 playSound("buttonclick");
@@ -413,9 +292,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
             }
 
             // Exit the program if the scene button clicked on is null.
-            
-            
-            
+
             if (newScene == null) {
 //                Platform.exit();
                 this.timer.cancel();
@@ -431,12 +308,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
                 Main.stage.show();
-            	try {
-        			setCursor("normalSelect");
-        		} catch (FileNotFoundException e) {
-        			// TODO Auto-generated catch block
-        			e.printStackTrace();
-        		}
+                try {
+                    setCursor("normalSelect");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
                 mediaPlayer.stop();
             }
 
@@ -450,26 +326,39 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     /**
      * Event listener to play a sound effect for when a user hovers over a button.
      */
-    public void buttonEntered() {
+    public void handleButtonEntered() {
         playSound("buttonhover");
-    	try {
-			setCursor("normalClick");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            setCursor("normalClick");
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    public void buttonExit()
-    {
-    	try {
-			setCursor("normalSelect");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    /**
+     * Event Listener for when a button is exited.
+     */
+    public void handleButtonExit() {
+        try {
+            setCursor("normalSelect");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Sets the custom cursor.
+     * 
+     * @param imageName The name of the image file of the cursor. (String)
+     * @throws FileNotFoundException (Exception)
+     */
+    public void setCursor(String imageName) throws FileNotFoundException {
+        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
+        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+        Scene scene = Main.stage.getScene();
+        scene.getRoot().setCursor(cursor);
+    }
 
     /**
      * Handles the skip introduction button to skip the introduction animation.
@@ -479,27 +368,163 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         pizzaStartButton.setVisible(true);
         optionsButton.setVisible(true);
         exitButton.setVisible(true);
-    	stretch = .42;
-    	skipButton.setVisible(false);
-    	playSound("buttonClick");
+        stretch = .42;
+        skipButton.setVisible(false);
+        playSound("buttonClick");
         areButtonsTransitioned = true;
-        for(int i=0;i<arrayOfAnimations.size(); i++)
-        {
-        	arrayOfAnimations.get(i).stop();
-        	arrayOfAnimations.get(i).setDuration(Duration.millis(1));
-        	arrayOfAnimations.get(i).play();
+        for (int i = 0; i < arrayOfAnimations.size(); i++) {
+            arrayOfAnimations.get(i).stop();
+            arrayOfAnimations.get(i).setDuration(Duration.millis(1));
+            arrayOfAnimations.get(i).play();
         }
         fadeInAnimation.stop();
         fadeInAnimation.setDuration(Duration.millis(1));
         fadeInAnimation.play();
         overallFade.setVisible(false);
-        animateText(creditsLabel1, "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
-        
+        animateText(creditsLabel,
+                "A GAME BY: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
     }
+
+    /**
+     * Apply a FadeTransition on a node given the duration in seconds.
+     * 
+     * @param seconds Time of the fade in seconds (Double)
+     * @param node    The child node to have the transition applied to (Node)
+     */
+    public void playFadeInTransition(double seconds, Node node) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
+        transition.setFromValue(0);
+        transition.setToValue(1.0);
+        transition.play();
+    }
+
+    /**
+     * Apply a FadeTransition on a node given the duration in seconds.
+     * 
+     * @param seconds Time of the fade in seconds (Double)
+     * @param node    The child node to have the transition applied to (Node)
+     */
+    public void playFadeOutTransition(double seconds, Node node) {
+        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
+        transition.setFromValue(1);
+        transition.setToValue(0.0);
+        transition.play();
+        fadeInAnimation = transition;
+    }
+
+    /**
+     * Randomized a Translation animation.
+     * 
+     * @param titleVB  (Vbox)
+     * @param titleHB1 (HBox)
+     * @param titleHB2 (HBox)
+     * @param minX     (int)
+     * @param maxX     (int)
+     * @param minY     (int)
+     * @param maxY     (int)
+     */
+    public void randomizedTranslationAnimation(VBox titleVB, HBox titleHB1, HBox titleHB2, int minX, int maxX, int minY,
+            int maxY) {
+        /*
+         * ObservableList<Node> listVB = titleVB.getChildren(); for(int v = 0;
+         * v<listVB.size(); v++) { TranslateTransition ttv = new
+         * TranslateTransition(Duration.millis(30000), listVB.get(v));
+         * arrayOfAnimations.add(ttv); int randomNum =
+         * ThreadLocalRandom.current().nextInt(minX, maxX); ttv.setFromX(randomNum);
+         * ttv.setToX(listVB.get(v).getTranslateX()); randomNum =
+         * ThreadLocalRandom.current().nextInt(minY, maxY); ttv.setFromY(randomNum);
+         * ttv.setToY(listVB.get(v).getTranslateY()); ttv.play(); }
+         */
+        ObservableList<Node> listH1 = titleHB1.getChildren();
+        for (int h1 = 0; h1 < listH1.size(); h1++) {
+            TranslateTransition ttH1 = new TranslateTransition(Duration.millis(30000), listH1.get(h1));
+            arrayOfAnimations.add(ttH1);
+            int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
+            ttH1.setFromX(randomNum);
+            ttH1.setToX(listH1.get(h1).getTranslateX());
+            randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
+            ttH1.setFromY(randomNum);
+            ttH1.setToY(listH1.get(h1).getTranslateY());
+            ttH1.play();
+        }
+        ObservableList<Node> listH2 = titleHB2.getChildren();
+        for (int h2 = 0; h2 < listH2.size(); h2++) {
+            TranslateTransition ttH2 = new TranslateTransition(Duration.millis(30000), listH2.get(h2));
+            arrayOfAnimations.add(ttH2);
+            int randomNum = ThreadLocalRandom.current().nextInt(minX, maxX);
+            ttH2.setFromX(randomNum);
+            ttH2.setToX(listH2.get(h2).getTranslateX());
+            randomNum = ThreadLocalRandom.current().nextInt(minY, maxY);
+            ttH2.setFromY(randomNum);
+            ttH2.setToY(listH2.get(h2).getTranslateY());
+            ttH2.play();
+        }
+    }
+
+    /*
+     * public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2) { double
+     * Stretch =
+     * Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
+     * if(Stretch>0) { titleVB.setSpacing(Stretch); titleHB1.setSpacing(Stretch);
+     * titleHB2.setSpacing(Stretch); } }
+     * 
+     * public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1,
+     * HBox titleHB2) { ======= >>>>>>> branch 'main' of
+     * https://github.com/UTSA-CS-3443/Delivery-Service ======= >>>>>>> branch
+     * 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
+     * 
+     * /* public void animateTitle(VBox titleVB, HBox titleHB1, HBox titleHB2) {
+     * double Stretch =
+     * Duration.millis(secondsToStretch*1000).toMillis()-(timeElapsed/1000);
+     * if(Stretch>0) { titleVB.setSpacing(Stretch); titleHB1.setSpacing(Stretch);
+     * titleHB2.setSpacing(Stretch); } }
+     * 
+     * public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1,
+     * HBox titleHB2) {
+     * 
+     * }
+     */
 
     /**
      * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media
      * object to play the background music.
+     */
+
+    /**
+     * Animates the contents of a Label's text and animates it.
+     * 
+     * @param lbl          The Label to set the text in (Label)
+     * @param stringToType The String to type to be animated(String)
+     */
+    public void animateText(Label lbl, String stringToType) {
+        String content = stringToType;
+        final Animation animation = new Transition() {
+            {
+                setCycleDuration(Duration.millis(550));
+            }
+
+            protected void interpolate(double frac) {
+                final int length = content.length();
+                final int n = Math.round(length * (float) frac);
+                lbl.setText(content.substring(0, n));
+            }
+        };
+        animation.play();
+    }
+
+    /**
+     * 
+     * 
+     * @param val double value (double)
+     * @return (double)
+     */
+    public static double exp(double val) {
+        final long tmp = (long) (1512775 * val + (1072693248 - 60801));
+        return Double.longBitsToDouble(tmp << 32);
+    }
+
+    /**
+     * Plays the background music for the Scene.
      */
     public void music() {
         String s = "src/application/audio/StrangerThingsThemeSong.mp3";
@@ -525,50 +550,5 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         mediaPlayerSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
-    }
-    
-    public void playSound2(String soundName) {
-        String s = "src/application/audio/" + soundName + "2.mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        mediaPlayerSFX = new MediaPlayer(h);
-        mediaPlayerSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-
-    /**
-     * Apply a FadeTransition on a node given the duration in seconds.
-     * 
-     * @param seconds Time of the fade in seconds (Double)
-     * @param node    The child node to have the transition applied to (Node)
-     */
-    public void playFadeInTransition(double seconds, Node node) {
-        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
-        transition.setFromValue(0);
-        transition.setToValue(1.0);
-        transition.play();
-    }
-    public void playFadeOutTransition(double seconds, Node node) {
-        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
-        transition.setFromValue(1);
-        transition.setToValue(0.0);
-        transition.play();
-        fadeInAnimation = transition;
-
-        }
-    public void animateText(Label lbl, String stringToType) {
-        String content = stringToType;
-        final Animation animation = new Transition() {
-            {
-                setCycleDuration(Duration.millis(550));
-            }
-
-            protected void interpolate(double frac) {
-                final int length = content.length();
-                final int n = Math.round(length * (float) frac);
-                lbl.setText(content.substring(0, n));
-            }
-        };
-        animation.play();
     }
 }

@@ -24,7 +24,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Stage stage;
-   @Override
+
+    @Override
     public void start(Stage primaryStage) {
         try {
             // Load custom Stranger Things font.
@@ -56,5 +57,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+        // Once the program has been exited either, by clicking the "x" button at the
+        // top right of the State/Scene or by clicking an Exit button, this will be the
+        // last thing the program runs and it will ensure all threads currently running
+        // are ended.
+        System.exit(0);
     }
 }

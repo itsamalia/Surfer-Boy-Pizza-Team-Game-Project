@@ -28,16 +28,20 @@ import javafx.util.Duration;
 public class MissionController implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
-    MediaView media;
+    private MediaView media;
     @FXML
-    MediaPlayer mediaBackground, mediaSFX;
+    private MediaPlayer mediaBackground, mediaSFX;
 
     @FXML
-    Button buttonPushed, gameStartButton;
+    private Button buttonPushed, gameStartButton;
 
     @FXML
-    Label contextLabel, missionLabel;
+    private Label contextLabel, missionLabel;
 
+    /**
+     * Everything to be initialized upon the initial loading of the Scene (i.e,
+     * animations, music, timers etc...)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String mediaURL = "src/application/videos/missionBackground.mp4";
@@ -51,6 +55,12 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
 
     }
 
+    /**
+     * Determines which button was pressed (if we end up having multiple buttons),
+     * and loads the view for that corresponding button.
+     * 
+     * @param event Listens for button push event (ActionEvent)
+     */
     @Override
     public void handle(ActionEvent event) {
         try {
@@ -62,14 +72,13 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
 
             if (buttonPushed.getId().equals("gameStartButton")) {
                 newScene = "GameView.fxml";
-                playSound2("mindfighton");
+                playSound("mindfighton");
                 mediaBackground.stop();
-		    	try {
-					setCursor("normalSelect");
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                try {
+                    setCursor("normalSelect");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
@@ -84,17 +93,21 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
-	    	try {
-				setCursor("normalSelect");
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                setCursor("normalSelect");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Event Listener to handle the background video for the scene.
+     * 
+     * @param event (ActionEvent)
+     */
     public void handleVideo(ActionEvent event) {
         try {
             String media = "src/application/videos/missionBackground.mp4";
@@ -112,6 +125,48 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         }
     }
 
+    /**
+     * Event listener to play a sound effect for when a user hovers over a button.
+     */
+    public void handleButtonEntered() {
+        playSound("buttonhover");
+        try {
+            setCursor("normalClick");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Event Listener for when a button is exited.
+     */
+    public void handleButtonExit() {
+        try {
+            setCursor("normalSelect");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets the custom cursor.
+     * 
+     * @param imageName The name of the image file of the cursor. (String)
+     * @throws FileNotFoundException (Exception)
+     */
+    public void setCursor(String imageName) throws FileNotFoundException {
+        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
+        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+        Scene scene = Main.stage.getScene();
+        scene.getRoot().setCursor(cursor);
+    }
+
+    /**
+     * Animates the contents of a Label's text and animates it.
+     * 
+     * @param lbl          The Label to set the text in (Label)
+     * @param stringToType The String to type to be animated(String)
+     */
     public void animateText(Label lbl, String stringToType) {
         String content = stringToType;
         final Animation animation = new Transition() {
@@ -128,58 +183,30 @@ public class MissionController implements EventHandler<ActionEvent>, Initializab
         animation.play();
     }
 
-    public void buttonEntered() {
-        playSound("buttonhover");
-    	try {
-			setCursor("normalClick");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    public void buttonExit()
-    {
-    	try {
-			setCursor("normalSelect");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-
-    public void playSound(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-    
-    public void playSound2(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        mediaSFX.setAutoPlay(true);
-    }
-    
-    public void setCursor(String imageName) throws FileNotFoundException
-    {
-    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
-    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-    	Scene scene = Main.stage.getScene();
-    	scene.getRoot().setCursor(cursor);
-    }
+    /**
+     * Plays the background music for the Scene.
+     */
     public void playMusic(String musicName) {
         String s = "src/application/audio/" + musicName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
         // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
         // media = new MediaPlayer(h);
         // media.play();
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
+    }
+
+    /**
+     * Creates a new Media object to play sound effects.
+     * 
+     * @param soundName The name of the sound effect audio (String)
+     */
+    public void playSound(String soundName) {
+        String s = "src/application/audio/" + soundName + ".mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaSFX = new MediaPlayer(h);
+        mediaSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
     }

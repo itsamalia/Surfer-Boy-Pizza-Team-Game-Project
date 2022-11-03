@@ -17,7 +17,7 @@
          </viewport></MediaView>
       <VBox alignment="CENTER" layoutX="663.0" layoutY="720.0" prefHeight="80.0" prefWidth="137.0">
          <children>
-            <Button fx:id="gameStartButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" text="START" />
+            <Button fx:id="gameStartButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="START" />
          </children>
       </VBox>
       <ImageView fitHeight="550.0" fitWidth="800.0" layoutY="175.0">

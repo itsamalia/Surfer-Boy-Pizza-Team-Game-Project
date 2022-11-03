@@ -131,13 +131,13 @@
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="126.0" layoutY="324.0" prefHeight="243.0" prefWidth="548.0" spacing="25.0" AnchorPane.leftAnchor="126.0">
          <children>
-            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" prefHeight="62.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
-            <Button fx:id="optionsButton" alignment="CENTER" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" prefHeight="62.0" prefWidth="301.0" text="OPTIONS" textAlignment="CENTER">
+            <Button fx:id="pizzaStartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" prefHeight="62.0" prefWidth="301.0" text="READY, SURFER BOY?" textAlignment="CENTER" />
+            <Button fx:id="optionsButton" alignment="CENTER" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" prefHeight="62.0" prefWidth="301.0" text="OPTIONS" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" alignment="CENTER" layoutX="134.0" layoutY="97.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" prefHeight="62.0" prefWidth="301.0" text="EXIT" textAlignment="CENTER">
+            <Button fx:id="exitButton" alignment="CENTER" layoutX="134.0" layoutY="97.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" prefHeight="62.0" prefWidth="301.0" text="EXIT" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -149,13 +149,13 @@
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" text="Skip Intro" />
+      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
       <ImageView fx:id="cursorReferenceNormal" layoutX="-56.0" layoutY="580.0" visible="false">
          <image>
             <Image url="@../images/normalSelect.png" />
          </image>
       </ImageView>
-      <Label fx:id="creditsLabel1" layoutX="68.0" layoutY="704.0" prefHeight="25.0" prefWidth="664.0" textFill="#ff3101" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="68.0">
+      <Label fx:id="creditsLabel" layoutX="60.0" layoutY="704.0" prefHeight="25.0" prefWidth="664.0" textFill="#ff3101" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="68.0">
          <font>
             <Font size="16.0" />
          </font>

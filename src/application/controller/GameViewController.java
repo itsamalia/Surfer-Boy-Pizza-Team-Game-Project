@@ -82,6 +82,10 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     private MediaPlayer mediaPlayer, mediaSFX;
     private Timer timer;
 
+    /**
+     * Everything to be initialized upon the initial loading of the Scene (i.e,
+     * animations, music, timers, etc...)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -146,22 +150,33 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         pizzaLabel.setText("Drag the Pizza into the center box.");
     }
 
-    public void music() {
-        String s = "src/application/audio/VecnaClockSound.mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaPlayer = new MediaPlayer(h);
-        mediaPlayer.setCycleCount(-1);
-        mediaPlayer.play();
-        // mediaPlayer.setVolume(100);
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-
     @Override
     public void handle(ActionEvent event) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * Event listener to play a sound effect for when a user hovers over a button.
+     */
+    public void handleButtonEntered() {
+        playSound("buttonhover");
+        try {
+            setCursor("normalClick");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Event Listener for when a button is exited.
+     */
+    public void handleButtonExit() {
+        try {
+            setCursor("normalSelect");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -312,7 +327,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         if (this.buildPizza.isFinished()) {
             this.loadScene("PizzaFinished.fxml");
             this.timer.cancel();
-            playSound2("surfsupmydude");
+            playSound("surfsupmydude");
         }
         event.consume();
     }
@@ -375,48 +390,50 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
-        	try {
-    			setCursor("normalSelect");
-    		} catch (FileNotFoundException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+            try {
+                setCursor("normalSelect");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             mediaPlayer.stop();
-        } catch (
-        Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
+     * Sets the custom cursor.
      * 
-     * @param soundName The name of the sound file (String)
+     * @param imageName The name of the image file of the cursor. (String)
+     * @throws FileNotFoundException (Exception)
      */
-    public void setCursor(String imageName) throws FileNotFoundException
-    {
-    	Image myImage = new Image(new FileInputStream("src/application/images/"+imageName+".png"));
-    	ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-    	Scene scene = Main.stage.getScene();
-    	scene.getRoot().setCursor(cursor);
+    public void setCursor(String imageName) throws FileNotFoundException {
+        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
+        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+        Scene scene = Main.stage.getScene();
+        scene.getRoot().setCursor(cursor);
     }
-    public void buttonEntered() {
-        playSound("buttonhover");
-    	try {
-			setCursor("normalClick");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+    /**
+     * Plays the background music for the Scene.
+     */
+    public void music() {
+        String s = "src/application/audio/VecnaClockSound.mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
+        mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.setCycleCount(-1);
+        mediaPlayer.play();
+        // mediaPlayer.setVolume(100);
+        // mediaPlayer.setStartTime(Duration.seconds(0));
+        // mediaPlayer.setAutoPlay(true);
     }
-    public void buttonExit()
-    {
-    	try {
-			setCursor("normalSelect");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
+
+    /**
+     * Creates a new Media object to play sound effects.
+     * 
+     * @param soundName The name of the sound effect audio (String)
+     */
     public void playSound(String soundName) {
         String s = "src/application/audio/" + soundName + ".mp3";
         Media h = new Media(Paths.get(s).toUri().toString());
@@ -425,15 +442,5 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         mediaSFX.play();
         // mediaPlayer.setStartTime(Duration.seconds(0));
         // mediaPlayer.setAutoPlay(true);
-    }
-    
-    public void playSound2(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        //mediaPlayer.setAutoPlay(true);
     }
 }
