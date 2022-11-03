@@ -214,6 +214,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
                     // playFadeInTransition(3, exitButton);
                     skipButton.setVisible(false);
                     overallFade.setVisible(false);
+                    soundMessageImgView.setVisible(false);
                 }
             }
         };
