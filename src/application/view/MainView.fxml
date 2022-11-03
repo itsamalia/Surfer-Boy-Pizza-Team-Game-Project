@@ -149,6 +149,6 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="skipButton" layoutX="679.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" text="Skip Intro" />
+      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" text="Skip Intro" />
    </children>
 </AnchorPane>
