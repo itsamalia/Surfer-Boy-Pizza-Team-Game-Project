@@ -9,6 +9,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoadingViewController">
    <children>
+      <MediaView fx:id="mediaLoading" fitHeight="300.0" fitWidth="600.0" layoutX="100.0" layoutY="506.0" />
       <ImageView fx:id="vecnaImageView" fitHeight="515.0" fitWidth="521.0" layoutX="143.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/vecnaPixelImage.jpg" />
@@ -17,6 +18,5 @@
       <Button fx:id="continueButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="CONTINUE" textFill="RED" />
       <Label fx:id="tipOneLabel" layoutX="135.0" layoutY="578.0" text="TIP: VECNA HAS A WEAKNESS FOR ROBUST " textFill="RED" />
       <Label fx:id="tipTwoLabel" layoutX="226.0" layoutY="628.0" text="AND TASTY PINEAPPLE PIES! " textFill="RED" />
-      <MediaView fx:id="mediaLoading" fitHeight="300.0" fitWidth="600.0" layoutX="100.0" layoutY="506.0" />
    </children>
 </AnchorPane>
