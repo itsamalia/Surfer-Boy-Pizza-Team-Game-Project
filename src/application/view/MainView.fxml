@@ -149,7 +149,7 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="skipButton" layoutX="679.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" text="Skip Intro" />
+      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#buttonEntered" onMouseExited="#buttonExit" text="Skip Intro" />
       <ImageView fx:id="cursorReferenceNormal" layoutX="-56.0" layoutY="580.0" visible="false">
          <image>
             <Image url="@../images/normalSelect.png" />

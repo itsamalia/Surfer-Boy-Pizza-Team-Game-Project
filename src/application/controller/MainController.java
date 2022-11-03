@@ -1,6 +1,7 @@
 package application.controller;
 
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -56,8 +57,13 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @FXML
     AnchorPane titlePane;
 
+
+    //@FXML
+    //ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
+
+
     @FXML
-    ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
+    ImageView logoImg, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
 
     @FXML
@@ -97,11 +103,20 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
+        // AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
+        // AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
+
         // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         music();
+
+
+
+
+        // Create a new Media object to play the background video.
 
         String mediaURL = "src/application/videos/mainMenuBackground.mp4";
         Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
@@ -180,6 +195,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
 
+
         this.startTimerToRunOnce = new Timer();
         TimerTask startTask = new TimerTask() {
 
@@ -195,7 +211,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 			}
         };
         startTimerToRunOnce.schedule(startTask, 100);
+
     }
+
 
     public void ready()
     {
@@ -221,6 +239,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     }
     
     public void playAnimateTitle(double seconds, VBox titleVB, HBox titleHB1, HBox titleHB2) {
+=======
+>>>>>>> branch 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
 =======
 >>>>>>> branch 'main' of https://github.com/UTSA-CS-3443/Delivery-Service
 
@@ -311,6 +331,7 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 			e.printStackTrace();
 		}
     }
+
     public void buttonExit()
     {
     	try {
@@ -321,10 +342,12 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 		}
     }
 
+
     /**
      * Handles the skip introduction button to skip the introduction animation.
      */
     public void skipButtonClicked() {
+
 
     	stretch = .42;
     	skipButton.setVisible(false);
@@ -333,6 +356,9 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
         stretch = .42;
         skipButton.setVisible(false);
 
+
+        stretch = .42;
+        skipButton.setVisible(false);
     }
 
     /**
