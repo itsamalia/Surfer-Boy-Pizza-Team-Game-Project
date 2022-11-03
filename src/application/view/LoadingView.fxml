@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="vecnaImageView" fitHeight="515.0" fitWidth="521.0" layoutX="143.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Downloads/pixelvecna2.jpg" />
+            <Image url="@../images/vecnaPixelImage.jpg" />
          </image>
       </ImageView>
       <Button fx:id="continueButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="CONTINUE" textFill="RED" />
