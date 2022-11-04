@@ -93,12 +93,23 @@ Text {
 
 
 /* Begin GameView.fxml specific CSS styling. */
-#rightVbox {
+/* This doesn't work for some reason, had to do the background color of both Hboxes within scenebuilder.
+ * #topHbox, #bottomHbox {
+    -fx-background-color: darkred;
+} */
+
+#rightVbox, #leftVbox, #centerStackPane {
     -fx-background-color: black;
 }
 
 #pizzaLabel {
     -fx-font-family: "Benguiat";
+    -fx-font-size: 24px;
+    -fx-text-fill: #70bf15;
+}
+
+#ingredientLabel, #ingredient1Label, #ingredient2Label, #ingredient3Label, #ingredient4Label, #ingredient5Label, #ingredient6Label {
+    -fx-text-fill: #ff3000;
 }
 /* End GameView.fxml specific CSS styling. */
 

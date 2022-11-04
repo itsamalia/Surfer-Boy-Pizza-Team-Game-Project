@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MissionController">
    <children>
-      <MediaView fx:id="media" fitHeight="600.0" fitWidth="800.0" layoutY="100.0" onError="#handleVideo" preserveRatio="false" AnchorPane.topAnchor="150.0">
+      <MediaView fx:id="media" fitHeight="600.0" fitWidth="800.0" layoutY="100.0" preserveRatio="false" AnchorPane.topAnchor="150.0">
          <viewport>
             <Rectangle2D />
          </viewport></MediaView>

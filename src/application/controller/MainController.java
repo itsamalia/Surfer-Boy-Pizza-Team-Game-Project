@@ -1,9 +1,7 @@
 package application.controller;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -11,9 +9,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 import application.Main;
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,19 +17,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -50,7 +42,7 @@ import javafx.util.Duration;
  * @author Amalia Talijancic
  * @author Carlos Martinez
  */
-public class MainController implements EventHandler<ActionEvent>, Initializable {
+public class MainController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
     private AnchorPane titlePane;
@@ -60,12 +52,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     // blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
-    private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade;
+    private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2,
+            blackFadeImg3, overallFade;
 
     @FXML
     private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
-
-    private MediaPlayer mediaPlayer, mediaPlayerSFX, mediaBackground;
 
     @FXML
     private MediaView backgroundMedia;
@@ -94,11 +85,8 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     double lastTimeElapsed;
     double stretch = 200;
     private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
-    private FadeTransition fadeInAnimation;
-	private FadeTransition fadeInSoundAnimation;
+    private FadeTransition fadeInSoundAnimation;
     private Timer startTimerButtons;
-
-
 
     /**
      * Everything to be initialized upon the initial loading of the Scene (i.e,
@@ -115,18 +103,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
-        music();
 
-        // Create a new Media object to play the background video.
-
+        playMusic("StrangerThingsThemeSong");
         playFadeOutTransition(15, overallFade);
         playFadeOutSoundMessageTransition(5, soundMessageImgView);
-        String mediaURL = "src/application/videos/mainMenuBackground.mp4";
-        Media media1 = new Media(Paths.get(mediaURL).toUri().toString());
-        mediaBackground = new MediaPlayer(media1);
-        mediaBackground.setAutoPlay(true);
-        mediaBackground.setCycleCount(-1);
-        backgroundMedia.setMediaPlayer(mediaBackground);
+        playVideo("mainMenuBackground", -1, backgroundMedia);
         playFadeInTransition(2, titleVBox);
         // Play FadeTransitions
         playFadeInTransition(20, logoImg);
@@ -352,19 +333,6 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     }
 
     /**
-     * Sets the custom cursor.
-     * 
-     * @param imageName The name of the image file of the cursor. (String)
-     * @throws FileNotFoundException (Exception)
-     */
-    public void setCursor(String imageName) throws FileNotFoundException {
-        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
-        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-        Scene scene = Main.stage.getScene();
-        scene.getRoot().setCursor(cursor);
-    }
-
-    /**
      * Handles the skip introduction button to skip the introduction animation.
      */
     public void skipButtonClicked() {
@@ -394,31 +362,11 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     }
 
     /**
-     * Apply a FadeTransition on a node given the duration in seconds.
      * 
-     * @param seconds Time of the fade in seconds (Double)
-     * @param node    The child node to have the transition applied to (Node)
-     */
-    public void playFadeInTransition(double seconds, Node node) {
-        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
-        transition.setFromValue(0);
-        transition.setToValue(1.0);
-        transition.play();
-    }
-
-    /**
-     * Apply a FadeTransition on a node given the duration in seconds.
      * 
-     * @param seconds Time of the fade in seconds (Double)
-     * @param node    The child node to have the transition applied to (Node)
+     * @param seconds
+     * @param node
      */
-    public void playFadeOutTransition(double seconds, Node node) {
-        FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
-        transition.setFromValue(1);
-        transition.setToValue(0.0);
-        transition.play();
-        fadeInAnimation = transition;
-    }
     public void playFadeOutSoundMessageTransition(double seconds, Node node) {
         FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
         transition.setFromValue(1);
@@ -501,33 +449,6 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
      */
 
     /**
-     * Amalia's edits for Stranger Things music/mp3 to play. Creates a new Media
-     * object to play the background music.
-     */
-
-    /**
-     * Animates the contents of a Label's text and animates it.
-     * 
-     * @param lbl          The Label to set the text in (Label)
-     * @param stringToType The String to type to be animated(String)
-     */
-    public void animateText(Label lbl, String stringToType) {
-        String content = stringToType;
-        final Animation animation = new Transition() {
-            {
-                setCycleDuration(Duration.millis(550));
-            }
-
-            protected void interpolate(double frac) {
-                final int length = content.length();
-                final int n = Math.round(length * (float) frac);
-                lbl.setText(content.substring(0, n));
-            }
-        };
-        animation.play();
-    }
-
-    /**
      * 
      * 
      * @param val double value (double)
@@ -536,34 +457,5 @@ public class MainController implements EventHandler<ActionEvent>, Initializable 
     public static double exp(double val) {
         final long tmp = (long) (1512775 * val + (1072693248 - 60801));
         return Double.longBitsToDouble(tmp << 32);
-    }
-
-    /**
-     * Plays the background music for the Scene.
-     */
-    public void music() {
-        String s = "src/application/audio/StrangerThingsThemeSong.mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaPlayer = new MediaPlayer(h);
-        mediaPlayer.autoPlayProperty();
-        mediaPlayer.setCycleCount(-1);
-        mediaPlayer.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-
-    /**
-     * Creates a new Media object to play sound effects.
-     * 
-     * @param soundName The name of the sound effect audio (String)
-     */
-    public void playSound(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        mediaPlayerSFX = new MediaPlayer(h);
-        mediaPlayerSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
     }
 }

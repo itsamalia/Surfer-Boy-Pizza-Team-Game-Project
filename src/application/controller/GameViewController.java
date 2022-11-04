@@ -1,9 +1,7 @@
 package application.controller;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,12 +16,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -33,8 +29,6 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -52,7 +46,7 @@ import javafx.scene.text.Text;
  * @author Danny Ghrist (kda458)
  *
  */
-public class GameViewController implements EventHandler<ActionEvent>, Initializable {
+public class GameViewController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
     final static double COUNTDOWN_MINUTES = 5;
 
@@ -79,7 +73,6 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @FXML
     private Text countdownText;
 
-    private MediaPlayer mediaPlayer, mediaSFX;
     private Timer timer;
 
     /**
@@ -89,7 +82,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        music();
+        playMusic("VecnaClockSound");
 
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
@@ -105,6 +98,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             label.setText(ingredient.getName());
             this.ingredientLabels.add(label);
             label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
+            label.setStyle("-fx-text-fill: #ff3000;");
             i++;
         }
 
@@ -399,48 +393,5 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Sets the custom cursor.
-     * 
-     * @param imageName The name of the image file of the cursor. (String)
-     * @throws FileNotFoundException (Exception)
-     */
-    public void setCursor(String imageName) throws FileNotFoundException {
-        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
-        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-        Scene scene = Main.stage.getScene();
-        scene.getRoot().setCursor(cursor);
-    }
-
-    /**
-     * Plays the background music for the Scene.
-     */
-    public void music() {
-        String s = "src/application/audio/VecnaClockSound.mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaPlayer = new MediaPlayer(h);
-        mediaPlayer.setCycleCount(-1);
-        mediaPlayer.play();
-        // mediaPlayer.setVolume(100);
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
-    }
-
-    /**
-     * Creates a new Media object to play sound effects.
-     * 
-     * @param soundName The name of the sound effect audio (String)
-     */
-    public void playSound(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
     }
 }
