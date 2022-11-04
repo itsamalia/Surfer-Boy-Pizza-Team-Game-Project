@@ -1,8 +1,6 @@
 package application.controller;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.nio.file.Paths;
 
 import application.Main;
 //import javafx.application.Platform;
@@ -10,14 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,8 +23,7 @@ import javafx.stage.Stage;
  * @author Danny Ghrist (kda458)
  *
  */
-
-public class PizzaFinishedController implements EventHandler<ActionEvent> {
+public class PizzaFinishedController extends Controller implements EventHandler<ActionEvent> {
 
     @FXML
     private Button homeButton, morePizzaButton, exitButton;
@@ -41,8 +34,8 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
     @FXML
     private ImageView winArgyle;
 
-    @FXML
-    private MediaPlayer mediaSFX;
+//    @FXML
+//    private MediaPlayer mediaSFX;
 
     /**
      * Determines which button was pressed (if we end up having multiple buttons),
@@ -127,33 +120,5 @@ public class PizzaFinishedController implements EventHandler<ActionEvent> {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Sets the custom cursor.
-     * 
-     * @param imageName The name of the image file of the cursor. (String)
-     * @throws FileNotFoundException (Exception)
-     */
-    public void setCursor(String imageName) throws FileNotFoundException {
-        Image myImage = new Image(new FileInputStream("src/application/images/" + imageName + ".png"));
-        ImageCursor cursor = new ImageCursor(myImage, 0, 0);
-        Scene scene = Main.stage.getScene();
-        scene.getRoot().setCursor(cursor);
-    }
-
-    /**
-     * Creates a new Media object to play sound effects.
-     * 
-     * @param soundName The name of the sound effect audio (String)
-     */
-    public void playSound(String soundName) {
-        String s = "src/application/audio/" + soundName + ".mp3";
-        Media h = new Media(Paths.get(s).toUri().toString());
-        // Media(getClass().getResource("application/audio/StrangerThingsThemeSong.mp3").toExternalForm());
-        mediaSFX = new MediaPlayer(h);
-        mediaSFX.play();
-        // mediaPlayer.setStartTime(Duration.seconds(0));
-        // mediaPlayer.setAutoPlay(true);
     }
 }
