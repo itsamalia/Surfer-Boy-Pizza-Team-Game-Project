@@ -41,45 +41,42 @@
    <top>
       <HBox fx:id="topHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: darkred;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="pizzaLabel" alignment="CENTER" prefHeight="106.0" prefWidth="800.0" text="Label" textAlignment="CENTER" textFill="#70bf15">
-               <font>
-                  <Font name="Verdana Bold" size="24.0" />
-               </font></Label>
+            <Label fx:id="pizzaLabel" alignment="CENTER" text="Label" textAlignment="CENTER" />
          </children></HBox>
    </top>
    <left>
-      <VBox fx:id="leftVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <VBox fx:id="leftVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="100.0" text="Ingredients Needed:" textFill="#ff3000" wrapText="true">
+            <Label fx:id="ingredientLabel" contentDisplay="CENTER" prefHeight="32.0" prefWidth="100.0" text="Ingredients Needed:" wrapText="true">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="ingredient1Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" text="Dough" textFill="#ff3000">
+            <Label fx:id="ingredient1Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" text="Dough">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient2Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textFill="#ff3000">
+            <Label fx:id="ingredient2Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient3Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textFill="#ff3000">
+            <Label fx:id="ingredient3Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient4Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textFill="#ff3000">
+            <Label fx:id="ingredient4Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient5Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textFill="#ff3000">
+            <Label fx:id="ingredient5Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient6Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textFill="#ff3000">
+            <Label fx:id="ingredient6Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
@@ -87,7 +84,7 @@
          </children></VBox>
    </left>
    <right>
-      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="TOP_CENTER">
+      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <ImageView fx:id="vecnaClockImage" fitHeight="470.0" fitWidth="200.0" pickOnBounds="true">
                <image>
@@ -106,7 +103,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="centerStackPane" style="-fx-background-color: black;">
+            <StackPane fx:id="centerStackPane">
                <children>
                   <ImageView fx:id="doughImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
                      <image>

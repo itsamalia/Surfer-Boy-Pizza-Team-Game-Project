@@ -105,6 +105,7 @@ public class GameViewController implements EventHandler<ActionEvent>, Initializa
             label.setText(ingredient.getName());
             this.ingredientLabels.add(label);
             label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
+            label.setStyle("-fx-text-fill: #ff3000;");
             i++;
         }
 
