@@ -235,7 +235,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
                 // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
                     animateText(creditsLabel,
-                            "A GAME BY: Dany Ghrist, Caleb Pierce, Sarah Halverson, Amilia Talijancic, and Carlos Martinez");
+                            "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
                     areButtonsTransitioned = true;
                 }
             }
