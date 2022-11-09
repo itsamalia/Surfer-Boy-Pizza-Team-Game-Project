@@ -140,3 +140,11 @@ Text {
           -track-color;
           
 }
+.radio-button:selected .radio .dot {
+    -fx-background-color: black;
+    -fx-background-insets: 0;
+}
+.radio-button .radio {
+    -fx-background-color: #ba3702;
+    -fx-background-insets: 1;
+}
