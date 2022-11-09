@@ -363,7 +363,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         soundMessageImgView.setVisible(false);
         animateText(creditsLabel,
                 "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
-        playFadeInTransition(.001, menuBackPane);
+        playFadeInTransition(.01, menuBackPane);
     }
 
     /**
