@@ -122,4 +122,21 @@ Text {
 #pizzaFinishedPane .button {
 
 }
-/* End PizzaFinished.fxml specific CSS styling. */
+
+	
+.slider {
+
+    -default-track-color: black;
+    -track-color: black;
+    
+}
+.slider .thumb {
+	-fx-background-color: #ba3702;
+}
+
+.slider .track {
+    -fx-background-color: #ba3702,
+          linear-gradient(to bottom, #ba3702, -fx-text-box-border),
+          -track-color;
+          
+}

@@ -1,9 +1,14 @@
 package application.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -57,7 +63,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
             blackFadeImg3, overallFade, lineTop, lineLeft, lineRight, lineBottom, lineRight2, lineLeft2;
 
     @FXML
-    private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
+    private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton, cancelButton, saveButton;
 
     @FXML
     private MediaView backgroundMedia;
@@ -69,14 +75,18 @@ public class MainController extends Controller implements EventHandler<ActionEve
     private Label creditsLabel;
 
     @FXML
-    private VBox titleVBox;
+    private VBox titleVBox, menuButtonsVBox;
 
     @FXML
     private HBox titleHBox1, titleHBox2;
     
     @FXML
-    private Pane menuBackPane;
+    private Pane menuBackPane, optionsButtonsPane;
 
+    @FXML
+    private Slider volumeSlider;
+    
+    
     private Timer timer;
     private Timer startTimerToRunOnce;
     double TitleStretch;
@@ -128,6 +138,16 @@ public class MainController extends Controller implements EventHandler<ActionEve
         pizzaStartButton.setVisible(false);
         optionsButton.setVisible(false);
         exitButton.setVisible(false);
+        volumeSlider.setStyle("-fx-base: #ba3702;");
+        try {
+			loadConfig();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        volumeSliderStartDrag();
+
+
 
         // animateTitle(titleVBox, titleHBox1, titleHBox2);
 
@@ -161,7 +181,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
                  * && stretch > 0) { pizzaStartButton.setOpacity(1);
                  * optionsButton.setOpacity(1); exitButton.setOpacity(1);
                  * titleVBox.setOpacity(1); }
-                 */}
+                 */
+
+            	}
 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
@@ -271,8 +293,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 // TODO: Update this to a new options view once implemented.
                 playSound("buttonclick");
-                newScene = null;
-                System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
+                //newScene = null;
+                //System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
+                toggleOptionsButtons();
             } else if (buttonPushed.getId().equals("exitButton")) {
                 playSound("buttonclick");
                 newScene = null;
@@ -324,6 +347,68 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
+    public void volumeSliderStartDrag()
+    {
+        volumeSlider.setStyle("-fx-base: #ba3702;");
+        Double newVal = volumeSlider.getValue();
+        double percentage = 100.0 * newVal.doubleValue() / volumeSlider.getMax();
+        String style = String.format(
+                // in the String format, 
+                // %1$.1f%% gives the first format argument ("1$"),
+                // i.e. percentage, formatted to 1 decimal place (".1f").
+                // Note literal % signs must be escaped ("%%")
+                "-track-color: linear-gradient(to right, " +
+                        "#ba3702 0%%, " +
+                        "#ba3702 %1$.1f%%, " +
+                        "-default-track-color %1$.1f%%, " +
+                        "-default-track-color 100%%); " + "\n-fx-base: #ba3702;", 
+                percentage);
+        volumeSlider.setStyle(style);
+        
+			volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            double percentage2 = 100.0 * newValue .doubleValue() / volumeSlider.getMax();
+            String style2 = String.format(
+                    // in the String format, 
+                    // %1$.1f%% gives the first format argument ("1$"),
+                    // i.e. percentage, formatted to 1 decimal place (".1f").
+                    // Note literal % signs must be escaped ("%%")
+                    "-track-color: linear-gradient(to right, " +
+                            "#ba3702 0%%, " +
+                            "#ba3702 %1$.1f%%, " +
+                            "-default-track-color %1$.1f%%, " +
+                            "-default-track-color 100%%); " + "\n-fx-base: #ba3702;", 
+                    percentage2);
+            volumeSlider.setStyle(style2);
+        });
+    }
+    public void volumeSliderEndDrag()
+    {
+    	volumeSlider.setStyle("-fx-base: #ba3702;");
+        Double newVal = volumeSlider.getValue();
+		//set the master volume variable
+    }
+    public void cancelButtonClicked() throws FileNotFoundException
+    {
+    	loadConfig();
+    	toggleOptionsButtons();
+    }
+    public void saveButtonClicked() throws IOException
+    {
+    	FileWriter file = new FileWriter("src/application/config/config.txt");
+    	PrintWriter write = new PrintWriter(file);
+    	write.write("");
+    	String volumeString ="" + ((int)volumeSlider.getValue());
+    	write.write(volumeString);
+    	write.close();
+    	//save to a config.txt file
+    	toggleOptionsButtons();
+    }
+    
+    public void toggleOptionsButtons()
+    {
+    	menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
+		optionsButtonsPane.setVisible(!optionsButtonsPane.isVisible());
+    }
 
     /**
      * Event Listener for when a button is exited.
@@ -335,7 +420,14 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
-
+    public void loadConfig() throws FileNotFoundException
+    {
+    	File file = new File("src/application/config/config.txt");
+    	Scanner scan = new Scanner(file);
+    	int StoredVolume = scan.nextInt();
+    	volumeSlider.setValue(StoredVolume);   
+    	scan.close();
+    }
     /**
      * Handles the skip introduction button to skip the introduction animation.
      */
