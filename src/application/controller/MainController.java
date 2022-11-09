@@ -446,18 +446,30 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	RadioButton radioButtonPushed = (RadioButton) event.getSource();
     	if (radioButtonPushed.getId().equals("easyRB"))
     	{
+    		if(radioButtonPushed.isSelected())
+    		{
     		 mediumRB.setSelected(false);
-    		 hardRB.setSelected(false); 
+    		 hardRB.setSelected(false);
+    		}
+    		else radioButtonPushed.setSelected(true);
     	}
     	if (radioButtonPushed.getId().equals("mediumRB"))
     	{
-   		 easyRB.setSelected(false);
-   		 hardRB.setSelected(false); 
+    		if(radioButtonPushed.isSelected())
+    		{
+    			easyRB.setSelected(false);
+    			hardRB.setSelected(false); 
+    		}
+		else radioButtonPushed.setSelected(true);
     	}
     	if (radioButtonPushed.getId().equals("hardRB"))
     	{
+    		if(radioButtonPushed.isSelected())
+    		{
    		 mediumRB.setSelected(false);
    		 easyRB.setSelected(false); 
+    		}
+    		else radioButtonPushed.setSelected(true);
     	}
     }
     /**
@@ -491,7 +503,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
        		 hardRB.setSelected(false);
     		 mediumRB.setSelected(true); 
     	}
-    	if(storedDifficulty.contentEquals("medium"))
+    	if(storedDifficulty.contentEquals("hard"))
     	{
         	// TODO: set a global difficulty variable
       		 mediumRB.setSelected(false);
