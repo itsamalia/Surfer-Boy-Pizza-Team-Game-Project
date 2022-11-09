@@ -165,10 +165,11 @@
             <Image url="@../images/soundMessage.png" />
          </image>
       </ImageView>
+      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
       <Pane fx:id="optionsButtonsPane" layoutX="84.0" layoutY="277.0" prefHeight="352.0" prefWidth="624.0" visible="false">
          <children>
-            <Slider id="volumeSlider" fx:id="volumeSlider" layoutX="128.0" layoutY="40.0" onDragDetected="#volumeSliderStartDrag" onDragOver="#volumeSliderEndDrag" prefHeight="17.0" prefWidth="468.0" />
-            <Label fx:id="volumeLabel" layoutX="32.0" layoutY="31.0" text="Volume" textFill="#ba3702" translateY="-1.0">
+            <Slider id="volumeSlider" fx:id="volumeSlider" layoutX="78.0" layoutY="65.0" onDragDetected="#volumeSliderStartDrag" onDragOver="#volumeSliderEndDrag" prefHeight="17.0" prefWidth="468.0" />
+            <Label fx:id="volumeLabel" layoutX="271.0" layoutY="31.0" text="Volume" textFill="#ba3702" translateY="-1.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -177,6 +178,5 @@
             <Button fx:id="saveButton" layoutX="475.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Save &amp; Close" />
          </children>
       </Pane>
-      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
    </children>
 </AnchorPane>
