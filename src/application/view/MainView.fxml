@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -168,14 +169,44 @@
       <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
       <Pane fx:id="optionsButtonsPane" layoutX="84.0" layoutY="277.0" prefHeight="352.0" prefWidth="624.0" visible="false">
          <children>
-            <Slider id="volumeSlider" fx:id="volumeSlider" layoutX="78.0" layoutY="65.0" onDragDetected="#volumeSliderStartDrag" onDragOver="#volumeSliderEndDrag" prefHeight="17.0" prefWidth="468.0" />
-            <Label fx:id="volumeLabel" layoutX="271.0" layoutY="31.0" text="Volume" textFill="#ba3702" translateY="-1.0">
+            <Slider id="volumeSlider" fx:id="volumeSlider" layoutX="78.0" layoutY="65.0" onDragDetected="#volumeSliderStartDrag" onDragOver="#volumeSliderEndDrag" prefHeight="17.0" prefWidth="468.0" translateX="1.0" />
+            <Label fx:id="volumeLabel" layoutX="271.0" layoutY="31.0" text="Volume" textFill="#ba3702" translateX="-1.0" translateY="-1.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <Button fx:id="cancelButton" layoutX="17.0" layoutY="293.0" mnemonicParsing="false" onAction="#cancelButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Cancel" />
             <Button fx:id="saveButton" layoutX="475.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Save &amp; Close" />
+            <Label layoutX="265.0" layoutY="118.0" text="Difficulty" textFill="#ba3702" translateX="-1.0" translateY="1.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="102.0" layoutX="460.0" layoutY="49.0" startX="-100.0" stroke="#ba3702" />
+            <Line endX="250.0" layoutX="312.0" layoutY="97.0" startX="-250.0" stroke="#ba3702" />
+            <Line endX="102.0" layoutX="159.0" layoutY="49.0" startX="-100.0" stroke="#ba3702" translateX="2.0" />
+            <Line endX="-110.0" endY="38.0" layoutX="169.0" layoutY="59.0" startX="-110.0" startY="-10.0" stroke="#ba3702" translateX="2.0" />
+            <Line endX="-110.0" endY="38.0" layoutX="673.0" layoutY="59.0" startX="-110.0" startY="-10.0" stroke="#ba3702" translateX="-1.0" />
+            <Line endX="102.0" layoutX="159.0" layoutY="137.0" startX="-99.0" stroke="#ba3702" translateX="1.0" />
+            <Line endX="102.0" layoutX="460.0" layoutY="137.0" startX="-97.0" stroke="#ba3702" />
+            <Line endX="250.0" layoutX="312.0" layoutY="187.0" startX="-250.0" stroke="#ba3702" translateY="72.0" />
+            <Line endX="-110.0" endY="110.0" layoutX="170.0" layoutY="149.0" startX="-110.0" startY="-12.0" stroke="#ba3702" translateX="1.0" />
+            <Line endX="-110.0" endY="109.0" layoutX="671.0" layoutY="149.0" startX="-110.0" startY="-12.0" stroke="#ba3702" translateX="1.0" />
+            <RadioButton fx:id="easyRB" layoutX="100.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Easy" textFill="#ba3702" translateY="-1.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="mediumRB" layoutX="270.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Medium" textFill="#ba3702" translateY="-1.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="hardRB" layoutX="444.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Hard" textFill="#ba3702" translateY="-1.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </RadioButton>
          </children>
       </Pane>
    </children>

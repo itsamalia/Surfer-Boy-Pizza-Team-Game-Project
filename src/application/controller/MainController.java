@@ -27,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -86,6 +87,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
     @FXML
     private Slider volumeSlider;
     
+    @FXML
+    private RadioButton easyRB, mediumRB, hardRB;
+    
     
     private Timer timer;
     private Timer startTimerToRunOnce;
@@ -101,6 +105,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     private ArrayList<TranslateTransition> arrayOfAnimations = new ArrayList<TranslateTransition>();
     private FadeTransition fadeInSoundAnimation;
     private Timer startTimerButtons;
+    private ArrayList<RadioButton> radioButtonArray = new ArrayList<RadioButton>();
 
     /**
      * Everything to be initialized upon the initial loading of the Scene (i.e,
@@ -146,7 +151,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
         volumeSlider.setStyle("-fx-base: #ba3702;");
 
         volumeSliderStartDrag();
-
+        radioButtonArray.add(easyRB);
+        radioButtonArray.add(mediumRB);
+        radioButtonArray.add(hardRB);
 
 
         // animateTitle(titleVBox, titleHBox1, titleHBox2);
@@ -403,7 +410,24 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	PrintWriter write = new PrintWriter(file);
     	write.write("");
     	String volumeString ="" + ((int)volumeSlider.getValue());
-    	write.write(volumeString);
+    	String difficultyString = "";
+    	if(easyRB.isSelected())
+    	{
+        	difficultyString = "easy";
+        	// TODO: set a global difficulty variable
+    	}
+    	else if(mediumRB.isSelected())
+    	{
+        	difficultyString = "medium";
+        	// TODO: set a global difficulty variable
+    	}
+    	else if(hardRB.isSelected())
+    	{
+        	difficultyString = "hard";
+        	// TODO: set a global difficulty variable
+    	}
+
+    	write.write(volumeString +"\n" + difficultyString);
     	write.close();
     	playSound("buttonClick");
     	//save to a config.txt file
@@ -415,7 +439,27 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
 		optionsButtonsPane.setVisible(!optionsButtonsPane.isVisible());
     }
-
+    //this method will be called when any radio button is clicked
+    public void radioButtonClicked(ActionEvent event)
+    {
+    	//unckeck radio buttons that weren't clicked
+    	RadioButton radioButtonPushed = (RadioButton) event.getSource();
+    	if (radioButtonPushed.getId().equals("easyRB"))
+    	{
+    		 mediumRB.setSelected(false);
+    		 hardRB.setSelected(false); 
+    	}
+    	if (radioButtonPushed.getId().equals("mediumRB"))
+    	{
+   		 easyRB.setSelected(false);
+   		 hardRB.setSelected(false); 
+    	}
+    	if (radioButtonPushed.getId().equals("hardRB"))
+    	{
+   		 mediumRB.setSelected(false);
+   		 easyRB.setSelected(false); 
+    	}
+    }
     /**
      * Event Listener for when a button is exited.
      */
@@ -431,8 +475,30 @@ public class MainController extends Controller implements EventHandler<ActionEve
     {
     	File file = new File("src/application/config/config.txt");
     	Scanner scan = new Scanner(file);
-    	int StoredVolume = scan.nextInt();
-    	volumeSlider.setValue(StoredVolume);   
+    	String storedVolume = scan.nextLine();
+    	String storedDifficulty = scan.nextLine();
+    	if(storedDifficulty.contentEquals("easy"))
+    	{
+        	// TODO: set a global difficulty variable
+   		 	mediumRB.setSelected(false);
+   		 	hardRB.setSelected(false); 
+   		 	easyRB.setSelected(true); 
+    	}
+    	if(storedDifficulty.contentEquals("medium"))
+    	{
+        	// TODO: set a global difficulty variable
+      		 easyRB.setSelected(false);
+       		 hardRB.setSelected(false);
+    		 mediumRB.setSelected(true); 
+    	}
+    	if(storedDifficulty.contentEquals("medium"))
+    	{
+        	// TODO: set a global difficulty variable
+      		 mediumRB.setSelected(false);
+       		 easyRB.setSelected(false); 
+    		 hardRB.setSelected(true); 
+    	}
+    	volumeSlider.setValue(Integer.parseInt(storedVolume));   
     	scan.close();
     }
     /**
