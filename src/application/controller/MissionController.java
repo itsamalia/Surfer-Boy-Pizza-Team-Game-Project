@@ -53,8 +53,7 @@ public class MissionController extends Controller implements EventHandler<Action
             String newScene = "";
 
             if (buttonPushed.getId().equals("gameStartButton")) {
-                // newScene = "GameView.fxml";
-                newScene = "LoadingView.fxml";
+                newScene = "GameView.fxml";
                 playSound("mindfighton");
                 mediaBackground.stop();
                 try {

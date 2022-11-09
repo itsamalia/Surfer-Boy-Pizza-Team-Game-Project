@@ -105,7 +105,7 @@ Text {
 #pizzaLabel {
     -fx-font-family: "Benguiat";
     -fx-font-size: 24px;
-    -fx-text-fill: #70bf15;
+    -fx-text-fill: #000000;
 }
 
 #ingredientLabel, #ingredient1Label, #ingredient2Label, #ingredient3Label, #ingredient4Label, #ingredient5Label, #ingredient6Label {

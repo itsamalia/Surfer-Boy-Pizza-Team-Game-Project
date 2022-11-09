@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoadingViewController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoseViewController">
    <children>
       <MediaView fx:id="mediaLoading" fitHeight="300.0" fitWidth="600.0" layoutX="100.0" layoutY="506.0" />
       <ImageView fx:id="vecnaImageView" fitHeight="515.0" fitWidth="521.0" layoutX="143.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
@@ -15,7 +15,7 @@
             <Image url="@../images/vecnaPixelImage.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="continueButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="CONTINUE" textFill="RED" />
+      <Button fx:id="tryAgainButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="TRY AGAIN?" textFill="RED" />
       <Label fx:id="tipOneLabel" layoutX="172.0" layoutY="599.0" text="TIP: VECNA HAS A WEAKNESS FOR ROBUST AND TASTY PINEAPPLE PIES! " textFill="RED" wrapText="true" />
    </children>
 </AnchorPane>

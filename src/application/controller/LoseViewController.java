@@ -20,14 +20,16 @@ import javafx.scene.media.MediaView;
  * Shows the user a fake loading animation screen with some tips for the game to
  * add to mimic loading screens found in games.
  * 
+ * EDIT: Moving the above to this new view: the LoseViewController and LoseView.fxml so 
+ * as not to overcrowd the start to the game. 
+ * 
  * @author Amalia Talijancic
- * @author Danny Ghrist (kda458)
  *
  */
-public class LoadingViewController extends Controller implements Initializable {
+public class LoseViewController extends Controller implements Initializable {
 
     @FXML
-    Button continueButton;
+    Button tryAgainButton;
 
     @FXML
     Label tipOneLabel;
@@ -66,8 +68,8 @@ public class LoadingViewController extends Controller implements Initializable {
 
             String newScene = "";
 
-            if (buttonPushed.getId().equals("continueButton")) {
-                newScene = "GameView.fxml";
+            if (buttonPushed.getId().equals("tryAgainButton")) {
+                newScene = "MainView.fxml";
 
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));

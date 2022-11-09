@@ -41,42 +41,45 @@
    <top>
       <HBox fx:id="topHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: darkred;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="pizzaLabel" alignment="CENTER" text="Label" textAlignment="CENTER" />
+            <Label fx:id="pizzaLabel" alignment="CENTER" text="Label" textAlignment="CENTER">
+               <effect>
+                  <Glow />
+               </effect></Label>
          </children></HBox>
    </top>
    <left>
       <VBox fx:id="leftVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="ingredientLabel" contentDisplay="CENTER" prefHeight="32.0" prefWidth="100.0" text="Ingredients Needed:" wrapText="true">
+            <Label fx:id="ingredientLabel" contentDisplay="CENTER" prefHeight="32.0" prefWidth="100.0" text="Ingredients Needed:" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="ingredient1Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" text="Dough">
+            <Label fx:id="ingredient1Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" text="Dough" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient2Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+            <Label fx:id="ingredient2Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient3Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+            <Label fx:id="ingredient3Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient4Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+            <Label fx:id="ingredient4Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient5Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+            <Label fx:id="ingredient5Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="ingredient6Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0">
+            <Label fx:id="ingredient6Label" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="100.0" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="12.0" />
                </font>
@@ -84,14 +87,16 @@
          </children></VBox>
    </left>
    <right>
-      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
+      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" style="-fx-background-color: #2f5753;" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ImageView fx:id="vecnaClockImage" fitHeight="470.0" fitWidth="200.0" pickOnBounds="true">
+            <ImageView fx:id="vecnaClockImage" fitHeight="356.0" fitWidth="265.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/vecna_clock_cropped_200x200.png" />
+                  <Image url="@../images/trimmedclockgif.gif" />
                </image>
             </ImageView>
-            <Text fx:id="countdownText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="countdownText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
          </children></VBox>
    </right>
    <center>
