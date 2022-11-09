@@ -160,7 +160,7 @@
             <Image url="@../images/blackBox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="soundMessageImgView" fitHeight="88.0" fitWidth="440.0" layoutX="180.0" layoutY="350.0" visible="false">
+      <ImageView fx:id="soundMessageImgView" fitHeight="88.0" fitWidth="440.0" layoutX="180.0" layoutY="350.0">
          <image>
             <Image url="@../images/soundMessage.png" />
          </image>
@@ -173,8 +173,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button fx:id="cancelButton" layoutX="17.0" layoutY="293.0" mnemonicParsing="false" onAction="#cancelButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Cancel" />
-            <Button fx:id="saveButton" layoutX="475.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Save &amp; Close" />
+            <Button fx:id="cancelButton" layoutX="17.0" layoutY="293.0" mnemonicParsing="false" onAction="#cancelButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Cancel" />
+            <Button fx:id="saveButton" layoutX="475.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Save &amp; Close" />
          </children>
       </Pane>
       <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />

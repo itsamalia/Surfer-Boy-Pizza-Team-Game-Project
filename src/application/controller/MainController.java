@@ -391,6 +391,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     {
     	loadConfig();
     	toggleOptionsButtons();
+    	playSound("buttonClick");
     }
     public void saveButtonClicked() throws IOException
     {
@@ -400,6 +401,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	String volumeString ="" + ((int)volumeSlider.getValue());
     	write.write(volumeString);
     	write.close();
+    	playSound("buttonClick");
     	//save to a config.txt file
     	toggleOptionsButtons();
     }
