@@ -119,37 +119,17 @@ public class GameViewController extends Controller implements EventHandler<Actio
 //                    System.out.printf("%d:%02d\n", minutes, seconds);
                     counter--;
                 } else {
-                    // TODO: Implement and switch to game over screen if timer reaches 0. Currently
-                    // it just exits the program.
-
                     /**
-                     * redirect the player to the LoseView.fxml
+                     * Switch to game over screen if timer reaches 0. Redirect the player to the
+                     * LoseView.fxml
                      */
+                    cancel();
+                    timer.cancel();
                     Platform.runLater(() -> {
-                        try {
+                        loadScene("LoseView.fxml");
 
-                            String newScene = "";
-
-                            newScene = "LoseView.fxml";
-
-                            // Connect to the FXML (contains our layout) and load it in.
-                            Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
-
-                            // Put the layout onto the scene.
-                            Scene scene = new Scene(root);
-
-                            // Set the scene on the stage that was created in Main.java.
-                            Main.stage.setScene(scene);
-                            Main.stage.show();
-                            mediaPlayer.stop();
-                        }
-
-                        catch (Exception e) {
-
-                        }
                     });
                     System.out.println("YOU LOSE!!! (IMPLEMENT GAME OVER SCENE TO SWITCH TO)");
-                    timer.cancel();
                     // System.exit(0);
                 }
             }
