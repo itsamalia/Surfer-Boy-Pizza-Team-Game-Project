@@ -53,7 +53,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
     @FXML
     private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2,
-            blackFadeImg3, overallFade;
+            blackFadeImg3, overallFade, lineTop, lineLeft, lineRight;
 
     @FXML
     private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
@@ -243,6 +243,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         startTimerToRunOnce.schedule(startTaskCredits, 40260);
 
         randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -500, 800);
+        linesAnimation();
     }
 
     /**
@@ -375,6 +376,29 @@ public class MainController extends Controller implements EventHandler<ActionEve
         fadeInSoundAnimation = transition;
     }
 
+    public void linesAnimation()
+    {
+    	TranslateTransition ttLL = new TranslateTransition(Duration.millis(30000), lineLeft);
+    	TranslateTransition ttLR = new TranslateTransition(Duration.millis(30000), lineRight);
+    	TranslateTransition ttLT = new TranslateTransition(Duration.millis(30000), lineTop);
+    	ttLL.setToX(-40);
+    	ttLL.setToY(-45);
+    	ttLR.setToX(25);
+    	ttLR.setToY(-45);
+    	ttLT.setToX(0);
+    	ttLT.setToY(63);
+    	
+    	ttLL.setFromX(-700);
+    	ttLR.setFromX(700);
+    	ttLT.setFromX(-1000);
+
+    	arrayOfAnimations.add(ttLL);
+    	arrayOfAnimations.add(ttLR);
+    	arrayOfAnimations.add(ttLT);
+    	ttLL.play();
+    	ttLR.play();
+    	ttLT.play();
+    }
     /**
      * Randomized a Translation animation.
      * 

@@ -29,14 +29,14 @@
       </ImageView>
       <VBox fx:id="titleVBox" alignment="CENTER" layoutX="-58.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="916.0" scaleX="0.7" scaleY="0.7" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="88.0">
          <children>
-            <ImageView scaleX="7.3" translateY="60.0">
+            <ImageView fx:id="lineTop" scaleX="7.29" translateY="60.0">
                <image>
                   <Image url="@../images/SurferBoyLogoLine.png" />
                </image>
             </ImageView>
             <HBox fx:id="titleHBox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0">
                <children>
-                  <ImageView translateX="20.0">
+                  <ImageView translateX="23.0" translateY="1.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoS.png" />
                      </image>
@@ -71,12 +71,12 @@
                         <Image url="@../images/SurferBoyLogoDash.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="-15.0">
+                  <ImageView translateX="-15.0" translateY="1.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoB.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="-28.0">
+                  <ImageView translateX="-27.0" translateY="-2.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoO.png" />
                      </image>
@@ -90,7 +90,7 @@
             </HBox>
             <HBox fx:id="titleHBox2" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0" translateY="-115.0">
                <children>
-                  <ImageView scaleX="2.1" translateX="-40.0" translateY="-45.0">
+                  <ImageView fx:id="lineLeft" scaleX="2.1" translateX="-40.0" translateY="-45.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoLine.png" />
                      </image>
@@ -120,7 +120,7 @@
                         <Image url="@../images/SurferBoyLogoA.png" />
                      </image>
                   </ImageView>
-                  <ImageView scaleX="2.2" translateX="25.0" translateY="-45.0">
+                  <ImageView fx:id="lineRight" scaleX="2.2" translateX="25.0" translateY="-45.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoLine.png" />
                      </image>
