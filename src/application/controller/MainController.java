@@ -408,7 +408,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	
     	ttLB.setFromX(1000);
     	ttLR2.setFromY(1000);
-    	ttLL2.setFromY(1000);
+    	ttLL2.setFromY(-380);
 
     	arrayOfAnimations.add(ttLL);
     	arrayOfAnimations.add(ttLR);
