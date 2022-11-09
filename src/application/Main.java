@@ -1,5 +1,6 @@
 package application;
 
+import application.model.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Stage stage;
+    public static Player user = new Player(3);
 
     @Override
     public void start(Stage primaryStage) {

@@ -11,6 +11,7 @@ import java.util.TimerTask;
 import application.Main;
 import application.model.Ingredient;
 import application.model.Pizza;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -120,42 +121,42 @@ public class GameViewController extends Controller implements EventHandler<Actio
                 } else {
                     // TODO: Implement and switch to game over screen if timer reaches 0. Currently
                     // it just exits the program.
-                	
-                	/**
-                	 * redirect the player to the LoseView.fxml
-                	 */
-                	
-                	try {
-                		
-                			String newScene = "";
-                				
-                             newScene = "LoseView.fxml";
 
-                             // Connect to the FXML (contains our layout) and load it in.
-                             Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
+                    /**
+                     * redirect the player to the LoseView.fxml
+                     */
+                    Platform.runLater(() -> {
+                        try {
 
-                             // Put the layout onto the scene.
-                             Scene scene = new Scene(root);
+                            String newScene = "";
 
-                             // Set the scene on the stage that was created in Main.java.
-                             Main.stage.setScene(scene);
-                             Main.stage.show();
+                            newScene = "LoseView.fxml";
 
-                         }
-                	
-                	catch (Exception e) {
-                		
-                	}
-                	
+                            // Connect to the FXML (contains our layout) and load it in.
+                            Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
+
+                            // Put the layout onto the scene.
+                            Scene scene = new Scene(root);
+
+                            // Set the scene on the stage that was created in Main.java.
+                            Main.stage.setScene(scene);
+                            Main.stage.show();
+                            mediaPlayer.stop();
+                        }
+
+                        catch (Exception e) {
+
+                        }
+                    });
                     System.out.println("YOU LOSE!!! (IMPLEMENT GAME OVER SCENE TO SWITCH TO)");
                     timer.cancel();
-                    //System.exit(0);
+                    // System.exit(0);
                 }
             }
         };
 
 //        timer.schedule(task, 1000);
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        timer.scheduleAtFixedRate(task, 0, 10);
 
         // TODO: DELETE DEBUGGING PRINT STATEMENTS AFTER DONE.
 //        System.out.println(pizzaSauce.isOnPizza());
