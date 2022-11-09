@@ -245,7 +245,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         };
         startTimerToRunOnce.schedule(startTaskCredits, 40260);
 
-        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -800, 800, -500, 800);
+        randomizedTranslationAnimation(titleVBox, titleHBox1, titleHBox2, -600, 600, -400, 900);
         linesAnimation();
     }
 
@@ -402,7 +402,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	ttLL2.setToX(lineLeft2.getTranslateX());
     	ttLL2.setToY(lineLeft2.getTranslateY());
     	
-    	ttLL.setFromX(-700);
+    	ttLL.setFromX(900);
     	ttLR.setFromX(700);
     	ttLT.setFromX(-1000);
     	
