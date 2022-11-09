@@ -117,7 +117,12 @@ public class MainController extends Controller implements EventHandler<ActionEve
 //        AnchorPane.setTopAnchor(logoImg, 100.0);
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
-
+        try {
+			loadConfig();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         playMusic("StrangerThingsThemeSong");
         playFadeOutTransition(15, overallFade);
         playFadeOutSoundMessageTransition(5, soundMessageImgView);
@@ -139,12 +144,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         optionsButton.setVisible(false);
         exitButton.setVisible(false);
         volumeSlider.setStyle("-fx-base: #ba3702;");
-        try {
-			loadConfig();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
         volumeSliderStartDrag();
 
 
@@ -347,6 +347,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
+  //this method exists for asthetic purposes. it sets the fill gradient for the slider
     public void volumeSliderStartDrag()
     {
         volumeSlider.setStyle("-fx-base: #ba3702;");
@@ -381,18 +382,21 @@ public class MainController extends Controller implements EventHandler<ActionEve
             volumeSlider.setStyle(style2);
         });
     }
+    //this method exists for asthetic purposes, called when the user is finished dragging volume slider
     public void volumeSliderEndDrag()
     {
     	volumeSlider.setStyle("-fx-base: #ba3702;");
         Double newVal = volumeSlider.getValue();
 		//set the master volume variable
     }
+    //this method handles when the cancel options button is clicked. it loads the original values from the config file
     public void cancelButtonClicked() throws FileNotFoundException
     {
     	loadConfig();
     	toggleOptionsButtons();
     	playSound("buttonClick");
     }
+    //this method handles when the save options button is clicked. it writes to the option values to the config file
     public void saveButtonClicked() throws IOException
     {
     	FileWriter file = new FileWriter("src/application/config/config.txt");
@@ -405,7 +409,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
     	//save to a config.txt file
     	toggleOptionsButtons();
     }
-    
+    //this method will invert the visibility of the main buttons and option buttons
     public void toggleOptionsButtons()
     {
     	menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
@@ -422,6 +426,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
+    //this method is responsible for loading values from the config.txt file. it is first called on initialize
     public void loadConfig() throws FileNotFoundException
     {
     	File file = new File("src/application/config/config.txt");
