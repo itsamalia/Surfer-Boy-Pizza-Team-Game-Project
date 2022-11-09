@@ -12,21 +12,7 @@
 <AnchorPane fx:id="titlePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <MediaView fx:id="backgroundMedia" fitHeight="800.0" fitWidth="800.0" opacity="0.7" preserveRatio="false" />
-      <ImageView fx:id="blackFadeImg1" fitHeight="706.0" fitWidth="711.0" layoutX="47.0" layoutY="131.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/blackBox.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="blackFadeImg2" fitHeight="552.0" fitWidth="529.0" layoutX="-60.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
-         <image>
-            <Image url="@../images/blackBox.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="blackFadeImg3" fitHeight="552.0" fitWidth="529.0" layoutX="349.0" layoutY="-30.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleY="0.7">
-         <image>
-            <Image url="@../images/blackBox.png" />
-         </image>
-      </ImageView>
+      <Pane fx:id="menuBackPane" layoutX="79.0" layoutY="124.0" opacity="0.0" prefHeight="514.0" prefWidth="635.0" style="-fx-background-color: rgba(20, 0, 0, 0.66);" />
       <VBox fx:id="titleVBox" alignment="CENTER" layoutX="-58.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="916.0" scaleX="0.7" scaleY="0.7" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="88.0">
          <children>
             <ImageView fx:id="lineTop" scaleX="7.29" translateY="60.0">
@@ -36,32 +22,32 @@
             </ImageView>
             <HBox fx:id="titleHBox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="916.0">
                <children>
-                  <ImageView translateX="23.0" translateY="1.0">
+                  <ImageView translateX="32.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoS.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="15.0">
+                  <ImageView translateX="20.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoU.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="10.0">
+                  <ImageView translateX="16.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoR.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="5.0">
+                  <ImageView translateX="10.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoF.png" />
                      </image>
                   </ImageView>
-                  <ImageView>
+                  <ImageView translateX="7.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoE.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="-5.0">
+                  <ImageView translateX="-1.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoR.png" />
                      </image>
@@ -71,12 +57,12 @@
                         <Image url="@../images/SurferBoyLogoDash.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="-15.0" translateY="1.0">
+                  <ImageView translateX="-13.0" translateY="1.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoB.png" />
                      </image>
                   </ImageView>
-                  <ImageView translateX="-27.0" translateY="-2.0">
+                  <ImageView translateX="-25.0" translateY="-2.0">
                      <image>
                         <Image url="@../images/SurferBoyLogoO.png" />
                      </image>
@@ -144,12 +130,6 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fx:id="overallFade" fitHeight="1600.0" fitWidth="1600.0" layoutX="-400.0" layoutY="-400.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/blackBox.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
       <ImageView fx:id="cursorReferenceNormal" layoutX="-56.0" layoutY="580.0" visible="false">
          <image>
             <Image url="@../images/normalSelect.png" />
@@ -160,10 +140,31 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <ImageView fx:id="lineBottom" fitHeight="150.0" fitWidth="188.0" scaleX="4.1" scaleY="0.75" translateX="305.0" translateY="555.0">
+         <image>
+            <Image url="@../images/SurferBoyLogoLine.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lineRight2" fitHeight="150.0" fitWidth="188.0" rotate="90.0" scaleX="3.3" scaleY="0.7" translateX="626.0" translateY="307.0">
+         <image>
+            <Image url="@../images/SurferBoyLogoLine.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lineLeft2" fitHeight="150.0" fitWidth="188.0" rotate="90.0" scaleX="3.305" scaleY="0.75" translateX="-11.0" translateY="307.0">
+         <image>
+            <Image url="@../images/SurferBoyLogoLine.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="overallFade" fitHeight="1600.0" fitWidth="1600.0" layoutX="-400.0" layoutY="-400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blackBox.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="soundMessageImgView" fitHeight="88.0" fitWidth="440.0" layoutX="180.0" layoutY="350.0">
          <image>
             <Image url="@../images/soundMessage.png" />
          </image>
       </ImageView>
+      <Button fx:id="skipButton" layoutX="650.0" layoutY="741.0" mnemonicParsing="false" onAction="#skipButtonClicked" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Skip Intro" />
    </children>
 </AnchorPane>

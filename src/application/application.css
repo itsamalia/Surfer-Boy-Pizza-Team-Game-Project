@@ -31,13 +31,13 @@ Text {
     -fx-background-color: rgba(50,0,0,0);
     -fx-border-radius: 15px;
     -fx-border-width: 3px;
-    -fx-border-color: #ff3101;
+    -fx-border-color: #ba3702;
     -fx-font-size: 18px;
-    -fx-text-fill: #ff3101;
+    -fx-text-fill: #ba3702;
 }
 
 .button:hover {
-    -fx-background-color: #FF2C00;
+    -fx-background-color: #ba3702;
     -fx-border-color: black;
     -fx-text-fill: black;
     

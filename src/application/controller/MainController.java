@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
@@ -53,7 +54,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
     @FXML
     private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2,
-            blackFadeImg3, overallFade, lineTop, lineLeft, lineRight;
+            blackFadeImg3, overallFade, lineTop, lineLeft, lineRight, lineBottom, lineRight2, lineLeft2;
 
     @FXML
     private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton;
@@ -72,6 +73,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
     @FXML
     private HBox titleHBox1, titleHBox2;
+    
+    @FXML
+    private Pane menuBackPane;
 
     private Timer timer;
     private Timer startTimerToRunOnce;
@@ -115,9 +119,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         // playFadeTransition(15, optionsButton);
         // playFadeTransition(15, exitButton);
 
-        blackFadeImg1.setVisible(false);
-        blackFadeImg2.setVisible(false);
-        blackFadeImg3.setVisible(false);
+
         // blackFadeImg4.setVisible(false);
         /*
          * playFadeTransition(15, blackFadeImg2); playFadeTransition(15, blackFadeImg3);
@@ -187,6 +189,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
             public void run() {
                 // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
+                    playFadeInTransition(3, menuBackPane);
                     pizzaStartButton.setVisible(true);
                     // optionsButton.setVisible(true);
                     // exitButton.setVisible(true);
@@ -360,6 +363,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
         soundMessageImgView.setVisible(false);
         animateText(creditsLabel,
                 "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
+        playFadeInTransition(.001, menuBackPane);
     }
 
     /**
@@ -375,29 +379,49 @@ public class MainController extends Controller implements EventHandler<ActionEve
         transition.play();
         fadeInSoundAnimation = transition;
     }
-
+    //hardcoded animations for the lines
     public void linesAnimation()
     {
     	TranslateTransition ttLL = new TranslateTransition(Duration.millis(30000), lineLeft);
     	TranslateTransition ttLR = new TranslateTransition(Duration.millis(30000), lineRight);
     	TranslateTransition ttLT = new TranslateTransition(Duration.millis(30000), lineTop);
+    	TranslateTransition ttLL2 = new TranslateTransition(Duration.millis(30000), lineLeft2);
+    	TranslateTransition ttLR2 = new TranslateTransition(Duration.millis(30000), lineRight2);
+    	TranslateTransition ttLB = new TranslateTransition(Duration.millis(30000), lineBottom);
     	ttLL.setToX(-40);
     	ttLL.setToY(-45);
     	ttLR.setToX(25);
     	ttLR.setToY(-45);
     	ttLT.setToX(0);
-    	ttLT.setToY(63);
+    	ttLT.setToY(60);
+    	
+    	ttLB.setToX(lineBottom.getTranslateX());
+    	ttLB.setToY(lineBottom.getTranslateY());
+    	ttLR2.setToX(lineRight2.getTranslateX());
+    	ttLR2.setToY(lineRight2.getTranslateY());
+    	ttLL2.setToX(lineLeft2.getTranslateX());
+    	ttLL2.setToY(lineLeft2.getTranslateY());
     	
     	ttLL.setFromX(-700);
     	ttLR.setFromX(700);
     	ttLT.setFromX(-1000);
+    	
+    	ttLB.setFromX(1000);
+    	ttLR2.setFromY(1000);
+    	ttLL2.setFromY(1000);
 
     	arrayOfAnimations.add(ttLL);
     	arrayOfAnimations.add(ttLR);
     	arrayOfAnimations.add(ttLT);
+    	arrayOfAnimations.add(ttLL2);
+    	arrayOfAnimations.add(ttLR2);
+    	arrayOfAnimations.add(ttLB);
     	ttLL.play();
     	ttLR.play();
     	ttLT.play();
+    	ttLL2.play();
+    	ttLR2.play();
+    	ttLB.play();
     }
     /**
      * Randomized a Translation animation.
