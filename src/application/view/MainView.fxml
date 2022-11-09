@@ -12,7 +12,7 @@
 <AnchorPane fx:id="titlePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <MediaView fx:id="backgroundMedia" fitHeight="800.0" fitWidth="800.0" opacity="0.7" preserveRatio="false" />
-      <Pane fx:id="menuBackPane" layoutX="79.0" layoutY="124.0" opacity="0.0" prefHeight="514.0" prefWidth="635.0" style="-fx-background-color: rgba(20, 0, 0, 0.66);" />
+      <Pane fx:id="menuBackPane" layoutX="79.0" layoutY="124.0" opacity="0.0" prefHeight="514.0" prefWidth="635.0" style="-fx-background-color: rgba(20, 0, 0, 0.75);" />
       <VBox fx:id="titleVBox" alignment="CENTER" layoutX="-58.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="916.0" scaleX="0.7" scaleY="0.7" AnchorPane.bottomAnchor="423.0" AnchorPane.topAnchor="88.0">
          <children>
             <ImageView fx:id="lineTop" scaleX="7.29" translateY="60.0">
