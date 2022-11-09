@@ -156,7 +156,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
         };
 
 //        timer.schedule(task, 1000);
-        timer.scheduleAtFixedRate(task, 0, 10);
+        timer.scheduleAtFixedRate(task, 0, 1000);
 
         // TODO: DELETE DEBUGGING PRINT STATEMENTS AFTER DONE.
 //        System.out.println(pizzaSauce.isOnPizza());
