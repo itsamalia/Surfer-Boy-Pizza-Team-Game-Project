@@ -50,15 +50,15 @@ public class Pizza {
         for (int i = 0; i < tempNumIngredients/* randNumIngredients.nextInt(5) + 1 */; i++) {
             // TODO: DELETE DEBUGGING PRINT STATEMENT WHEN DONE.
             tempIngredientIndex = randIngredient.nextInt(5);
-            System.out.println("OUTSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
+//            System.out.println("OUTSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
 
             while (randomIngredients.contains(allIngredients.get(tempIngredientIndex))) {
                 tempIngredientIndex = randIngredient.nextInt(5);
-                System.out.println("INSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
+//                System.out.println("INSIDE LOOP-Random Ingredient Index: " + tempIngredientIndex);
             }
             randomIngredients.add(allIngredients.get(tempIngredientIndex));
-            System.out.println("Adding: " + allIngredients.get(tempIngredientIndex).name);
-            System.out.println("");
+//            System.out.println("Adding: " + allIngredients.get(tempIngredientIndex).name);
+//            System.out.println("");
         }
         this.setIngredients(randomIngredients);
     }

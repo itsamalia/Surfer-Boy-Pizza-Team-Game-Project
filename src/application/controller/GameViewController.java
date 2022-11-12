@@ -85,24 +85,15 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
         playMusic("VecnaClockSound");
 
+        Main.user.setNumPizzasMade(0);
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
+        this.setToppingLabels();
 
-        // Set the ingredient labels to be composed of what is in the random Array.
-        // Set counter variable to 2, that is first topping label Node in leftVbox.
-        this.ingredientLabels = new ArrayList<Label>();
-        // i is 2 because the first two nodes in the lefVbox are not ingredient nodes.
-        int i = 2;
-        List<Node> leftVboxLabels = (List<Node>) leftVbox.getChildren();
-        for (Ingredient ingredient : this.buildPizza.getIngredients()) {
-            Label label = (Label) leftVboxLabels.get(i);
-            label.setText(ingredient.getName());
-            this.ingredientLabels.add(label);
-            label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
-            label.setStyle("-fx-text-fill: #ff3000;");
-            i++;
-        }
-
+        /**
+         * Timer to run until the time runs out or the player finishes making the
+         * required number of pizzas.
+         */
         this.timer = new Timer();
         TimerTask task = new TimerTask() {
 
@@ -112,7 +103,8 @@ public class GameViewController extends Controller implements EventHandler<Actio
             @Override
             public void run() {
                 if (counter > 0) {
-                    System.out.println("counter: " + counter);
+                    // TODO: REMOVE DEBUGGING SYSOUT WHEN FINISHED.
+//                    System.out.println("counter: " + counter);
                     minutes = (int) counter / 60;
                     seconds = (int) counter % 60;
                     countdownText.setText(String.format("%d:%02d\n", minutes, seconds));
@@ -287,6 +279,11 @@ public class GameViewController extends Controller implements EventHandler<Actio
         if (event.getDragboard().hasImage()) {
             pizzaLabel.setText("Drag The Topping Onto the Pizza.");
         }
+        if (Main.user.isPlayerFinished()) {
+            this.timer.cancel();
+            this.loadScene("PizzaFinished.fxml");
+            playSound("surfsupmydude");
+        }
         event.consume();
     }
 
@@ -305,7 +302,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
                 setToppingInfo(sauceImage, sauceTarget, this.getLabel("Pizza Sauce"),
                         this.ingredientLabels.indexOf(this.getLabel("Pizza Sauce")));
                 playSound("sauceEffect");
-//                sauceTarget.setOpacity(0.5);
             } else if (event.getGestureSource() == topping1Image) {
                 setToppingInfo(topping1Image, topping1Target, this.getLabel("Ham"),
                         this.ingredientLabels.indexOf(this.getLabel("Ham")));
@@ -326,12 +322,66 @@ public class GameViewController extends Controller implements EventHandler<Actio
             pizzaLabel.setText("You Dropped The Topping Onto the Pizza!!!");
         }
 //        System.out.println("On Drag Dropped");
-        if (this.buildPizza.isFinished()) {
-            this.loadScene("PizzaFinished.fxml");
-            this.timer.cancel();
-            playSound("surfsupmydude");
+
+        /*
+         * Logic for checking if pizza is done being built and if Player has finished
+         * building all required pizzas. As well as creating new pizzas and resetting
+         * topping labels and images.
+         */
+        // TODO: DON'T THINK I NEED FIRST COMMENTED OUT IF IN HERE AS IT IS IN THE
+        // DRAGEXITED METHOD.
+        /*
+         * if (Main.user.isPlayerFinished()) { this.timer.cancel();
+         * this.loadScene("PizzaFinished.fxml"); playSound("surfsupmydude"); }
+         */ if (this.buildPizza.isFinished() && Main.user.isPlayerFinished() == false) {
+            Main.user.addPizzaMade();
+
+            // Remove Topping Labels Text.
+            for (Label topping : this.ingredientLabels) {
+                topping.setText("");
+                topping.setTextFill(Color.RED);
+            }
+            this.ingredientLabels.clear();
+
+            // Build new pizza with random toppings.
+            this.buildPizza = new Pizza();
+            this.buildPizza.setRandomIngredients();
+
+            // Rebuild Labels with new pizza's random toppings.
+            this.setToppingLabels();
+
+            // Reset the topping images to null.
+            // TODO: FIND A BETTER WAY TO DO THIS WITH OBSERVABLE LISTS AND ARRAYLISTS:
+            this.sauceTarget.setImage(null);
+            this.topping1Target.setImage(null);
+            this.topping2Target.setImage(null);
+            this.topping3Target.setImage(null);
+            this.topping4Target.setImage(null);
+        } else {
         }
         event.consume();
+    }
+
+    /**
+     * Sets the Labels of the random toppings to match their topping for use with
+     * the drag and drop functionality and determining whether a topping has been
+     * placed on the pizza already.
+     */
+    public void setToppingLabels() {
+        // Set the ingredient labels to be composed of what is in the random Array.
+        // Set counter variable to 2, that is first topping label Node in leftVbox.
+        this.ingredientLabels = new ArrayList<Label>();
+        // i==2 because the first two nodes in the lefVbox are not topping Label nodes.
+        int i = 2;
+        List<Node> leftVboxLabels = (List<Node>) leftVbox.getChildren();
+        for (Ingredient ingredient : this.buildPizza.getIngredients()) {
+            Label label = (Label) leftVboxLabels.get(i);
+            label.setText(ingredient.getName());
+            this.ingredientLabels.add(label);
+            label.setId(this.buildPizza.getIngredients().get(i - 2).getName());
+            label.setStyle("-fx-text-fill: #ff3000;");
+            i++;
+        }
     }
 
     /**
@@ -351,6 +401,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
+//            Main.user.addPizzaMade();
             ingredientLabel.setText("ADDED!!!");
             ingredientLabel.setTextFill(Color.NAVAJOWHITE);
         } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {

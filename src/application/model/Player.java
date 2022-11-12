@@ -21,8 +21,9 @@ public class Player {
      * 
      */
     public Player(int numPizzasToMake) {
-        this.numPizzasMade = 0;
         this.numPizzasToMake = numPizzasToMake;
+        this.numPizzasMade = 0;
+        this.numPizzasRemaining = numPizzasToMake;
         this.isDone = false;
     }
 
