@@ -80,17 +80,16 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
     @FXML
     private HBox titleHBox1, titleHBox2;
-    
+
     @FXML
     private Pane menuBackPane, optionsButtonsPane;
 
     @FXML
     private Slider volumeSlider;
-    
+
     @FXML
     private RadioButton easyRB, mediumRB, hardRB;
-    
-    
+
     private Timer timer;
     private Timer startTimerToRunOnce;
     double TitleStretch;
@@ -123,11 +122,11 @@ public class MainController extends Controller implements EventHandler<ActionEve
 //        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
 //        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         try {
-			loadConfig();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+            loadConfig();
+        } catch (FileNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         playMusic("StrangerThingsThemeSong");
         playFadeOutTransition(15, overallFade);
         playFadeOutSoundMessageTransition(5, soundMessageImgView);
@@ -138,7 +137,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
         // playFadeTransition(15, pizzaStartButton);
         // playFadeTransition(15, optionsButton);
         // playFadeTransition(15, exitButton);
-
 
         // blackFadeImg4.setVisible(false);
         /*
@@ -154,7 +152,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
         radioButtonArray.add(easyRB);
         radioButtonArray.add(mediumRB);
         radioButtonArray.add(hardRB);
-
 
         // animateTitle(titleVBox, titleHBox1, titleHBox2);
 
@@ -190,7 +187,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
                  * titleVBox.setOpacity(1); }
                  */
 
-            	}
+            }
 
         };
         timer.scheduleAtFixedRate(task, 0, 30);
@@ -300,8 +297,8 @@ public class MainController extends Controller implements EventHandler<ActionEve
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 // TODO: Update this to a new options view once implemented.
                 playSound("buttonclick");
-                //newScene = null;
-                //System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
+                // newScene = null;
+                // System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
                 toggleOptionsButtons();
             } else if (buttonPushed.getId().equals("exitButton")) {
                 playSound("buttonclick");
@@ -354,124 +351,113 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
-  //this method exists for asthetic purposes. it sets the fill gradient for the slider
-    public void volumeSliderStartDrag()
-    {
+
+    // this method exists for asthetic purposes. it sets the fill gradient for the
+    // slider
+    public void volumeSliderStartDrag() {
         volumeSlider.setStyle("-fx-base: #ba3702;");
         Double newVal = volumeSlider.getValue();
         double percentage = 100.0 * newVal.doubleValue() / volumeSlider.getMax();
         String style = String.format(
-                // in the String format, 
+                // in the String format,
                 // %1$.1f%% gives the first format argument ("1$"),
                 // i.e. percentage, formatted to 1 decimal place (".1f").
                 // Note literal % signs must be escaped ("%%")
-                "-track-color: linear-gradient(to right, " +
-                        "#ba3702 0%%, " +
-                        "#ba3702 %1$.1f%%, " +
-                        "-default-track-color %1$.1f%%, " +
-                        "-default-track-color 100%%); " + "\n-fx-base: #ba3702;", 
+                "-track-color: linear-gradient(to right, " + "#ba3702 0%%, " + "#ba3702 %1$.1f%%, "
+                        + "-default-track-color %1$.1f%%, " + "-default-track-color 100%%); " + "\n-fx-base: #ba3702;",
                 percentage);
         volumeSlider.setStyle(style);
-        
-			volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
-            double percentage2 = 100.0 * newValue .doubleValue() / volumeSlider.getMax();
+
+        volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            double percentage2 = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
             String style2 = String.format(
-                    // in the String format, 
+                    // in the String format,
                     // %1$.1f%% gives the first format argument ("1$"),
                     // i.e. percentage, formatted to 1 decimal place (".1f").
                     // Note literal % signs must be escaped ("%%")
-                    "-track-color: linear-gradient(to right, " +
-                            "#ba3702 0%%, " +
-                            "#ba3702 %1$.1f%%, " +
-                            "-default-track-color %1$.1f%%, " +
-                            "-default-track-color 100%%); " + "\n-fx-base: #ba3702;", 
+                    "-track-color: linear-gradient(to right, " + "#ba3702 0%%, " + "#ba3702 %1$.1f%%, "
+                            + "-default-track-color %1$.1f%%, " + "-default-track-color 100%%); "
+                            + "\n-fx-base: #ba3702;",
                     percentage2);
             volumeSlider.setStyle(style2);
         });
     }
-    //this method exists for asthetic purposes, called when the user is finished dragging volume slider
-    public void volumeSliderEndDrag()
-    {
-    	volumeSlider.setStyle("-fx-base: #ba3702;");
-        Double newVal = volumeSlider.getValue();
-		//set the master volume variable
-    }
-    //this method handles when the cancel options button is clicked. it loads the original values from the config file
-    public void cancelButtonClicked() throws FileNotFoundException
-    {
-    	loadConfig();
-    	toggleOptionsButtons();
-    	playSound("buttonClick");
-    }
-    //this method handles when the save options button is clicked. it writes to the option values to the config file
-    public void saveButtonClicked() throws IOException
-    {
-    	FileWriter file = new FileWriter("src/application/config/config.txt");
-    	PrintWriter write = new PrintWriter(file);
-    	write.write("");
-    	String volumeString ="" + ((int)volumeSlider.getValue());
-    	String difficultyString = "";
-    	if(easyRB.isSelected())
-    	{
-        	difficultyString = "easy";
-        	// TODO: set a global difficulty variable
-    	}
-    	else if(mediumRB.isSelected())
-    	{
-        	difficultyString = "medium";
-        	// TODO: set a global difficulty variable
-    	}
-    	else if(hardRB.isSelected())
-    	{
-        	difficultyString = "hard";
-        	// TODO: set a global difficulty variable
-    	}
 
-    	write.write(volumeString +"\n" + difficultyString);
-    	write.close();
-    	playSound("buttonClick");
-    	//save to a config.txt file
-    	toggleOptionsButtons();
+    // this method exists for asthetic purposes, called when the user is finished
+    // dragging volume slider
+    public void volumeSliderEndDrag() {
+        volumeSlider.setStyle("-fx-base: #ba3702;");
+        Double newVal = volumeSlider.getValue();
+        // set the master volume variable
     }
-    //this method will invert the visibility of the main buttons and option buttons
-    public void toggleOptionsButtons()
-    {
-    	menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
-		optionsButtonsPane.setVisible(!optionsButtonsPane.isVisible());
+
+    // this method handles when the cancel options button is clicked. it loads the
+    // original values from the config file
+    public void cancelButtonClicked() throws FileNotFoundException {
+        loadConfig();
+        toggleOptionsButtons();
+        playSound("buttonClick");
     }
-    //this method will be called when any radio button is clicked
-    public void radioButtonClicked(ActionEvent event)
-    {
-    	//unckeck radio buttons that weren't clicked
-    	RadioButton radioButtonPushed = (RadioButton) event.getSource();
-    	if (radioButtonPushed.getId().equals("easyRB"))
-    	{
-    		if(radioButtonPushed.isSelected())
-    		{
-    		 mediumRB.setSelected(false);
-    		 hardRB.setSelected(false);
-    		}
-    		else radioButtonPushed.setSelected(true);
-    	}
-    	if (radioButtonPushed.getId().equals("mediumRB"))
-    	{
-    		if(radioButtonPushed.isSelected())
-    		{
-    			easyRB.setSelected(false);
-    			hardRB.setSelected(false); 
-    		}
-		else radioButtonPushed.setSelected(true);
-    	}
-    	if (radioButtonPushed.getId().equals("hardRB"))
-    	{
-    		if(radioButtonPushed.isSelected())
-    		{
-   		 mediumRB.setSelected(false);
-   		 easyRB.setSelected(false); 
-    		}
-    		else radioButtonPushed.setSelected(true);
-    	}
+
+    // this method handles when the save options button is clicked. it writes to the
+    // option values to the config file
+    public void saveButtonClicked() throws IOException {
+        FileWriter file = new FileWriter("src/application/config/config.txt");
+        PrintWriter write = new PrintWriter(file);
+        write.write("");
+        String volumeString = "" + ((int) volumeSlider.getValue());
+        String difficultyString = "";
+        if (easyRB.isSelected()) {
+            difficultyString = "easy";
+            // TODO: set a global difficulty variable
+        } else if (mediumRB.isSelected()) {
+            difficultyString = "medium";
+            // TODO: set a global difficulty variable
+        } else if (hardRB.isSelected()) {
+            difficultyString = "hard";
+            // TODO: set a global difficulty variable
+        }
+
+        write.write(volumeString + "\n" + difficultyString);
+        write.close();
+        playSound("buttonClick");
+        // save to a config.txt file
+        toggleOptionsButtons();
     }
+
+    // this method will invert the visibility of the main buttons and option buttons
+    public void toggleOptionsButtons() {
+        menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
+        optionsButtonsPane.setVisible(!optionsButtonsPane.isVisible());
+    }
+
+    // this method will be called when any radio button is clicked
+    public void radioButtonClicked(ActionEvent event) {
+        // unckeck radio buttons that weren't clicked
+        RadioButton radioButtonPushed = (RadioButton) event.getSource();
+        if (radioButtonPushed.getId().equals("easyRB")) {
+            if (radioButtonPushed.isSelected()) {
+                mediumRB.setSelected(false);
+                hardRB.setSelected(false);
+            } else
+                radioButtonPushed.setSelected(true);
+        }
+        if (radioButtonPushed.getId().equals("mediumRB")) {
+            if (radioButtonPushed.isSelected()) {
+                easyRB.setSelected(false);
+                hardRB.setSelected(false);
+            } else
+                radioButtonPushed.setSelected(true);
+        }
+        if (radioButtonPushed.getId().equals("hardRB")) {
+            if (radioButtonPushed.isSelected()) {
+                mediumRB.setSelected(false);
+                easyRB.setSelected(false);
+            } else
+                radioButtonPushed.setSelected(true);
+        }
+    }
+
     /**
      * Event Listener for when a button is exited.
      */
@@ -482,37 +468,36 @@ public class MainController extends Controller implements EventHandler<ActionEve
             e.printStackTrace();
         }
     }
-    //this method is responsible for loading values from the config.txt file. it is first called on initialize
-    public void loadConfig() throws FileNotFoundException
-    {
-    	File file = new File("src/application/config/config.txt");
-    	Scanner scan = new Scanner(file);
-    	String storedVolume = scan.nextLine();
-    	String storedDifficulty = scan.nextLine();
-    	if(storedDifficulty.contentEquals("easy"))
-    	{
-        	// TODO: set a global difficulty variable
-   		 	mediumRB.setSelected(false);
-   		 	hardRB.setSelected(false); 
-   		 	easyRB.setSelected(true); 
-    	}
-    	if(storedDifficulty.contentEquals("medium"))
-    	{
-        	// TODO: set a global difficulty variable
-      		 easyRB.setSelected(false);
-       		 hardRB.setSelected(false);
-    		 mediumRB.setSelected(true); 
-    	}
-    	if(storedDifficulty.contentEquals("hard"))
-    	{
-        	// TODO: set a global difficulty variable
-      		 mediumRB.setSelected(false);
-       		 easyRB.setSelected(false); 
-    		 hardRB.setSelected(true); 
-    	}
-    	volumeSlider.setValue(Integer.parseInt(storedVolume));   
-    	scan.close();
+
+    // this method is responsible for loading values from the config.txt file. it is
+    // first called on initialize
+    public void loadConfig() throws FileNotFoundException {
+        File file = new File("src/application/config/config.txt");
+        Scanner scan = new Scanner(file);
+        String storedVolume = scan.nextLine();
+        String storedDifficulty = scan.nextLine();
+        if (storedDifficulty.contentEquals("easy")) {
+            // TODO: set a global difficulty variable
+            mediumRB.setSelected(false);
+            hardRB.setSelected(false);
+            easyRB.setSelected(true);
+        }
+        if (storedDifficulty.contentEquals("medium")) {
+            // TODO: set a global difficulty variable
+            easyRB.setSelected(false);
+            hardRB.setSelected(false);
+            mediumRB.setSelected(true);
+        }
+        if (storedDifficulty.contentEquals("hard")) {
+            // TODO: set a global difficulty variable
+            mediumRB.setSelected(false);
+            easyRB.setSelected(false);
+            hardRB.setSelected(true);
+        }
+        volumeSlider.setValue(Integer.parseInt(storedVolume));
+        scan.close();
     }
+
     /**
      * Handles the skip introduction button to skip the introduction animation.
      */
@@ -556,50 +541,51 @@ public class MainController extends Controller implements EventHandler<ActionEve
         transition.play();
         fadeInSoundAnimation = transition;
     }
-    //hardcoded animations for the lines
-    public void linesAnimation()
-    {
-    	TranslateTransition ttLL = new TranslateTransition(Duration.millis(30000), lineLeft);
-    	TranslateTransition ttLR = new TranslateTransition(Duration.millis(30000), lineRight);
-    	TranslateTransition ttLT = new TranslateTransition(Duration.millis(30000), lineTop);
-    	TranslateTransition ttLL2 = new TranslateTransition(Duration.millis(30000), lineLeft2);
-    	TranslateTransition ttLR2 = new TranslateTransition(Duration.millis(30000), lineRight2);
-    	TranslateTransition ttLB = new TranslateTransition(Duration.millis(30000), lineBottom);
-    	ttLL.setToX(-40);
-    	ttLL.setToY(-45);
-    	ttLR.setToX(25);
-    	ttLR.setToY(-45);
-    	ttLT.setToX(0);
-    	ttLT.setToY(60);
-    	
-    	ttLB.setToX(lineBottom.getTranslateX());
-    	ttLB.setToY(lineBottom.getTranslateY());
-    	ttLR2.setToX(lineRight2.getTranslateX());
-    	ttLR2.setToY(lineRight2.getTranslateY());
-    	ttLL2.setToX(lineLeft2.getTranslateX());
-    	ttLL2.setToY(lineLeft2.getTranslateY());
-    	
-    	ttLL.setFromX(900);
-    	ttLR.setFromX(700);
-    	ttLT.setFromX(-1000);
-    	
-    	ttLB.setFromX(1000);
-    	ttLR2.setFromY(1000);
-    	ttLL2.setFromY(-380);
 
-    	arrayOfAnimations.add(ttLL);
-    	arrayOfAnimations.add(ttLR);
-    	arrayOfAnimations.add(ttLT);
-    	arrayOfAnimations.add(ttLL2);
-    	arrayOfAnimations.add(ttLR2);
-    	arrayOfAnimations.add(ttLB);
-    	ttLL.play();
-    	ttLR.play();
-    	ttLT.play();
-    	ttLL2.play();
-    	ttLR2.play();
-    	ttLB.play();
+    // hardcoded animations for the lines
+    public void linesAnimation() {
+        TranslateTransition ttLL = new TranslateTransition(Duration.millis(30000), lineLeft);
+        TranslateTransition ttLR = new TranslateTransition(Duration.millis(30000), lineRight);
+        TranslateTransition ttLT = new TranslateTransition(Duration.millis(30000), lineTop);
+        TranslateTransition ttLL2 = new TranslateTransition(Duration.millis(30000), lineLeft2);
+        TranslateTransition ttLR2 = new TranslateTransition(Duration.millis(30000), lineRight2);
+        TranslateTransition ttLB = new TranslateTransition(Duration.millis(30000), lineBottom);
+        ttLL.setToX(-40);
+        ttLL.setToY(-45);
+        ttLR.setToX(25);
+        ttLR.setToY(-45);
+        ttLT.setToX(0);
+        ttLT.setToY(60);
+
+        ttLB.setToX(lineBottom.getTranslateX());
+        ttLB.setToY(lineBottom.getTranslateY());
+        ttLR2.setToX(lineRight2.getTranslateX());
+        ttLR2.setToY(lineRight2.getTranslateY());
+        ttLL2.setToX(lineLeft2.getTranslateX());
+        ttLL2.setToY(lineLeft2.getTranslateY());
+
+        ttLL.setFromX(900);
+        ttLR.setFromX(700);
+        ttLT.setFromX(-1000);
+
+        ttLB.setFromX(1000);
+        ttLR2.setFromY(1000);
+        ttLL2.setFromY(-380);
+
+        arrayOfAnimations.add(ttLL);
+        arrayOfAnimations.add(ttLR);
+        arrayOfAnimations.add(ttLT);
+        arrayOfAnimations.add(ttLL2);
+        arrayOfAnimations.add(ttLR2);
+        arrayOfAnimations.add(ttLB);
+        ttLL.play();
+        ttLR.play();
+        ttLT.play();
+        ttLL2.play();
+        ttLR2.play();
+        ttLB.play();
     }
+
     /**
      * Randomized a Translation animation.
      * 

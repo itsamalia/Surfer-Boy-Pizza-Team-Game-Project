@@ -49,7 +49,8 @@ import javafx.scene.text.Text;
  */
 public class GameViewController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
-    final static double COUNTDOWN_MINUTES = 5;
+    final static int COUNTDOWN_MINUTES = 5;
+    final static int TIME_REDUCTION_FOR_ERROR = 30;
 
     private Pizza buildPizza;
     private ArrayList<Label> ingredientLabels;
@@ -75,6 +76,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
     private Text countdownText;
 
     private Timer timer;
+    private int counter;
 
     /**
      * Everything to be initialized upon the initial loading of the Scene (i.e,
@@ -94,10 +96,10 @@ public class GameViewController extends Controller implements EventHandler<Actio
          * Timer to run until the time runs out or the player finishes making the
          * required number of pizzas.
          */
+        this.counter = (60 * COUNTDOWN_MINUTES);
         this.timer = new Timer();
-        TimerTask task = new TimerTask() {
+        this.timer.scheduleAtFixedRate(new TimerTask() {
 
-            double counter = 60 * COUNTDOWN_MINUTES;
             int minutes, seconds;
 
             @Override
@@ -105,18 +107,18 @@ public class GameViewController extends Controller implements EventHandler<Actio
                 if (counter > 0) {
                     // TODO: REMOVE DEBUGGING SYSOUT WHEN FINISHED.
 //                    System.out.println("counter: " + counter);
-                    minutes = (int) counter / 60;
-                    seconds = (int) counter % 60;
+                    minutes = counter / 60;
+                    seconds = counter % 60;
                     countdownText.setText(String.format("%d:%02d\n", minutes, seconds));
 //                    System.out.printf("%d:%02d\n", minutes, seconds);
                     counter--;
+
                 } else {
                     /**
                      * Switch to game over screen if timer reaches 0. Redirect the player to the
                      * LoseView.fxml
                      */
                     cancel();
-                    timer.cancel();
                     Platform.runLater(() -> {
                         loadScene("LoseView.fxml");
 
@@ -125,10 +127,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
                     // System.exit(0);
                 }
             }
-        };
-
-//        timer.schedule(task, 1000);
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        }, 0, 1000);
 
         // TODO: DELETE DEBUGGING PRINT STATEMENTS AFTER DONE.
 //        System.out.println(pizzaSauce.isOnPizza());
@@ -387,7 +386,9 @@ public class GameViewController extends Controller implements EventHandler<Actio
     /**
      * Sets the topping information for a topping and updates the label for that
      * topping to determine if it has already been added or not so that it will not
-     * update the target image if the topping has already been added.
+     * update the target image if the topping has already been added. Also subtracts
+     * time from the timer counter variable if the topping is already on the pizza
+     * or doesn't need to be on the pizza.
      * 
      * @param sourceImage     The image being dragged (ImageView)
      * @param targetImage     The image to be dropped into (ImageView)
@@ -398,15 +399,16 @@ public class GameViewController extends Controller implements EventHandler<Actio
     private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
         if (i < 0) {
             System.out.println("This ingredient doesn't need to be added to the current pizza.");
+            this.counter -= TIME_REDUCTION_FOR_ERROR;
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
-//            Main.user.addPizzaMade();
             ingredientLabel.setText("ADDED!!!");
             ingredientLabel.setTextFill(Color.NAVAJOWHITE);
         } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {
             System.out.println("target already on pizza.");
             ingredientLabel.setText("Already Added");
+            this.counter -= TIME_REDUCTION_FOR_ERROR;
         }
     }
 
@@ -420,7 +422,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
         Label returnLabel = null;
         for (Label label : this.ingredientLabels) {
 
-//            System.out.println(node.getId());
             if (label.getId() != null && label.getId().equalsIgnoreCase(topping)) {
                 returnLabel = label;
             }

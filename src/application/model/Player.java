@@ -15,7 +15,6 @@ public class Player {
     private int numPizzasToMake;
     private int numPizzasMade;
     private int numPizzasRemaining;
-    private boolean isDone;
 
     /**
      * 
@@ -24,7 +23,6 @@ public class Player {
         this.numPizzasToMake = numPizzasToMake;
         this.numPizzasMade = 0;
         this.numPizzasRemaining = numPizzasToMake;
-        this.isDone = false;
     }
 
     /**
