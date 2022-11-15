@@ -408,13 +408,13 @@ public class MainController extends Controller implements EventHandler<ActionEve
         String volumeString = "" + ((int) volumeSlider.getValue());
         String difficultyString = "";
         if (easyRB.isSelected()) {
-            difficultyString = "easy";
+            difficultyString = "Demogorgon";
             // TODO: set a global difficulty variable
         } else if (mediumRB.isSelected()) {
-            difficultyString = "medium";
+            difficultyString = "Mind Flayer";
             // TODO: set a global difficulty variable
         } else if (hardRB.isSelected()) {
-            difficultyString = "hard";
+            difficultyString = "Vecna";
             // TODO: set a global difficulty variable
         }
 
@@ -476,19 +476,19 @@ public class MainController extends Controller implements EventHandler<ActionEve
         Scanner scan = new Scanner(file);
         String storedVolume = scan.nextLine();
         String storedDifficulty = scan.nextLine();
-        if (storedDifficulty.contentEquals("easy")) {
+        if (storedDifficulty.contentEquals("Demogorgon")) {
             // TODO: set a global difficulty variable
             mediumRB.setSelected(false);
             hardRB.setSelected(false);
             easyRB.setSelected(true);
         }
-        if (storedDifficulty.contentEquals("medium")) {
+        if (storedDifficulty.contentEquals("Mind Flayer")) {
             // TODO: set a global difficulty variable
             easyRB.setSelected(false);
             hardRB.setSelected(false);
             mediumRB.setSelected(true);
         }
-        if (storedDifficulty.contentEquals("hard")) {
+        if (storedDifficulty.contentEquals("Vecna")) {
             // TODO: set a global difficulty variable
             mediumRB.setSelected(false);
             easyRB.setSelected(false);

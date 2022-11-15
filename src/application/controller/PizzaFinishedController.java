@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -39,9 +40,9 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
     @FXML
     private ImageView winArgyle, winPizza, winPizza1;
-
-//    @FXML
-//    private MediaPlayer mediaSFX;
+    
+    @FXML
+    private MediaView winMedia;
 
     /**
      * Determines which button was pressed (if we end up having multiple buttons),
@@ -61,6 +62,8 @@ public class PizzaFinishedController extends Controller implements EventHandler<
      */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		playVideo("WinVideo", -1, winMedia);
     
 		RotateTransition rotate=new RotateTransition(Duration.seconds(3), winPizza);
 		rotate.setFromAngle(0);
@@ -90,12 +93,15 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("homeButton")) {
+            	mediaBackground.stop();
                 newScene = "MainView.fxml";
                 playSound("buttonclick");
             } else if (buttonPushed.getId().equals("morePizzaButton")) {
+            	mediaBackground.stop();
                 newScene = "GameView.fxml";
                 playSound("buttonclick");
             } else if (buttonPushed.getId().equals("exitButton")) {
+            	mediaBackground.stop();
                 playSound("buttonclick");
                 newScene = null;
             } else if (buttonPushed.getId().equals(null)) {
@@ -104,9 +110,11 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
             if (newScene == null) {
 //                Platform.exit();
+            	 //mediaBackground.stop();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
             } else {
+            	 //mediaBackground.stop();
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 

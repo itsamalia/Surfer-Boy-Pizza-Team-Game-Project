@@ -175,9 +175,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button fx:id="cancelButton" layoutX="17.0" layoutY="293.0" mnemonicParsing="false" onAction="#cancelButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Cancel" />
-            <Button fx:id="saveButton" layoutX="475.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="Save &amp; Close" />
-            <Label layoutX="265.0" layoutY="118.0" text="Difficulty" textFill="#ba3702" translateX="-1.0" translateY="1.0">
+            <Button fx:id="cancelButton" layoutX="17.0" layoutY="293.0" mnemonicParsing="false" onAction="#cancelButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="CANCEL" />
+            <Button fx:id="saveButton" layoutX="415.0" layoutY="293.0" mnemonicParsing="false" onAction="#saveButtonClicked" onMouseDragEntered="#handleButtonEntered" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="SAVE &amp; CLOSE" />
+            <Label layoutX="265.0" layoutY="118.0" text="Difficulty:" textFill="#ba3702" translateX="-1.0" translateY="1.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -192,17 +192,17 @@
             <Line endX="250.0" layoutX="312.0" layoutY="187.0" startX="-250.0" stroke="#ba3702" translateY="72.0" />
             <Line endX="-110.0" endY="110.0" layoutX="170.0" layoutY="149.0" startX="-110.0" startY="-12.0" stroke="#ba3702" translateX="1.0" />
             <Line endX="-110.0" endY="109.0" layoutX="671.0" layoutY="149.0" startX="-110.0" startY="-12.0" stroke="#ba3702" translateX="1.0" />
-            <RadioButton fx:id="easyRB" layoutX="100.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Easy" textFill="#ba3702" translateY="-1.0">
+            <RadioButton fx:id="easyRB" layoutX="100.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Demogorgon" textFill="#ba3702" translateY="-1.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="mediumRB" layoutX="270.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Medium" textFill="#ba3702" translateY="-1.0">
+            <RadioButton fx:id="mediumRB" layoutX="270.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Mind Flayer" textFill="#ba3702" translateY="-1.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="hardRB" layoutX="444.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Hard" textFill="#ba3702" translateY="-1.0">
+            <RadioButton fx:id="hardRB" layoutX="444.0" layoutY="188.0" mnemonicParsing="false" onAction="#radioButtonClicked" text="Vecna" textFill="#ba3702" translateY="-1.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

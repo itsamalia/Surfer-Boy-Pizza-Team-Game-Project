@@ -47,7 +47,7 @@ public class LoseViewController extends Controller implements Initializable {
     Image vecnaPixelImage;
 
     @FXML
-    MediaView mediaLoading;
+    MediaView mediaLoading, loseMedia;
 
     // private static final String MEDIA_URL=
     // "src/application/videos/ArgleMission.mp4";
@@ -57,6 +57,7 @@ public class LoseViewController extends Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 //        playVideo("mainMenuBackground, -1, backgroundMedia);
 
+    	playVideo("LoseVideo", -1, loseMedia);
         playVideo("ClipChampRedBar", 1, mediaLoading);
         
 //		RotateTransition rotate=new RotateTransition(Duration.seconds(4), vecnaImage);

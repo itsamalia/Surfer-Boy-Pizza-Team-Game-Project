@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
@@ -12,7 +13,7 @@
 
 <Pane fx:id="pizzaFinishedPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.PizzaFinishedController">
    <children>
-      <ImageView fx:id="argyleWin" fitHeight="420.0" fitWidth="746.0" layoutX="32.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="argyleWin" fitHeight="420.0" fitWidth="746.0" layoutX="32.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/WIN.png" />
          </image>
@@ -39,21 +40,22 @@
       </Text>
       <Button fx:id="morePizzaButton" layoutX="141.0" layoutY="723.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="TIME TO MAKE ANOTHER ROUND OF JUICY PIES!">
       </Button>
-      <ImageView fx:id="winPizza1" fitHeight="150.0" fitWidth="200.0" layoutX="67.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/icon.png" />
-         </image>
+      <MediaView fx:id="winMedia" fitHeight="420.0" fitWidth="746.0" layoutX="32.0" layoutY="288.0" />
+      <ImageView fx:id="winPizza" fitHeight="150.0" fitWidth="100.0" layoutX="668.0" layoutY="616.0" pickOnBounds="true" preserveRatio="true">
          <effect>
             <Glow level="0.75" />
          </effect>
+         <image>
+            <Image url="@../images/icon.png" />
+         </image>
       </ImageView>
-      <ImageView fx:id="winPizza" fitHeight="150.0" fitWidth="200.0" layoutX="578.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <Glow level="0.75" />
-         </effect>
+      <ImageView fx:id="winPizza1" fitHeight="150.0" fitWidth="100.0" layoutX="32.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icon.png" />
          </image>
+         <effect>
+            <Glow level="0.75" />
+         </effect>
       </ImageView>
    </children>
 </Pane>
