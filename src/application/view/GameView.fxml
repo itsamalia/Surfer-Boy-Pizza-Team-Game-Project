@@ -89,7 +89,7 @@
    <right>
       <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" style="-fx-background-color: #2f5753;" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ImageView fx:id="vecnaClockImage" fitHeight="356.0" fitWidth="265.0" pickOnBounds="true">
+            <ImageView fx:id="vecnaClockImage" fitHeight="300.0" fitWidth="260.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/trimmedclockgif.gif" />
                </image>

@@ -148,3 +148,11 @@ Text {
     -fx-background-color: #ba3702;
     -fx-background-insets: 1;
 }
+
+#gameOverLabel{
+	-fx-font-family: "Benguiat";
+    -fx-font-size: 40px;
+    -fx-text-fill: white;
+}
+
+

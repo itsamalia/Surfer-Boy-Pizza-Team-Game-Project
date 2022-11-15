@@ -49,6 +49,9 @@ import javafx.scene.text.Text;
  */
 public class GameViewController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
+//	final static int COUNTDOWN_MINUTES = 0;
+	//testing purposes (will change)
+	
     final static int COUNTDOWN_MINUTES = 5;
     final static int TIME_REDUCTION_FOR_ERROR = 30;
 
@@ -67,6 +70,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @FXML
     private ImageView doughImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
             topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
+    
 
     @FXML
     private Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,

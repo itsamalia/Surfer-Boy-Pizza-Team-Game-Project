@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -9,13 +11,23 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoseViewController">
    <children>
-      <MediaView fx:id="mediaLoading" fitHeight="300.0" fitWidth="600.0" layoutX="100.0" layoutY="506.0" />
-      <ImageView fx:id="vecnaImageView" fitHeight="515.0" fitWidth="521.0" layoutX="143.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+      <MediaView fx:id="mediaLoading" fitHeight="200.0" fitWidth="500.0" layoutX="123.0" layoutY="490.0" />
+      <Button fx:id="tryAgainButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="TRY AGAIN?" textFill="RED" />
+      <Label fx:id="tipOneLabel" layoutX="122.0" layoutY="490.0" prefHeight="18.0" prefWidth="648.0" text="TIP: VECNA HAS A WEAKNESS FOR ROBUST AND TASTY PINEAPPLE PIES! " textFill="RED" wrapText="true" />
+      <Label fx:id="gameOverLabel" layoutX="216.0" layoutY="34.0" text="G A M E  O V E R" textFill="WHITE">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitButton" layoutX="700.0" layoutY="39.0" mnemonicParsing="false" onAction="#handle" text="EXIT" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="vecnaImage" fitHeight="344.0" fitWidth="471.0" layoutX="117.0" layoutY="109.0">
          <image>
             <Image url="@../images/vecnaPixelImage.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="tryAgainButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="TRY AGAIN?" textFill="RED" />
-      <Label fx:id="tipOneLabel" layoutX="172.0" layoutY="599.0" text="TIP: VECNA HAS A WEAKNESS FOR ROBUST AND TASTY PINEAPPLE PIES! " textFill="RED" wrapText="true" />
    </children>
 </AnchorPane>

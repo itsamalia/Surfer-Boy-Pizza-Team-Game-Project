@@ -1,19 +1,24 @@
 package application.controller;
 
 import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.animation.RotateTransition;
 //import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Allows user to either go back home, or go back to the GameView.fxml and make
@@ -21,9 +26,10 @@ import javafx.stage.Stage;
  * 
  * @author Amalia Talijancic
  * @author Danny Ghrist (kda458)
+ * @author Sarah Halverson (llv920)
  *
  */
-public class PizzaFinishedController extends Controller implements EventHandler<ActionEvent> {
+public class PizzaFinishedController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
     private Button homeButton, morePizzaButton, exitButton;
@@ -32,7 +38,7 @@ public class PizzaFinishedController extends Controller implements EventHandler<
     private Text hoorayPizzaFinishedText;
 
     @FXML
-    private ImageView winArgyle;
+    private ImageView winArgyle, winPizza, winPizza1;
 
 //    @FXML
 //    private MediaPlayer mediaSFX;
@@ -48,6 +54,31 @@ public class PizzaFinishedController extends Controller implements EventHandler<
      * 
      * @param event Listens for button push event (ActionEvent)
      */
+    
+    
+    /**
+     * Rotates pizzas on the screen.
+     */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+    
+		RotateTransition rotate=new RotateTransition(Duration.seconds(3), winPizza);
+		rotate.setFromAngle(0);
+		rotate.setToAngle(360);
+		rotate.setAutoReverse(true);
+		rotate.setCycleCount(RotateTransition.INDEFINITE);
+		rotate.play();
+		
+		
+		RotateTransition rotate1=new RotateTransition(Duration.seconds(3), winPizza1);
+		rotate1.setFromAngle(0);
+		rotate1.setToAngle(360);
+		rotate1.setAutoReverse(true);
+		rotate1.setCycleCount(RotateTransition.INDEFINITE);
+		rotate1.play();
+	}
+    
+    
     @Override
     public void handle(ActionEvent event) {
         try {
@@ -121,4 +152,5 @@ public class PizzaFinishedController extends Controller implements EventHandler<
             e.printStackTrace();
         }
     }
+
 }
