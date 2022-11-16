@@ -108,7 +108,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="centerStackPane">
+            <StackPane fx:id="centerStackPane" style="-fx-background-image: url('file:C:/Users/carlo/git/Delivery-Service/src/application/images/pizzaBack.png');">
                <children>
                   <ImageView fx:id="doughImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
                      <image>
