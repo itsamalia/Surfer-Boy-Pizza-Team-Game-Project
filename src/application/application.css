@@ -42,6 +42,35 @@ Text {
     -fx-text-fill: black;
     
 }
+
+.label {
+    -fx-font-family: "Benguiat";
+}
+
+.slider {
+
+    -default-track-color: black;
+    -track-color: black;
+    
+}
+.slider .thumb {
+    -fx-background-color: #ba3702;
+}
+
+.slider .track {
+    -fx-background-color: #ba3702,
+    linear-gradient(to bottom, #ba3702, -fx-text-box-border),
+    -track-color;
+          
+}
+.radio-button:selected .radio .dot {
+    -fx-background-color: black;
+    -fx-background-insets: 0;
+}
+.radio-button .radio {
+    -fx-background-color: #ba3702;
+    -fx-background-insets: 1;
+}
 /* End General CSS for entire application */
 
 
@@ -61,12 +90,7 @@ Text {
 
 
 /* Begin MissionView.fxml specific CSS styling. */
-#gameStartButton{
-
-}
-
 #contextLabel{
-    -fx-font-family: "Benguiat";
     -fx-font-size: 14px;
     -fx-text-fill: red;
 }
@@ -75,13 +99,11 @@ Text {
 
 /* Begin LoadingView.fxml specific CSS styling */
 #tipOneLabel{
-	-fx-font-family: "Benguiat";
     -fx-font-size: 14px;
     -fx-text-fill: red;
 }
 
 #tipTwoLabel{
-	-fx-font-family: "Benguiat";
     -fx-font-size: 14px;
     -fx-text-fill: red;
 }
@@ -103,7 +125,6 @@ Text {
 }
 
 #pizzaLabel {
-    -fx-font-family: "Benguiat";
     -fx-font-size: 24px;
     -fx-text-fill: #000000;
 }
@@ -122,37 +143,13 @@ Text {
 #pizzaFinishedPane .button {
 
 }
-
+/* End PizzaFinished.fxml specific CSS styling. */
 	
-.slider {
 
-    -default-track-color: black;
-    -track-color: black;
-    
-}
-.slider .thumb {
-	-fx-background-color: #ba3702;
-}
-
-.slider .track {
-    -fx-background-color: #ba3702,
-    linear-gradient(to bottom, #ba3702, -fx-text-box-border),
-    -track-color;
-          
-}
-.radio-button:selected .radio .dot {
-    -fx-background-color: black;
-    -fx-background-insets: 0;
-}
-.radio-button .radio {
-    -fx-background-color: #ba3702;
-    -fx-background-insets: 1;
-}
-
+/* Begin LoseView.fxml specific CSS styling. */
 #gameOverLabel{
-	-fx-font-family: "Benguiat";
     -fx-font-size: 40px;
     -fx-text-fill: white;
 }
-
+/* End LoseView.fxml specific CSS styling. */
 
