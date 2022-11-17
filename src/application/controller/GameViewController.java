@@ -50,8 +50,8 @@ import javafx.scene.text.Text;
 public class GameViewController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
 //	final static int COUNTDOWN_MINUTES = 0;
-	//testing purposes (will change)
-	
+    // testing purposes (will change)
+
     final static int COUNTDOWN_MINUTES = 5;
     final static int TIME_REDUCTION_FOR_ERROR = 30;
 
@@ -70,7 +70,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @FXML
     private ImageView doughImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
             topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
-    
 
     @FXML
     private Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
@@ -407,11 +406,11 @@ public class GameViewController extends Controller implements EventHandler<Actio
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
-            ingredientLabel.setText("ADDED!!!");
+            ingredientLabel.setText("ADDED!!");
             ingredientLabel.setTextFill(Color.NAVAJOWHITE);
         } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {
             System.out.println("target already on pizza.");
-            ingredientLabel.setText("Already Added");
+            ingredientLabel.setText("NO MORE!");
             this.counter -= TIME_REDUCTION_FOR_ERROR;
         }
     }

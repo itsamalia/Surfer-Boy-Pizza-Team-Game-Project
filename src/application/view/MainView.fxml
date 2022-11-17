@@ -136,10 +136,7 @@
             <Image url="@../images/normalSelect.png" />
          </image>
       </ImageView>
-      <Label fx:id="creditsLabel" layoutX="47.0" layoutY="680.0" prefHeight="25.0" prefWidth="786.0" textAlignment="CENTER" textFill="#ff3101" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="-33.0">
-         <font>
-            <Font size="16.0" />
-         </font>
+      <Label fx:id="creditsLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="0.0" layoutY="680.0" prefHeight="50.0" prefWidth="800.0" textFill="#ff3101" wrapText="true">
       </Label>
       <ImageView fx:id="lineBottom" fitHeight="150.0" fitWidth="188.0" scaleX="4.1" scaleY="0.75" translateX="305.0" translateY="555.0">
          <image>

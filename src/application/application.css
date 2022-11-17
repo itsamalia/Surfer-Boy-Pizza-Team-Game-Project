@@ -86,6 +86,11 @@ Text {
 #titleText {
     -fx-font-size: 36px;
 }
+
+#creditsLabel {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 14px;
+}
 /* End MainView.fxml specific CSS styling. */
 
 
