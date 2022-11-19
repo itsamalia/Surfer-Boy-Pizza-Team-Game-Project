@@ -6,11 +6,13 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,24 +62,17 @@ public class LoseViewController extends Controller implements Initializable {
     	playVideo("LoseVideo", -1, loseMedia);
         playVideo("ClipChampRedBar", 1, mediaLoading);
         
-//		RotateTransition rotate=new RotateTransition(Duration.seconds(4), vecnaImage);
-//		rotate.setFromAngle(0);
-//		rotate.setToAngle(360);
-//		rotate.setAutoReverse(true);
-//		rotate.setCycleCount(RotateTransition.INDEFINITE);
-//		rotate.play();
         
-		RotateTransition rotate1=new RotateTransition(Duration.seconds(4), gameOverLabel);
+		RotateTransition rotate1=new RotateTransition(Duration.seconds(3), gameOverLabel);
 		rotate1.setFromAngle(0);
 		rotate1.setToAngle(360);
 		rotate1.setAutoReverse(true);
 		rotate1.setCycleCount(RotateTransition.INDEFINITE);
 		rotate1.play();
         
-		
-       
-        
 
+      		
+		
 //		System.out.println(location.toString());
 //		System.out.println(this.getClass().getResource(MEDIA_URL).toExternalForm());
 //		
@@ -87,13 +82,15 @@ public class LoseViewController extends Controller implements Initializable {
     }
 
     public void handle(ActionEvent event) {
-      
+          	
     	try {
+    		
 
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 
             String newScene = "";
+        
 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("tryAgainButton")) {
@@ -105,8 +102,8 @@ public class LoseViewController extends Controller implements Initializable {
             }
 
             if (newScene == null) {
-                Stage stage = (Stage) exitButton.getScene().getWindow();
-                stage.close();
+                Stage stage1 = (Stage) exitButton.getScene().getWindow();
+                stage1.close();
             } else {
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
@@ -136,7 +133,7 @@ public class LoseViewController extends Controller implements Initializable {
     public void handleButtonEntered() {
         playSound("buttonhover");
         try {
-            setCursor("normalClick");
+          setCursor("normalClick");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

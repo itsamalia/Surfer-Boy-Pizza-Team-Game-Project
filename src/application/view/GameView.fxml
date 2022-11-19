@@ -97,6 +97,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text fx:id="countdownText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
+            <Text fx:id="numPizzasText" layoutX="140.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children></VBox>
    </right>
    <center>

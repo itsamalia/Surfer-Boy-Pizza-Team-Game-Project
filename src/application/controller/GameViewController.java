@@ -11,6 +11,8 @@ import java.util.TimerTask;
 import application.Main;
 import application.model.Ingredient;
 import application.model.Pizza;
+import application.model.Player;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -32,6 +35,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  * TODO: UPDATE THIS WHEN MORE FUNCTIONALITY IS ADDED OR REMOVED.
@@ -69,14 +73,14 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
     @FXML
     private ImageView doughImage, vecnaClockImage, sauceImage, topping1Image, topping2Image, topping3Image,
-            topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target;
+            topping4Image, sauceTarget, topping1Target, topping2Target, topping3Target, topping4Target ; 
 
     @FXML
     private Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
             ingredient6Label;
 
     @FXML
-    private Text countdownText;
+    private Text countdownText, numPizzaText;
 
     private Timer timer;
     private int counter;
@@ -88,13 +92,29 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    	
+//        Image image = new Image("application.images/trimmedclockgif.gif");
+//        vecnaClockImage.setImage(image);
+		
+ 
+     	
         playMusic("VecnaClockSound");
 
         Main.user.setNumPizzasMade(0);
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
         this.setToppingLabels();
+        
+        //TESTING 
+        System.out.println("Made: " + Main.user.getNumPizzasMade()); 
+        System.out.println("Need: " + Main.user.getNumPizzasRemaining()); 
+        
+        
+//       String pizzasMade = Integer.toString(Main.user.getNumPizzasMade() - 1);
+//       String pizzasNeed = Integer.toString(Main.user.getNumPizzasRemaining() - 1);
+//       numPizzaText.setText(pizzasMade + " / " + pizzasNeed) ; 
 
+    	
         /**
          * Timer to run until the time runs out or the player finishes making the
          * required number of pizzas.
@@ -299,6 +319,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
      */
     @FXML
     public void handleDroppedImage(DragEvent event) {
+    	
         if (event.getDragboard().hasImage()) {
             if (event.getGestureSource() == sauceImage) {
                 setToppingInfo(sauceImage, sauceTarget, this.getLabel("Pizza Sauce"),
@@ -338,6 +359,9 @@ public class GameViewController extends Controller implements EventHandler<Actio
          */ if (this.buildPizza.isFinished() && Main.user.isPlayerFinished() == false) {
             Main.user.addPizzaMade();
 
+            System.out.println("Made: " + Main.user.getNumPizzasMade()); 
+            System.out.println("Need: " + Main.user.getNumPizzasRemaining()); 
+
             // Remove Topping Labels Text.
             for (Label topping : this.ingredientLabels) {
                 topping.setText("");
@@ -346,9 +370,11 @@ public class GameViewController extends Controller implements EventHandler<Actio
             this.ingredientLabels.clear();
 
             // Build new pizza with random toppings.
+            
             this.buildPizza = new Pizza();
             this.buildPizza.setRandomIngredients();
-
+            
+          
             // Rebuild Labels with new pizza's random toppings.
             this.setToppingLabels();
 
@@ -402,6 +428,16 @@ public class GameViewController extends Controller implements EventHandler<Actio
     private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
         if (i < 0) {
             System.out.println("This ingredient doesn't need to be added to the current pizza.");
+            
+            
+//            //***TESTING***
+//            //vecnas face shows up if you make an error
+//            
+//    		Image image = new Image("file/application/images/vecnaPixelImage.jpg");
+//    		vecnaClockImage.setImage(image);
+//            
+
+         
             this.counter -= TIME_REDUCTION_FOR_ERROR;
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
@@ -410,6 +446,14 @@ public class GameViewController extends Controller implements EventHandler<Actio
             ingredientLabel.setTextFill(Color.NAVAJOWHITE);
         } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {
             System.out.println("target already on pizza.");
+//            
+//            //***TESTING***
+//            //vecnas face shows up if you make an error
+//    		Image image = new Image("file:application/images/vecnaPixelImage.jpg");
+//    		vecnaClockImage.setImage(image);
+//            
+            
+            
             ingredientLabel.setText("NO MORE!");
             this.counter -= TIME_REDUCTION_FOR_ERROR;
         }
@@ -445,7 +489,17 @@ public class GameViewController extends Controller implements EventHandler<Actio
             // Put the layout onto the scene.
             Scene scene = new Scene(root);
             // Set the scene on the stage that was created in Main.java.
+ 
+
             Main.stage.setScene(scene);
+           
+        	//closes progam automatically after the red bar fills (12 secs) in LoseViewScreen
+            if(sceneName.equals("LoseView.fxml")) {
+            	PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            	delay.setOnFinished( event -> Main.stage.close() );
+            	delay.play();
+            }
+            
             Main.stage.show();
             try {
                 setCursor("normalSelect");
