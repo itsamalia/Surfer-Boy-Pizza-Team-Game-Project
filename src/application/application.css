@@ -48,9 +48,11 @@ Text {
 }
 
 .slider {
-
-    -default-track-color: black;
-    -track-color: black;
+    /* THESE ARE BOTH UNKOWN PROPERTIES */
+    /*
+     * -default-track-color: black;
+     * -track-color: black;
+     */
     
 }
 .slider .thumb {
@@ -125,8 +127,12 @@ Text {
     -fx-background-color: darkred;
 } */
 
-#rightVbox, #leftVbox, #centerStackPane {
+#rightVbox, #leftVbox {
     -fx-background-color: black;
+}
+
+#centerGridPane {
+    -fx-background-image: url("../application/images/pizzaBack.png");
 }
 
 #pizzaLabel {

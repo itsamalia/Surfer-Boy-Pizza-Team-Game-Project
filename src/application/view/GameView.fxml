@@ -87,7 +87,7 @@
          </children></VBox>
    </left>
    <right>
-      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" style="-fx-background-color: #2f5753;" BorderPane.alignment="TOP_CENTER">
+      <VBox fx:id="rightVbox" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <ImageView fx:id="vecnaClockImage" fitHeight="300.0" fitWidth="260.0" pickOnBounds="true">
                <image>
@@ -101,7 +101,7 @@
          </children></VBox>
    </right>
    <center>
-      <GridPane fx:id="centerGridPane" gridLinesVisible="true" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
+      <GridPane fx:id="centerGridPane" gridLinesVisible="true" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -109,7 +109,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="centerStackPane" style="-fx-background-image: url('file:C:/Users/carlo/git/Delivery-Service/src/application/images/pizzaBack.png');">
+            <StackPane fx:id="centerStackPane" >
                <children>
                   <ImageView fx:id="doughImage" onDragDropped="#handleDroppedImage" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" onDragOver="#handleDragOver" opacity="0.9" pickOnBounds="true" StackPane.alignment="CENTER">
                      <image>
