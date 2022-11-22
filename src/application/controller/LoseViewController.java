@@ -5,14 +5,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
-import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,11 +25,12 @@ import javafx.util.Duration;
  * Shows the user a fake loading animation screen with some tips for the game to
  * add to mimic loading screens found in games.
  * 
- * EDIT: Moving the above to this new view: the LoseViewController and LoseView.fxml so 
- * as not to overcrowd the start to the game. 
+ * EDIT: Moving the above to this new view: the LoseViewController and
+ * LoseView.fxml so as not to overcrowd the start to the game.
  * 
  * @author Amalia Talijancic
  * @author Sarah Halverson(llv920)
+ * @author Danny Ghrist (kda458)
  *
  */
 public class LoseViewController extends Controller implements Initializable {
@@ -54,25 +53,26 @@ public class LoseViewController extends Controller implements Initializable {
     // private static final String MEDIA_URL=
     // "src/application/videos/ArgleMission.mp4";
 
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        playVideo("mainMenuBackground, -1, backgroundMedia);
 
-    	playVideo("LoseVideo", -1, loseMedia);
+        playVideo("LoseVideo", -1, loseMedia);
         playVideo("ClipChampRedBar", 1, mediaLoading);
-        
-        
-		RotateTransition rotate1=new RotateTransition(Duration.seconds(3), gameOverLabel);
-		rotate1.setFromAngle(0);
-		rotate1.setToAngle(360);
-		rotate1.setAutoReverse(true);
-		rotate1.setCycleCount(RotateTransition.INDEFINITE);
-		rotate1.play();
-        
 
-      		
-		
+        RotateTransition rotate1 = new RotateTransition(Duration.seconds(3), gameOverLabel);
+        rotate1.setFromAngle(0);
+        rotate1.setToAngle(360);
+        rotate1.setAutoReverse(true);
+        rotate1.setCycleCount(RotateTransition.INDEFINITE);
+        rotate1.play();
+
+        // Closes program automatically after the red bar fills (12 secs) in
+        // LoseViewScreen
+        PauseTransition delay = new PauseTransition(Duration.seconds(12));
+        delay.setOnFinished(event -> Main.stage.close());
+        delay.play();
+
 //		System.out.println(location.toString());
 //		System.out.println(this.getClass().getResource(MEDIA_URL).toExternalForm());
 //		
@@ -82,15 +82,13 @@ public class LoseViewController extends Controller implements Initializable {
     }
 
     public void handle(ActionEvent event) {
-          	
-    	try {
-    		
+
+        try {
 
             // Determine which button was pressed.
             Button buttonPushed = (Button) event.getSource();
 
             String newScene = "";
-        
 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("tryAgainButton")) {
@@ -102,8 +100,8 @@ public class LoseViewController extends Controller implements Initializable {
             }
 
             if (newScene == null) {
-                Stage stage1 = (Stage) exitButton.getScene().getWindow();
-                stage1.close();
+                Stage stage = (Stage) exitButton.getScene().getWindow();
+                stage.close();
             } else {
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
@@ -127,13 +125,14 @@ public class LoseViewController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
     /**
      * Event listener to play a sound effect for when a user hovers over a button.
      */
     public void handleButtonEntered() {
         playSound("buttonhover");
         try {
-          setCursor("normalClick");
+            setCursor("normalClick");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

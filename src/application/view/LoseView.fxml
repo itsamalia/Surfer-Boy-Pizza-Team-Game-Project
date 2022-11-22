@@ -13,7 +13,7 @@
    <children>
       <MediaView fx:id="mediaLoading" fitHeight="300.0" fitWidth="600.0" layoutX="110.0" layoutY="474.0" />
       <MediaView fx:id="loseMedia" fitHeight="420.0" fitWidth="746.0" layoutX="32.0" layoutY="126.0" />
-      <Button fx:id="tryAgainButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" text="TRY AGAIN?" textFill="RED" />
+      <Button fx:id="tryAgainButton" layoutX="623.0" layoutY="729.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="TRY AGAIN?" textFill="RED" />
       <Label fx:id="tipOneLabel" layoutX="79.0" layoutY="566.0" prefHeight="20.0" prefWidth="642.0" text="TIP: VECNA HAS A WEAKNESS FOR ROBUST AND TASTY PINEAPPLE PIES..." textAlignment="CENTER" textFill="RED" wrapText="true" />
       <Label fx:id="gameOverLabel" layoutX="216.0" layoutY="34.0" text="G A M E  O V E R" textFill="WHITE">
          <effect>
@@ -23,7 +23,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="exitButton" layoutX="700.0" layoutY="39.0" mnemonicParsing="false" onAction="#handle" text="EXIT" />
+      <Button fx:id="exitButton" layoutX="700.0" layoutY="39.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleButtonEntered" onMouseExited="#handleButtonExit" text="EXIT" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="vecnaImage" fitHeight="344.0" fitWidth="471.0" layoutX="117.0" layoutY="109.0" visible="false">
          <image>
