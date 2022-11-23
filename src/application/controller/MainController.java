@@ -418,6 +418,10 @@ public class MainController extends Controller implements EventHandler<ActionEve
             // TODO: set a global difficulty variable
         }
 
+        // Set the difficulty in the Player class to set up time limits and number of
+        // pizzas to make.
+        Main.user.setDifficulty(difficultyString);
+
         write.write(volumeString + "\n" + difficultyString);
         write.close();
         playSound("buttonClick");
@@ -494,6 +498,11 @@ public class MainController extends Controller implements EventHandler<ActionEve
             easyRB.setSelected(false);
             hardRB.setSelected(true);
         }
+
+        // Set the difficulty in the Player class to set up time limits and number of
+        // pizzas to make.
+        Main.user.setDifficulty(storedDifficulty);
+
         volumeSlider.setValue(Integer.parseInt(storedVolume));
         scan.close();
     }

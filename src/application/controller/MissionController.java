@@ -45,7 +45,7 @@ public class MissionController extends Controller implements EventHandler<Action
     public void initialize(URL location, ResourceBundle resources) {
         playVideo("missionBackground", -1, media);
         animateText(missionLabel, "YOUR MISSION:  Deliver (" + Main.user.getNumPizzasToMake() + ") pizzas in ("
-                + Main.user.COUNTDOWN_MINUTES + ") minutes.");
+                + Main.user.getCountdownMinutes() + ") minutes.");
     }
 
     /**

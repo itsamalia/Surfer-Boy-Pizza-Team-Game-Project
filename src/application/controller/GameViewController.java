@@ -103,7 +103,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
          * Timer to run until the time runs out or the player finishes making the
          * required number of pizzas.
          */
-        this.counter = (60 * Main.user.COUNTDOWN_MINUTES);
+        this.counter = (60 * Main.user.getCountdownMinutes());
         this.timer = new Timer();
         this.timer.scheduleAtFixedRate(new TimerTask() {
 
@@ -404,7 +404,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
 //    		vecnaClockImage.setImage(image);
 //            
 
-            this.counter -= Main.user.TIME_REDUCTION_FOR_ERROR;
+            this.counter -= Main.user.getErrorReductionSecs();
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
@@ -420,7 +420,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
 //            
 
             ingredientLabel.setText("NO MORE!");
-            this.counter -= Main.user.TIME_REDUCTION_FOR_ERROR;
+            this.counter -= Main.user.getErrorReductionSecs();
         }
     }
 

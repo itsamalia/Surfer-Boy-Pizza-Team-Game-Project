@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Stage stage;
-    public static Player user = new Player(3);
+    public static Player user = new Player();
 
     @Override
     public void start(Stage primaryStage) {
