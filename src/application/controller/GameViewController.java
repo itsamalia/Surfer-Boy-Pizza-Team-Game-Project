@@ -49,10 +49,6 @@ import javafx.scene.text.Text;
  */
 public class GameViewController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
-    // testing purposes (NEED TO MOVE TO PLAYER CLASS)
-    final static int COUNTDOWN_MINUTES = 5;
-    final static int TIME_REDUCTION_FOR_ERROR = 30;
-
     private Pizza buildPizza;
     private ArrayList<Label> ingredientLabels;
 
@@ -71,10 +67,10 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
     @FXML
     private Label pizzaLabel, ingredient1Label, ingredient2Label, ingredient3Label, ingredient4Label, ingredient5Label,
-            ingredient6Label;
+            ingredient6Label, numPizzasLabel;
 
     @FXML
-    private Text countdownText, numPizzaText;
+    private Text countdownText;
 
     private Timer timer;
     private int counter;
@@ -100,15 +96,14 @@ public class GameViewController extends Controller implements EventHandler<Actio
         System.out.println("Made: " + Main.user.getNumPizzasMade());
         System.out.println("Need: " + Main.user.getNumPizzasRemaining());
 
-//       String pizzasMade = Integer.toString(Main.user.getNumPizzasMade() - 1);
-//       String pizzasNeed = Integer.toString(Main.user.getNumPizzasRemaining() - 1);
-//       numPizzaText.setText(pizzasMade + " / " + pizzasNeed) ; 
+        numPizzasLabel.setText(String.valueOf(Main.user.getNumPizzasMade()) + " / "
+                + String.valueOf(Main.user.getNumPizzasToMake()) + " pizzas");
 
         /**
          * Timer to run until the time runs out or the player finishes making the
          * required number of pizzas.
          */
-        this.counter = (60 * COUNTDOWN_MINUTES);
+        this.counter = (60 * Main.user.COUNTDOWN_MINUTES);
         this.timer = new Timer();
         this.timer.scheduleAtFixedRate(new TimerTask() {
 
@@ -333,7 +328,9 @@ public class GameViewController extends Controller implements EventHandler<Actio
             System.out.println("Made: " + Main.user.getNumPizzasMade());
             System.out.println("Need: " + Main.user.getNumPizzasRemaining());
 
-            // TODO: Update the Text of the numPizzaText with pizzas made/need to make.
+            // Update the Text of the numPizzaText with pizzas made/need to make.
+            numPizzasLabel.setText(String.valueOf(Main.user.getNumPizzasMade()) + " / "
+                    + String.valueOf(Main.user.getNumPizzasToMake()) + " pizzas");
 
             // Remove Topping Labels Text.
             for (Label topping : this.ingredientLabels) {
@@ -407,7 +404,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
 //    		vecnaClockImage.setImage(image);
 //            
 
-            this.counter -= TIME_REDUCTION_FOR_ERROR;
+            this.counter -= Main.user.TIME_REDUCTION_FOR_ERROR;
         } else if (!this.buildPizza.getIngredients().get(i).isOnPizza() /* !this.pizzaSauce.isOnPizza() */) {
             targetImage.setImage(sourceImage.getImage());
             this.buildPizza.getIngredients().get(i).setOnPizza(true);
@@ -423,7 +420,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
 //            
 
             ingredientLabel.setText("NO MORE!");
-            this.counter -= TIME_REDUCTION_FOR_ERROR;
+            this.counter -= Main.user.TIME_REDUCTION_FOR_ERROR;
         }
     }
 

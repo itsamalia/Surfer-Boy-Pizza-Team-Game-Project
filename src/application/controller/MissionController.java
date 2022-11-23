@@ -16,6 +16,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.MediaView;
 
+/**
+ * Controls the Mission.fxml view and displays a video with some tutorial
+ * instructions before main game begins.
+ * 
+ * CS3443-004 - Fall 2022
+ *
+ * @author Amalia Talijancic
+ * @author Danny Ghrist (kda458)
+ *
+ */
 public class MissionController extends Controller implements EventHandler<ActionEvent>, Initializable {
 
     @FXML
@@ -34,7 +44,8 @@ public class MissionController extends Controller implements EventHandler<Action
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playVideo("missionBackground", -1, media);
-        animateText(missionLabel, "YOUR MISSION: Deliver (X) amount of pizzas in (X) amount of time.");
+        animateText(missionLabel, "YOUR MISSION:  Deliver (" + Main.user.getNumPizzasToMake() + ") pizzas in ("
+                + Main.user.COUNTDOWN_MINUTES + ") minutes.");
     }
 
     /**

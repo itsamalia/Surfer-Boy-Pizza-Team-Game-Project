@@ -11,6 +11,10 @@ package application.model;
  */
 public class Player {
 
+    // TEMPORARY TIME VARIABLES BEFORE DIFFICULTY IMPLEMENTED.
+    public final int COUNTDOWN_MINUTES = 5;
+    public final int TIME_REDUCTION_FOR_ERROR = 30;
+
     private String name;
     private int numPizzasToMake;
     private int numPizzasMade;

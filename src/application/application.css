@@ -143,6 +143,11 @@ Text {
 #ingredientLabel, #ingredient1Label, #ingredient2Label, #ingredient3Label, #ingredient4Label, #ingredient5Label, #ingredient6Label {
     -fx-text-fill: #ff3000;
 }
+
+#numPizzasLabel{
+    -fx-font-size: 14px;
+    -fx-text-fill: red;
+}
 /* End GameView.fxml specific CSS styling. */
 
 
