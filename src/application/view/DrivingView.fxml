@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DrivingController">
+   <children>
+      <ImageView fx:id="roadImage" fitHeight="800.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/road.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pizzaTruck" fitHeight="132.0" fitWidth="192.0" layoutX="7.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/pixel-pizza-truck.png" />
+         </image></ImageView>
+      <Button fx:id="nextSceneButton" layoutX="689.0" layoutY="14.0" mnemonicParsing="false" onAction="#handle" prefHeight="0.0" prefWidth="97.0" text="-&gt;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
