@@ -275,7 +275,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
         if (Main.user.isPlayerFinished()) {
             this.timer.cancel();
             this.loadScene("DrivingView.fxml");
-            playSound("surfsupmydude");
         }
         event.consume();
     }
