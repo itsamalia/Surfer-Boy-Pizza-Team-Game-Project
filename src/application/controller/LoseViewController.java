@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
-import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +57,7 @@ public class LoseViewController extends Controller implements Initializable {
 //        playVideo("mainMenuBackground, -1, backgroundMedia);
 
         playVideo("LoseVideo", -1, loseMedia);
-      //  playVideo("ClipChampRedBar", 1, mediaLoading);
+        // playVideo("ClipChampRedBar", 1, mediaLoading);
 
         RotateTransition rotate1 = new RotateTransition(Duration.seconds(3), gameOverLabel);
         rotate1.setFromAngle(0);

@@ -34,7 +34,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * TODO: UPDATE THIS WHEN MORE FUNCTIONALITY IS ADDED OR REMOVED.
  *
  * Controller for the GameView FXML. Allows a user to drag and drop toppings
  * from the bottom menu onto the pizza image in the center of the BorderPane.
@@ -115,8 +114,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
                     minutes = counter / 60;
                     seconds = counter % 60;
                     countdownText.setText(String.format("%d:%02d\n", minutes, seconds));
-                    // TODO: REMOVE DEBUGGING SYSOUT WHEN FINISHED.
-//                    System.out.printf("%d:%02d\n", minutes, seconds);
                     counter--;
 
                 } else {
@@ -139,8 +136,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
     @Override
     public void handle(ActionEvent event) {
-        // TODO Auto-generated method stub
-
     }
 
     /**
@@ -180,8 +175,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
          */
 
         // Drag was detected, start drag-and-drop gesture
-        // TODO: DELETE DEBUGGING PRINT STATEMENT WHEN COMPLETE.
-//        System.out.println("onDragDetected");
 
         // Create Dragboard and ClipboardContent Objects for use when dragging.
         Dragboard db = null;
@@ -246,11 +239,8 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @FXML
     public void handleDragEntered(DragEvent event) {
         // The drag-and-drop gesture entered the target
-//        System.out.println("onDragEntered");
         // Show to the user that it is an actual gesture target
         if (event.getDragboard().hasImage()) {
-            // TODO: DELETE DEBUGGING PRINT STATEMENT BEFORE FINISHING
-//            System.out.println("Has Image and not target Image");
             pizzaLabel.setText("Now Drop The Topping On the Pizza.");
         }
         event.consume();

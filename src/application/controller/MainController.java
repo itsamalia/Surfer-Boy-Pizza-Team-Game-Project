@@ -113,18 +113,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // AnchorPane.setBottomAnchor(pizzaTruck, 50.0);
-        // AnchorPane.setBottomAnchor(pixelArgyle, 25.0);
-        // AnchorPane.setBottomAnchor(backgroundMedia, 0.0);
-
-        // TODO: DELETE THIS TEST CODE BEFORE FINALIZING
-//        AnchorPane.setTopAnchor(logoImg, 100.0);
-//        AnchorPane.setLeftAnchor(logoImg, 800 - logoImg.getFitWidth());
-//        AnchorPane.setRightAnchor(logoImg, 800 - logoImg.getFitWidth());  
         try {
             loadConfig();
         } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         playMusic("StrangerThingsThemeSong");
@@ -197,11 +188,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 try {
                     setCursor("normalSelect");
                 } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -213,7 +202,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
                     playFadeInTransition(3, menuBackPane);
                     pizzaStartButton.setVisible(true);
@@ -234,7 +222,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
                     optionsButton.setVisible(true);
                     playFadeInTransition(.5, optionsButton);
@@ -247,7 +234,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
                     exitButton.setVisible(true);
                     playFadeInTransition(.5, exitButton);
@@ -261,7 +247,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 if (!areButtonsTransitioned) {
                     animateText(creditsLabel,
                             "Made Possible By: Danny Ghrist, Caleb Pierce, Sarah Halverson, Amalia Talijancic, & Carlos Martinez");
@@ -295,7 +280,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
                 newScene = "Mission.fxml";
                 playSound("youaresodead");
             } else if (buttonPushed.getId().equals("optionsButton")) {
-                // TODO: Update this to a new options view once implemented.
                 playSound("buttonclick");
                 // newScene = null;
                 // System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
@@ -347,7 +331,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
         try {
             setCursor("normalClick");
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -409,13 +392,10 @@ public class MainController extends Controller implements EventHandler<ActionEve
         String difficultyString = "";
         if (easyRB.isSelected()) {
             difficultyString = "Demogorgon";
-            // TODO: set a global difficulty variable
         } else if (mediumRB.isSelected()) {
             difficultyString = "Mind Flayer";
-            // TODO: set a global difficulty variable
         } else if (hardRB.isSelected()) {
             difficultyString = "Vecna";
-            // TODO: set a global difficulty variable
         }
 
         // Set the difficulty in the Player class to set up time limits and number of
@@ -481,19 +461,16 @@ public class MainController extends Controller implements EventHandler<ActionEve
         String storedVolume = scan.nextLine();
         String storedDifficulty = scan.nextLine();
         if (storedDifficulty.contentEquals("Demogorgon")) {
-            // TODO: set a global difficulty variable
             mediumRB.setSelected(false);
             hardRB.setSelected(false);
             easyRB.setSelected(true);
         }
         if (storedDifficulty.contentEquals("Mind Flayer")) {
-            // TODO: set a global difficulty variable
             easyRB.setSelected(false);
             hardRB.setSelected(false);
             mediumRB.setSelected(true);
         }
         if (storedDifficulty.contentEquals("Vecna")) {
-            // TODO: set a global difficulty variable
             mediumRB.setSelected(false);
             easyRB.setSelected(false);
             hardRB.setSelected(true);

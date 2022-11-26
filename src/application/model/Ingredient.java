@@ -13,7 +13,6 @@ public abstract class Ingredient {
     String name;
     boolean onPizza;
 
-    // TODO: ADD ANY NECCESSARY ITEMS TO THIS CONSTRUCTOR.
     // Constructor for Ingredients object.
     public Ingredient(String name) {
         this.name = name;
