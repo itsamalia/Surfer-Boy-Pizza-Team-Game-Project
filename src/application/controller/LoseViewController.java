@@ -48,7 +48,7 @@ public class LoseViewController extends Controller implements Initializable {
     Image vecnaPixelImage;
 
     @FXML
-    MediaView mediaLoading, loseMedia;
+    MediaView loseMedia;
 
     // private static final String MEDIA_URL=
     // "src/application/videos/ArgleMission.mp4";
@@ -58,7 +58,7 @@ public class LoseViewController extends Controller implements Initializable {
 //        playVideo("mainMenuBackground, -1, backgroundMedia);
 
         playVideo("LoseVideo", -1, loseMedia);
-        playVideo("ClipChampRedBar", 1, mediaLoading);
+      //  playVideo("ClipChampRedBar", 1, mediaLoading);
 
         RotateTransition rotate1 = new RotateTransition(Duration.seconds(3), gameOverLabel);
         rotate1.setFromAngle(0);
@@ -69,9 +69,9 @@ public class LoseViewController extends Controller implements Initializable {
 
         // Closes program automatically after the red bar fills (12 secs) in
         // LoseViewScreen
-        PauseTransition delay = new PauseTransition(Duration.seconds(12));
-        delay.setOnFinished(event -> Main.stage.close());
-        delay.play();
+//        PauseTransition delay = new PauseTransition(Duration.seconds(12));
+//        delay.setOnFinished(event -> Main.stage.close());
+//        delay.play();
 
 //		System.out.println(location.toString());
 //		System.out.println(this.getClass().getResource(MEDIA_URL).toExternalForm());
