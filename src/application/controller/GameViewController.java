@@ -440,10 +440,11 @@ public class GameViewController extends Controller implements EventHandler<Actio
         try {
             // Connect to the FXML (contains our layout) and load it in.
             Parent root = FXMLLoader.load(Main.class.getResource("view/" + sceneName));
+
             // Put the layout onto the scene.
             Scene scene = new Scene(root);
-            // Set the scene on the stage that was created in Main.java.
 
+            // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
             try {

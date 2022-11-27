@@ -49,15 +49,14 @@ public class LoseViewController extends Controller implements Initializable {
     @FXML
     MediaView loseMedia;
 
-    // private static final String MEDIA_URL=
-    // "src/application/videos/ArgleMission.mp4";
-
+    /**
+     * Everything to be initialized upon the initial loading of the Scene (i.e,
+     * animations, music, timers etc...)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        playVideo("mainMenuBackground, -1, backgroundMedia);
 
-        playVideo("LoseVideo", -1, loseMedia);
-        // playVideo("ClipChampRedBar", 1, mediaLoading);
+        playVideo("LoseVideo", 1, loseMedia);
 
         RotateTransition rotate1 = new RotateTransition(Duration.seconds(3), gameOverLabel);
         rotate1.setFromAngle(0);
@@ -65,19 +64,6 @@ public class LoseViewController extends Controller implements Initializable {
         rotate1.setAutoReverse(true);
         rotate1.setCycleCount(RotateTransition.INDEFINITE);
         rotate1.play();
-
-        // Closes program automatically after the red bar fills (12 secs) in
-        // LoseViewScreen
-//        PauseTransition delay = new PauseTransition(Duration.seconds(12));
-//        delay.setOnFinished(event -> Main.stage.close());
-//        delay.play();
-
-//		System.out.println(location.toString());
-//		System.out.println(this.getClass().getResource(MEDIA_URL).toExternalForm());
-//		
-//		mediaPlayer = new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
-//		mediaPlayer.setAutoPlay(true);
-//		mediaLoading.setMediaPlayer(mediaPlayer);
     }
 
     public void handle(ActionEvent event) {
@@ -92,6 +78,7 @@ public class LoseViewController extends Controller implements Initializable {
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("tryAgainButton")) {
                 newScene = "MainView.fxml";
+                mediaBackground.stop();
             } else if (buttonPushed.getId().equals("exitButton")) {
                 newScene = null;
             } else if (buttonPushed.getId().equals(null)) {
@@ -116,11 +103,8 @@ public class LoseViewController extends Controller implements Initializable {
                     e.printStackTrace();
                 }
                 Main.stage.show();
-
             }
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
