@@ -447,6 +447,8 @@ public class GameViewController extends Controller implements EventHandler<Actio
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
+
+            // Set the cursor to the custom cursor upon switching Scenes.
             try {
                 setCursor("normalSelect");
             } catch (FileNotFoundException e) {

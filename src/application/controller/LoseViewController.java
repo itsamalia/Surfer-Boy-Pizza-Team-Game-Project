@@ -97,11 +97,14 @@ public class LoseViewController extends Controller implements Initializable {
 
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
+
+                // Set the cursor to the custom cursor upon switching Scenes.
                 try {
                     setCursor("normalClick");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+
                 Main.stage.show();
             }
         } catch (Exception e) {

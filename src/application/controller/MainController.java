@@ -56,12 +56,11 @@ public class MainController extends Controller implements EventHandler<ActionEve
     private AnchorPane titlePane;
 
     // @FXML
-    // ImageView logoImg, cursorReferenceNormal,/*pizzaTruck, pixelArgyle,*/
     // blackFadeImg1, blackFadeImg2, blackFadeImg3, blackFadeImg4;
 
     @FXML
-    private ImageView logoImg, soundMessageImgView, /* pizzaTruck, pixelArgyle, */ blackFadeImg1, blackFadeImg2,
-            blackFadeImg3, overallFade, lineTop, lineLeft, lineRight, lineBottom, lineRight2, lineLeft2;
+    private ImageView logoImg, soundMessageImgView, blackFadeImg1, blackFadeImg2, blackFadeImg3, overallFade, lineTop,
+            lineLeft, lineRight, lineBottom, lineRight2, lineLeft2;
 
     @FXML
     private Button buttonPushed, pizzaStartButton, optionsButton, exitButton, skipButton, cancelButton, saveButton;
@@ -177,25 +176,11 @@ public class MainController extends Controller implements EventHandler<ActionEve
                  * optionsButton.setOpacity(1); exitButton.setOpacity(1);
                  * titleVBox.setOpacity(1); }
                  */
-
             }
-
         };
         timer.scheduleAtFixedRate(task, 0, 30);
 
         this.startTimerToRunOnce = new Timer();
-        TimerTask startTask = new TimerTask() {
-
-            @Override
-            public void run() {
-                try {
-                    setCursor("normalSelect");
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        startTimerToRunOnce.schedule(startTask, 100);
 
         this.startTimerButtons = new Timer();
         TimerTask startTaskButton1 = new TimerTask() {
@@ -308,6 +293,8 @@ public class MainController extends Controller implements EventHandler<ActionEve
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
                 Main.stage.show();
+
+                // Set the cursor to the custom cursor upon switching Scenes.
                 try {
                     setCursor("normalSelect");
                 } catch (FileNotFoundException e) {
@@ -315,7 +302,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
                 }
                 mediaPlayer.stop();
             }
-
         } catch (
 
         Exception e) {

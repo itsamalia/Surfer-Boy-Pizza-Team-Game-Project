@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -61,6 +62,12 @@ public class DrivingController extends Controller implements Initializable {
             Main.stage.setScene(scene);
             Main.stage.show();
 
+            // Set the cursor to the custom cursor upon switching Scenes.
+            try {
+                setCursor("normalSelect");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -40,7 +40,7 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
     @FXML
     private ImageView winArgyle, winPizza, winPizza1;
-    
+
     @FXML
     private MediaView winMedia;
 
@@ -55,33 +55,30 @@ public class PizzaFinishedController extends Controller implements EventHandler<
      * 
      * @param event Listens for button push event (ActionEvent)
      */
-    
-    
+
     /**
      * Rotates pizzas on the screen.
      */
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		playVideo("WinVideo", -1, winMedia);
-    
-		RotateTransition rotate=new RotateTransition(Duration.seconds(3), winPizza);
-		rotate.setFromAngle(0);
-		rotate.setToAngle(360);
-		rotate.setAutoReverse(true);
-		rotate.setCycleCount(RotateTransition.INDEFINITE);
-		rotate.play();
-		
-		
-		RotateTransition rotate1=new RotateTransition(Duration.seconds(3), winPizza1);
-		rotate1.setFromAngle(0);
-		rotate1.setToAngle(360);
-		rotate1.setAutoReverse(true);
-		rotate1.setCycleCount(RotateTransition.INDEFINITE);
-		rotate1.play();
-	}
-    
-    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        playVideo("WinVideo", -1, winMedia);
+
+        RotateTransition rotate = new RotateTransition(Duration.seconds(3), winPizza);
+        rotate.setFromAngle(0);
+        rotate.setToAngle(360);
+        rotate.setAutoReverse(true);
+        rotate.setCycleCount(RotateTransition.INDEFINITE);
+        rotate.play();
+
+        RotateTransition rotate1 = new RotateTransition(Duration.seconds(3), winPizza1);
+        rotate1.setFromAngle(0);
+        rotate1.setToAngle(360);
+        rotate1.setAutoReverse(true);
+        rotate1.setCycleCount(RotateTransition.INDEFINITE);
+        rotate1.play();
+    }
+
     @Override
     public void handle(ActionEvent event) {
         try {
@@ -93,15 +90,15 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
             // Determines which button was pushed and loads that FXML Scene.
             if (buttonPushed.getId().equals("homeButton")) {
-            	mediaBackground.stop();
+                mediaBackground.stop();
                 newScene = "MainView.fxml";
                 playSound("buttonclick");
             } else if (buttonPushed.getId().equals("morePizzaButton")) {
-            	mediaBackground.stop();
+                mediaBackground.stop();
                 newScene = "GameView.fxml";
                 playSound("buttonclick");
             } else if (buttonPushed.getId().equals("exitButton")) {
-            	mediaBackground.stop();
+                mediaBackground.stop();
                 playSound("buttonclick");
                 newScene = null;
             } else if (buttonPushed.getId().equals(null)) {
@@ -110,11 +107,11 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
             if (newScene == null) {
 //                Platform.exit();
-            	 //mediaBackground.stop();
+                // mediaBackground.stop();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
             } else {
-            	 //mediaBackground.stop();
+                // mediaBackground.stop();
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 
@@ -123,11 +120,14 @@ public class PizzaFinishedController extends Controller implements EventHandler<
 
                 // Set the scene on the stage that was created in Main.java.
                 Main.stage.setScene(scene);
+
+                // Set the cursor to the custom cursor upon switching Scenes.
                 try {
                     setCursor("normalClick");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+
                 Main.stage.show();
 
             }

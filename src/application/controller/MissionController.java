@@ -67,12 +67,6 @@ public class MissionController extends Controller implements EventHandler<Action
                 newScene = "GameView.fxml";
                 playSound("mindfighton");
                 mediaBackground.stop();
-                try {
-                    setCursor("normalSelect");
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
             } else if (buttonPushed.getId().equals(null)) {
                 System.out.println("IT'S ALL WRONG, WHAT HAVE YOU DONE!!!");
             }
@@ -86,6 +80,8 @@ public class MissionController extends Controller implements EventHandler<Action
             // Set the scene on the stage that was created in Main.java.
             Main.stage.setScene(scene);
             Main.stage.show();
+
+            // Set the cursor to the custom cursor upon switching Scenes.
             try {
                 setCursor("normalSelect");
             } catch (FileNotFoundException e) {

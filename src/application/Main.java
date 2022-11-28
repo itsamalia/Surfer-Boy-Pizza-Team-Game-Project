@@ -1,8 +1,11 @@
 package application;
 
+import java.io.FileInputStream;
+
 import application.model.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -51,6 +54,11 @@ public class Main extends Application {
             // Set the scene on the stage
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            // Set the cursor to the custom cursor upon switching Scenes.
+            Image myImage = new Image(new FileInputStream("src/application/images/normalSelect.png"));
+            ImageCursor cursor = new ImageCursor(myImage, 0, 0);
+            scene.getRoot().setCursor(cursor);
 
         } catch (Exception e) {
             e.printStackTrace();
