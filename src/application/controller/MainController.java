@@ -266,8 +266,7 @@ public class MainController extends Controller implements EventHandler<ActionEve
                 playSound("youaresodead");
             } else if (buttonPushed.getId().equals("optionsButton")) {
                 playSound("buttonclick");
-                // newScene = null;
-                // System.out.println("OPTIONS TO BE IMPLEMENTED SOON...");
+                newScene = "optionsButton";
                 toggleOptionsButtons();
             } else if (buttonPushed.getId().equals("exitButton")) {
                 playSound("buttonclick");
@@ -277,12 +276,13 @@ public class MainController extends Controller implements EventHandler<ActionEve
             }
 
             // Exit the program if the scene button clicked on is null.
-
             if (newScene == null) {
 //                Platform.exit();
                 this.timer.cancel();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
+            } else if (newScene.equalsIgnoreCase("optionsButton")) {
+                // Don't do anything, no new scene needs to be loaded.
             } else {
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));

@@ -66,6 +66,12 @@ public class LoseViewController extends Controller implements Initializable {
         rotate1.play();
     }
 
+    /**
+     * Determines which button was pressed (if we end up having multiple buttons),
+     * and loads the view for that corresponding button.
+     * 
+     * @param event Listens for button push event (ActionEvent)
+     */
     public void handle(ActionEvent event) {
 
         try {
