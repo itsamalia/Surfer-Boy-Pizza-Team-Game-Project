@@ -110,7 +110,6 @@ public class LoseViewController extends Controller implements Initializable {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
                 Main.stage.show();
             }
         } catch (Exception e) {

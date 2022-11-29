@@ -7,12 +7,6 @@
  *
  */
 
-/* Used to access the Text subnode of the label class. */
-/* 
- * .label .text {
- *  -fx-strikethrough: true;
- * }
- */
 
 /* General CSS for entire application */
 AnchorPane {
@@ -119,11 +113,6 @@ Text {
 
 
 /* Begin GameView.fxml specific CSS styling. */
-/* This doesn't work for some reason, had to do the background color of both Hboxes within scenebuilder.
- * #topHbox, #bottomHbox {
-    -fx-background-color: darkred;
-} */
-
 #rightVbox, #leftVbox {
     -fx-background-color: black;
 }

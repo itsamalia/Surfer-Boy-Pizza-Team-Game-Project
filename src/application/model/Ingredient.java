@@ -1,7 +1,7 @@
 package application.model;
 
 /**
- * 
+ * Creates and holds Ingredients for the Pizza.
  * 
  * CS3443-004 - Fall 2022
  *

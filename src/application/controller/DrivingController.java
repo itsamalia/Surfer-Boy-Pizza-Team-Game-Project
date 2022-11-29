@@ -35,6 +35,10 @@ public class DrivingController extends Controller implements Initializable {
     @FXML
     Button nextSceneButton;
 
+    /**
+     * Everything to be initialized upon the initial loading of the Scene (i.e,
+     * animations, music, timers, etc...)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Path path = new Path();
@@ -52,6 +56,12 @@ public class DrivingController extends Controller implements Initializable {
         transition.setOnFinished(event -> loadScene("PizzaFinished.fxml"));
     }
 
+    /**
+     * Determines which button was pressed (if we end up having multiple buttons),
+     * and loads the view for that corresponding button.
+     * 
+     * @param event Listens for button push event (ActionEvent)
+     */
     public void loadScene(String sceneName) {
         try {
             // Connect to the FXML (contains our layout) and load it in.

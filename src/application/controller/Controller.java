@@ -36,7 +36,8 @@ public abstract class Controller {
     FadeTransition fadeInAnimation;
 
     /**
-     * 
+     * Constructs an object of the Controller class, however this is a helper class
+     * and this is not used.
      */
     public Controller() {
     }

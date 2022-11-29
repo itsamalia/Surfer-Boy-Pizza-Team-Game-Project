@@ -46,7 +46,6 @@ public class Pizza {
         Random randIngredient = new Random();
         int tempNumIngredients = randNumIngredients.nextInt(5) + 1;
         int tempIngredientIndex = 0;
-        System.out.println("Number of Ingredients in randomIngredients: " + tempNumIngredients);
         for (int i = 0; i < tempNumIngredients/* randNumIngredients.nextInt(5) + 1 */; i++) {
             tempIngredientIndex = randIngredient.nextInt(5);
 

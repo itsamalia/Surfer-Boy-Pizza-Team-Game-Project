@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import javafx.animation.RotateTransition;
-//import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -79,6 +78,11 @@ public class PizzaFinishedController extends Controller implements EventHandler<
         rotate1.play();
     }
 
+    /**
+     * Event listener to switch scenes depending on button pushed.
+     * 
+     * @param event Mouse click on Button to be listened for (ActionEvent)
+     */
     @Override
     public void handle(ActionEvent event) {
         try {
@@ -106,12 +110,9 @@ public class PizzaFinishedController extends Controller implements EventHandler<
             }
 
             if (newScene == null) {
-//                Platform.exit();
-                // mediaBackground.stop();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
             } else {
-                // mediaBackground.stop();
                 // Connect to the FXML (contains our layout) and load it in.
                 Parent root = FXMLLoader.load(Main.class.getResource("view/" + newScene));
 
@@ -127,9 +128,7 @@ public class PizzaFinishedController extends Controller implements EventHandler<
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
                 Main.stage.show();
-
             }
         } catch (
 

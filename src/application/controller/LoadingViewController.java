@@ -58,6 +58,12 @@ public class LoadingViewController extends Controller implements Initializable {
 //		mediaLoading.setMediaPlayer(mediaPlayer);
     }
 
+    /**
+     * Determines which button was pressed (if we end up having multiple buttons),
+     * and loads the view for that corresponding button.
+     * 
+     * @param event Listens for button push event (ActionEvent)
+     */
     public void handle(ActionEvent event) {
         try {
 

@@ -81,19 +81,12 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        Image image = new Image("application.images/trimmedclockgif.gif");
-//        vecnaClockImage.setImage(image);
-
         playMusic("VecnaClockSound");
 
         Main.user.setNumPizzasMade(0);
         this.buildPizza = new Pizza();
         this.buildPizza.setRandomIngredients();
         this.setToppingLabels();
-
-        // TESTING
-        System.out.println("Made: " + Main.user.getNumPizzasMade());
-        System.out.println("Need: " + Main.user.getNumPizzasRemaining());
 
         numPizzasLabel.setText(String.valueOf(Main.user.getNumPizzasMade()) + " / "
                 + String.valueOf(Main.user.getNumPizzasToMake()) + " pizzas");
@@ -124,9 +117,7 @@ public class GameViewController extends Controller implements EventHandler<Actio
                     cancel();
                     Platform.runLater(() -> {
                         loadScene("LoseView.fxml");
-
                     });
-                    System.out.println("YOU LOSE!!! (IMPLEMENT GAME OVER SCENE TO SWITCH TO)");
                 }
             }
         }, 0, 1000);
@@ -134,6 +125,9 @@ public class GameViewController extends Controller implements EventHandler<Actio
         pizzaLabel.setText("Drag the Pizza into the center box.");
     }
 
+    /**
+     * Not used.
+     */
     @Override
     public void handle(ActionEvent event) {
     }
@@ -180,8 +174,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
         Dragboard db = null;
         ClipboardContent content = new ClipboardContent();
 
-        // TODO: UPDATE THIS FOR DIFFERENT TOPPINGS TO BE DRAGGED ONTO PIZZA
-        // Test which image is being dragged and set accordingly.
         if (event.getSource() == sauceImage) {
             db = sauceImage.startDragAndDrop(TransferMode.ANY);
             content.putImage(sauceImage.getImage());
@@ -201,10 +193,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
 
         // Puts an image on Dragboard
         db.setContent(content);
-
-        // Debugging print statement to the console.
-//        System.out.println(content.hasImage());
-
         event.consume();
     }
 
@@ -218,7 +206,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
      */
     public void handleDragOver(DragEvent event) {
         /* data is dragged over the target */
-//        System.out.println("onDragOver");
 
         // Accept it only if it has an Image.
         if (event.getDragboard().hasImage()) {
@@ -257,7 +244,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
     @FXML
     public void handleDragExited(DragEvent event) {
         /* the drag-and-drop gesture exited the target */
-//        System.out.println("onDragExited");
         /* show to the user that it is an actual gesture target */
         if (event.getDragboard().hasImage()) {
             pizzaLabel.setText("Drag The Topping Onto the Pizza.");
@@ -304,7 +290,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
             }
             pizzaLabel.setText("You Dropped The Topping Onto the Pizza!!!");
         }
-//        System.out.println("On Drag Dropped");
 
         /*
          * Logic for checking if pizza is done being built and if Player has finished
@@ -313,9 +298,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
          */
         if (this.buildPizza.isFinished() && Main.user.isPlayerFinished() == false) {
             Main.user.addPizzaMade();
-
-            System.out.println("Made: " + Main.user.getNumPizzasMade());
-            System.out.println("Need: " + Main.user.getNumPizzasRemaining());
 
             // Update the Text of the numPizzaText with pizzas made/need to make.
             numPizzasLabel.setText(String.valueOf(Main.user.getNumPizzasMade()) + " / "
@@ -336,7 +318,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
             this.setToppingLabels();
 
             // Reset the topping images to null.
-            // TODO: FIND A BETTER WAY TO DO THIS WITH OBSERVABLE LISTS AND ARRAYLISTS:
             this.sauceTarget.setImage(null);
             this.topping1Target.setImage(null);
             this.topping2Target.setImage(null);
@@ -384,7 +365,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
      */
     private void setToppingInfo(ImageView sourceImage, ImageView targetImage, Label ingredientLabel, int i) {
         if (i < 0) {
-            System.out.println("This ingredient doesn't need to be added to the current pizza.");
 
 //            //***TESTING***
 //            //vecnas face shows up if you make an error
@@ -400,7 +380,6 @@ public class GameViewController extends Controller implements EventHandler<Actio
             ingredientLabel.setText("ADDED!!");
             ingredientLabel.setTextFill(Color.NAVAJOWHITE);
         } else if (this.buildPizza.getIngredients().get(i).isOnPizza()) {
-            System.out.println("target already on pizza.");
 //            
 //            //***TESTING***
 //            //vecnas face shows up if you make an error

@@ -277,7 +277,6 @@ public class MainController extends Controller implements EventHandler<ActionEve
 
             // Exit the program if the scene button clicked on is null.
             if (newScene == null) {
-//                Platform.exit();
                 this.timer.cancel();
                 Stage stage = (Stage) exitButton.getScene().getWindow();
                 stage.close();
@@ -321,8 +320,10 @@ public class MainController extends Controller implements EventHandler<ActionEve
         }
     }
 
-    // this method exists for asthetic purposes. it sets the fill gradient for the
-    // slider
+    /**
+     * This method exists for asthetic purposes. it sets the fill gradient for the
+     * slider.
+     */
     public void volumeSliderStartDrag() {
         volumeSlider.setStyle("-fx-base: #ba3702;");
         Double newVal = volumeSlider.getValue();
@@ -352,24 +353,34 @@ public class MainController extends Controller implements EventHandler<ActionEve
         });
     }
 
-    // this method exists for asthetic purposes, called when the user is finished
-    // dragging volume slider
+    /**
+     * This method exists for asthetic purposes, called when the user is finished
+     * dragging volume slider.
+     */
     public void volumeSliderEndDrag() {
         volumeSlider.setStyle("-fx-base: #ba3702;");
         Double newVal = volumeSlider.getValue();
         // set the master volume variable
     }
 
-    // this method handles when the cancel options button is clicked. it loads the
-    // original values from the config file
+    /**
+     * This method handles when the cancel options button is clicked. it loads the
+     * original values from the config file.
+     * 
+     * @throws FileNotFoundException
+     */
     public void cancelButtonClicked() throws FileNotFoundException {
         loadConfig();
         toggleOptionsButtons();
         playSound("buttonClick");
     }
 
-    // this method handles when the save options button is clicked. it writes to the
-    // option values to the config file
+    /**
+     * This method handles when the save options button is clicked. it writes to the
+     * option values to the config file.
+     * 
+     * @throws IOException
+     */
     public void saveButtonClicked() throws IOException {
         FileWriter file = new FileWriter("src/application/config/config.txt");
         PrintWriter write = new PrintWriter(file);
@@ -395,13 +406,19 @@ public class MainController extends Controller implements EventHandler<ActionEve
         toggleOptionsButtons();
     }
 
-    // this method will invert the visibility of the main buttons and option buttons
+    /**
+     * This method will invert the visibility of the main buttons and option buttons
+     */
     public void toggleOptionsButtons() {
         menuButtonsVBox.setVisible(!menuButtonsVBox.isVisible());
         optionsButtonsPane.setVisible(!optionsButtonsPane.isVisible());
     }
 
-    // this method will be called when any radio button is clicked
+    /**
+     * This method will be called when any radio button is clicked.
+     * 
+     * @param event Listens for event (ActionEvent)
+     */
     public void radioButtonClicked(ActionEvent event) {
         // unckeck radio buttons that weren't clicked
         RadioButton radioButtonPushed = (RadioButton) event.getSource();
@@ -439,8 +456,12 @@ public class MainController extends Controller implements EventHandler<ActionEve
         }
     }
 
-    // this method is responsible for loading values from the config.txt file. it is
-    // first called on initialize
+    /**
+     * This method is responsible for loading values from the config.txt file. it is
+     * first called on initialize.
+     * 
+     * @throws FileNotFoundException
+     */
     public void loadConfig() throws FileNotFoundException {
         File file = new File("src/application/config/config.txt");
         Scanner scan = new Scanner(file);
@@ -501,10 +522,10 @@ public class MainController extends Controller implements EventHandler<ActionEve
     }
 
     /**
+     * Fades out the sound.
      * 
-     * 
-     * @param seconds
-     * @param node
+     * @param seconds Number of seconds to fade out (double)
+     * @param node    The Node to act upon (Node)
      */
     public void playFadeOutSoundMessageTransition(double seconds, Node node) {
         FadeTransition transition = new FadeTransition(Duration.seconds(seconds), node);
@@ -514,7 +535,9 @@ public class MainController extends Controller implements EventHandler<ActionEve
         fadeInSoundAnimation = transition;
     }
 
-    // hardcoded animations for the lines
+    /**
+     * Hardcoded animations for the lines.
+     */
     public void linesAnimation() {
         TranslateTransition ttLL = new TranslateTransition(Duration.millis(30000), lineLeft);
         TranslateTransition ttLR = new TranslateTransition(Duration.millis(30000), lineRight);
